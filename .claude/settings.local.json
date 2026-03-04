@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(perplexity-search)",
+      "WebSearch",
+      "Bash(python:*)"
+    ]
+  }
+}

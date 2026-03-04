@@ -1,0 +1,6 @@
+pyautogui
+pytesseract
+Pillow
+openpyxl
+opencv-python
+pyperclip
