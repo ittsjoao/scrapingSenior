@@ -109,7 +109,67 @@ def parsear_txt(path):
     return [{"colaborador": k, "competencia": v} for k, v in vistos.items()]
 
 def gerar_excel(esocial_rows, eventos, empresas, pastas_existentes):
-    pass
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Planilha"
+
+    # Cabeçalho
+    cabecalho = ["ID SENIOR", "EMPRESA", "EVENTO", "IRRF", "COLABORADOR", "COMPETENCIA"]
+    header_font = Font(bold=True)
+    header_fill = PatternFill(fill_type="solid", fgColor="D9D9D9")
+    for col, titulo in enumerate(cabecalho, 1):
+        cell = ws.cell(row=1, column=col, value=titulo)
+        cell.font = header_font
+        cell.fill = header_fill
+
+    pastas_set = set(pastas_existentes)
+    # Universo de empresas: union pastas + empresas.csv
+    todas = sorted(pastas_set | set(empresas.keys()))
+    com_pasta = [e for e in todas if e in pastas_set]
+    sem_pasta = [e for e in todas if e not in pastas_set]
+
+    fonte_vermelha = Font(color="FF0000")
+    linha_atual = 2
+
+    for empresa in com_pasta + sem_pasta:
+        tem_pasta = empresa in pastas_set
+        id_senior = empresas.get(empresa, "")
+
+        for esocial_row in esocial_rows:
+            id_evento    = esocial_row["id_evento"]
+            nome_esocial = esocial_row["nome_esocial"]
+            irf          = esocial_row["irf"]
+            nome_evento  = eventos.get(id_evento)
+
+            if nome_evento and tem_pasta:
+                txt_path = os.path.join(SAIDA_DIR, empresa, nome_evento + ".TXT")
+                colaboradores = parsear_txt(txt_path)
+            else:
+                colaboradores = []
+
+            linhas_evento = colaboradores if colaboradores else [{"colaborador": "", "competencia": ""}]
+
+            for colab in linhas_evento:
+                valores = [
+                    id_senior,
+                    empresa,
+                    nome_esocial,
+                    irf,
+                    colab["colaborador"],
+                    colab["competencia"],
+                ]
+                for col, val in enumerate(valores, 1):
+                    cell = ws.cell(row=linha_atual, column=col, value=val)
+                    if not tem_pasta:
+                        cell.font = fonte_vermelha
+                linha_atual += 1
+
+    # Ajuste de largura de colunas
+    larguras = [12, 45, 45, 8, 50, 14]
+    for col, largura in enumerate(larguras, 1):
+        ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = largura
+
+    wb.save(OUTPUT_PATH)
 
 if __name__ == "__main__":
     esocial_rows       = ler_esocial()
