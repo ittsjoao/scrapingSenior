@@ -6,8 +6,8 @@ import pyautogui
 from automacao import (
     aguardar,
     clicar_botao,
+    configurar_filtros,
     inicio_evento,
-    limpar_evento,
     pesquisar_empresa,
     pesquisar_evento,
     salvar_evento,
@@ -79,58 +79,81 @@ for empresa in empresas:
         continue
     time.sleep(PAUSA_CURTA)
     pyautogui.press("1")
-    # Loop de eventos — reutiliza a aba aberta, só limpa o campo entre eventos
-    for evento in eventos:
-        id_evento = evento["id_evento"]
-        nome_evento = evento["nome_evento"]
 
-        print(f"\n  >> Evento {id_evento} - {nome_evento}")
+    # ── Setup + 1º evento (fluxo completo com período e filtros) ────
+    primeiro = eventos[0]
+    print(f"\n  >> [SETUP] Evento {primeiro['id_evento']} - {primeiro['nome_evento']}")
 
-        # Clica no campo de evento e apaga o valor anterior
-        clicar_botao("btn_preencher_evento.png")
-        limpar_evento()
+    resultado = configurar_filtros(
+        primeiro["id_evento"],
+        PERIODO,
+        FIM_PERIODO,
+        TIPO_CALCULO,
+        FILIAL_ATIVA,
+        "msg_error.png",
+        "btn_listar.png",
+        "btn_validacao_listar.png",
+    )
 
-        # Preenche os filtros — sem fechar a aba se não encontrar dados
-        ok = pesquisar_evento(
-            id_evento,
-            "msg_error.png",
-            PERIODO,
-            FIM_PERIODO,
-            TIPO_CALCULO,
-            FILIAL_ATIVA,
-            "btn_listar.png",
-            "btn_validacao_listar.png",
-        )
-        if ok is None:
-            # Erro de período — fecha a aba e pula para a próxima empresa
-            registrar_log(f"[ERRO] Período inválido, pulando empresa: {nome_empresa}")
-            clicar_botao("btn_fechar_aba.png")
-            break
-        if not ok:
-            registrar_log(f"[PULOU] Sem dados: {id_evento} - {nome_evento}")
-            continue
+    if resultado is None:
+        registrar_log(f"[ERRO] Período inválido, pulando empresa: {nome_empresa}")
+        clicar_botao("btn_fechar_aba.png")
+        continue
 
-        # Monta o caminho da pasta da empresa
-        pasta_empresa = os.path.abspath(
-            os.path.join("dados", "saida", sanitizar_nome(nome_empresa))
-        )
-        nome_arquivo = f"{nome_evento}"
+    _fim_efetivo, ok_primeiro = resultado
+    pasta_empresa = os.path.abspath(
+        os.path.join("dados", "saida", sanitizar_nome(nome_empresa))
+    )
 
-        # Salva o relatório — sem fechar a aba após salvar
+    if ok_primeiro:
         ok = salvar_evento(
-            nome_arquivo,
+            primeiro["nome_evento"],
             pasta_empresa + os.sep,
             id_empresa,
             "btn_ok_salvar.png",
             "btn_diskette.png",
             "btn_ok_2.png",
         )
-        if not ok:
-            registrar_log(f"[PULOU] Falha ao salvar: {id_evento} - {nome_evento}")
-            continue
-        registrar_log(f"[OK] {nome_empresa} | {id_evento} - {nome_evento}")
+        if ok:
+            registrar_log(f"[OK] {nome_empresa} | {primeiro['id_evento']} - {primeiro['nome_evento']}")
+        else:
+            registrar_log(f"[PULOU] Falha ao salvar: {primeiro['id_evento']} - {primeiro['nome_evento']}")
+    else:
+        registrar_log(f"[PULOU] Sem dados: {primeiro['id_evento']} - {primeiro['nome_evento']}")
 
-    # Todos os eventos desta empresa concluídos — fecha a aba uma única vez
+    # ── Eventos restantes — fluxo simplificado ──────────────────────
+    for evento in eventos[1:]:
+        id_evento = evento["id_evento"]
+        nome_evento = evento["nome_evento"]
+
+        print(f"\n  >> Evento {id_evento} - {nome_evento}")
+
+        ok = pesquisar_evento(
+            id_evento,
+            "btn_preencher_evento.png",
+            "btn_mostrar.png",
+            "btn_listar.png",
+            "btn_validacao_listar.png",
+        )
+
+        if not ok:
+            registrar_log(f"[PULOU] Sem dados: {id_evento} - {nome_evento}")
+            continue
+
+        ok = salvar_evento(
+            nome_evento,
+            pasta_empresa + os.sep,
+            id_empresa,
+            "btn_ok_salvar.png",
+            "btn_diskette.png",
+            "btn_ok_2.png",
+        )
+        if ok:
+            registrar_log(f"[OK] {nome_empresa} | {id_evento} - {nome_evento}")
+        else:
+            registrar_log(f"[PULOU] Falha ao salvar: {id_evento} - {nome_evento}")
+
+    # ── Fecha a aba da empresa ───────────────────────────────────────
     clicar_botao("btn_fechar_aba.png")
     registrar_log(f"Empresa concluida: {nome_empresa}")
 
