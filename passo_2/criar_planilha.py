@@ -114,7 +114,7 @@ def gerar_excel(esocial_rows, eventos, empresas, pastas_existentes):
     ws.title = "Planilha"
 
     # Cabeçalho
-    cabecalho = ["ID SENIOR", "EMPRESA", "EVENTO", "IRRF", "COLABORADOR", "COMPETENCIA"]
+    cabecalho = ["ID SENIOR", "EMPRESA", "EVENTO", "IRRF", "TABELA", "DEMISSÃO", "COLABORADOR", "COMPETENCIA"]
     header_font = Font(bold=True)
     header_fill = PatternFill(fill_type="solid", fgColor="D9D9D9")
     for col, titulo in enumerate(cabecalho, 1):
@@ -139,6 +139,8 @@ def gerar_excel(esocial_rows, eventos, empresas, pastas_existentes):
             id_evento    = esocial_row["id_evento"]
             nome_esocial = esocial_row["nome_esocial"]
             irf          = esocial_row["irf"]
+            tabela       = esocial_row["tabela"]
+            demissao     = esocial_row["demissao"]
             nome_evento  = eventos.get(id_evento)
 
             if nome_evento and tem_pasta:
@@ -155,6 +157,8 @@ def gerar_excel(esocial_rows, eventos, empresas, pastas_existentes):
                     empresa,
                     nome_esocial,
                     irf,
+                    tabela,
+                    demissao,
                     colab["colaborador"],
                     colab["competencia"],
                 ]
@@ -165,7 +169,7 @@ def gerar_excel(esocial_rows, eventos, empresas, pastas_existentes):
                 linha_atual += 1
 
     # Ajuste de largura de colunas
-    larguras = [12, 45, 45, 8, 50, 14]
+    larguras = [12, 45, 45, 8, 12, 12, 50, 14]
     for col, largura in enumerate(larguras, 1):
         ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = largura
 
