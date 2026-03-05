@@ -265,68 +265,38 @@ def configurar_filtros(
 
 def pesquisar_evento(
     id_evento,
-    nome_imagem_msg_error,
-    periodo,
-    fim_periodo,
-    tipo_calculo,
-    filial_ativa,
+    nome_imagem_btn_preencher,
+    nome_imagem_btn_mostrar,
     nome_imagem_btn_listar,
     nome_imagem_validacao,
 ):
-    # Preenche os filtros via Tab
+    """
+    Fluxo simplificado para eventos 2..N (período/filtros já configurados).
+    Retorna True se há dados, False se não há ou timeout.
+    """
+    # 1. Clica no campo de evento, limpa e digita o novo código
+    posicao = aguardar_aparecer(nome_imagem_btn_preencher)
+    if posicao is None:
+        return False
+    pyautogui.click(posicao)
+    limpar_evento()
     digitar_texto(id_evento)
-    pressionar_tab()
-    digitar_texto(periodo)
-    pressionar_tab()
 
-    # Verifica se apareceu mensagem de erro de período (resposta imediata)
-    if _encontrar(nome_imagem_msg_error) is not None:
-        print("  [!] Erro de período. Fechando aba e pulando empresa.")
-        clicar_botao("btn_ok_3.png")
-        return None  # sinaliza ao main.py para pular a empresa inteira
+    # 2. Clica em Mostrar (substitui Tab+Tab+Enter do fluxo anterior)
+    posicao_mostrar = aguardar_aparecer(nome_imagem_btn_mostrar)
+    if posicao_mostrar is None:
+        print("  [!] btn_mostrar não encontrado.")
+        return False
+    pyautogui.click(posicao_mostrar)
 
-    # Tenta fim_periodo; se der erro, decrementa mês até 12 tentativas
-    fim_atual = fim_periodo
-    for _ in range(12):
-        digitar_texto(fim_atual)
-        pressionar_tab()
-        if _encontrar(nome_imagem_msg_error) is None:
-            break
-        clicar_botao("btn_ok_3.png")
-        pyautogui.moveRel(50, 0)  # afasta o mouse do botão OK para não obstruir a próxima busca
-        fim_novo = _decrementar_mes(fim_atual)
-        registrar_log(
-            f"[AJUSTE] Período {fim_atual[:2]}/{fim_atual[2:]} inválido"
-            f" → tentando {fim_novo[:2]}/{fim_novo[2:]}"
-        )
-        fim_atual = fim_novo
-        pyautogui.hotkey("ctrl", "a")  # seleciona o campo para sobrescrever
-    else:
-        registrar_log("[ERRO] Nenhum período válido encontrado após 12 tentativas.")
-        return None
-
-    if fim_atual != fim_periodo:
-        registrar_log(
-            f"[AJUSTE] Período utilizado: {periodo[:2]}/{periodo[2:]}"
-            f" À {fim_atual[:2]}/{fim_atual[2:]}"
-        )
-
-    digitar_texto(tipo_calculo)
-    pressionar_tab()
-    digitar_texto(filial_ativa)
-    pressionar_tab()
-    pressionar_tab()
-    pressionar_enter()
-
-    # Aguarda o botão Listar aparecer (o sistema carregou o resultado)
+    # 3. Aguarda btn_listar aparecer e clica
     posicao_listar = aguardar_aparecer(nome_imagem_btn_listar)
     if posicao_listar is None:
-        print("  [!] Botão Listar não apareceu — sem dados ou timeout.")
+        print("  [!] btn_listar não apareceu — sem dados ou timeout.")
         return False
-
     pyautogui.click(posicao_listar)
 
-    # Aguarda a validação aparecer (confirma que há dados na listagem)
+    # 4. Valida se há dados na listagem
     posicao_validacao = aguardar_aparecer(nome_imagem_validacao, timeout=10)
     if posicao_validacao is None:
         print("  [~] Sem dados para este evento.")
