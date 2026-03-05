@@ -6,9 +6,9 @@ import os
 TESSERACT_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 # --- PAUSAS (em segundos) ---
-PAUSA_CURTA = 0.4   # pequena pausa após digitar/pressionar teclas
-TIMEOUT     = 20    # tempo máximo esperando um elemento aparecer na tela
-INTERVALO   = 0.5   # intervalo entre cada verificação de tela
+PAUSA_CURTA = 0.8  # pequena pausa após digitar/pressionar teclas
+TIMEOUT = 20  # tempo máximo esperando um elemento aparecer na tela
+INTERVALO = 0.5  # intervalo entre cada verificação de tela
 
 # --- PASTAS ---
 PASTA_ENTRADA = os.path.join("dados", "entrada")
@@ -19,4 +19,4 @@ PASTA_LOGS = "logs"
 
 # --- ARQUIVOS DE DADOS ---
 ARQUIVO_EMPRESAS = os.path.join(PASTA_ENTRADA, "empresas.csv")
-ARQUIVO_EVENTOS  = os.path.join(PASTA_ENTRADA, "eventos.csv")
+ARQUIVO_EVENTOS = os.path.join(PASTA_ENTRADA, "eventos.csv")

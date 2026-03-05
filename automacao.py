@@ -183,8 +183,14 @@ def inicio_evento(nome_imagem_btn_ok, nome_imagem_btn_evento):
     if posicao_ok is None:
         return False
     pyautogui.click(posicao_ok)
+    pyautogui.moveRel(50, 0)
+    posicao_ok_1 = aguardar_aparecer(nome_imagem_btn_ok)
+    if posicao_ok_1 is None:
+        return True
+    else:
+        pyautogui.click(posicao_ok_1)
     time.sleep(PAUSA_CURTA)
-    pyautogui.click(posicao_ok)  # segundo clique conforme fluxo original
+    # pyautogui.click(posicao_ok)  # segundo clique conforme fluxo original
     return True
 
 

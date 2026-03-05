@@ -78,7 +78,7 @@ for empresa in empresas:
         registrar_log(f"[ERRO] Nao abriu aba de eventos: {nome_empresa}")
         continue
     time.sleep(PAUSA_CURTA)
-    pyautogui.press("1")
+    pyautogui.press("0")
 
     # ── Setup + 1º evento (fluxo completo com período e filtros) ────
     primeiro = eventos[0]
@@ -115,11 +115,17 @@ for empresa in empresas:
             "btn_ok_2.png",
         )
         if ok:
-            registrar_log(f"[OK] {nome_empresa} | {primeiro['id_evento']} - {primeiro['nome_evento']}")
+            registrar_log(
+                f"[OK] {nome_empresa} | {primeiro['id_evento']} - {primeiro['nome_evento']}"
+            )
         else:
-            registrar_log(f"[PULOU] Falha ao salvar: {primeiro['id_evento']} - {primeiro['nome_evento']}")
+            registrar_log(
+                f"[PULOU] Falha ao salvar: {primeiro['id_evento']} - {primeiro['nome_evento']}"
+            )
     else:
-        registrar_log(f"[PULOU] Sem dados: {primeiro['id_evento']} - {primeiro['nome_evento']}")
+        registrar_log(
+            f"[PULOU] Sem dados: {primeiro['id_evento']} - {primeiro['nome_evento']}"
+        )
 
     # ── Eventos restantes — fluxo simplificado ──────────────────────
     for evento in eventos[1:]:
