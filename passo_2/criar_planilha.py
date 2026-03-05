@@ -30,7 +30,16 @@ def ler_esocial():
     return rows
 
 def ler_eventos():
-    pass
+    """Retorna dict {id_evento (int): nome_evento (str)}."""
+    path = os.path.join(ENTRADA_DIR, "eventos.csv")
+    eventos = {}
+    with open(path, encoding="utf-8") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            if not row.get("id_evento", "").strip():
+                continue
+            eventos[int(row["id_evento"].strip())] = row["nome_evento"].strip()
+    return eventos
 
 def ler_empresas():
     pass
