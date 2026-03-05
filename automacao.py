@@ -5,6 +5,7 @@ import pyautogui
 import pyperclip
 
 from config import INTERVALO, PASTA_BOTOES, PASTA_PRINTS, PAUSA_CURTA, TIMEOUT
+from salvador import registrar_log
 
 # Segurança: mover o mouse para o canto SUPERIOR ESQUERDO da tela para parar.
 pyautogui.FAILSAFE = True
@@ -13,6 +14,17 @@ pyautogui.FAILSAFE = True
 # ─────────────────────────────────────────────
 # Primitivas de imagem
 # ─────────────────────────────────────────────
+
+
+def _decrementar_mes(periodo_str):
+    """'122025' → '112025', '012025' → '122024'. Formato: MMYYYY."""
+    mes = int(periodo_str[:2])
+    ano = int(periodo_str[2:])
+    mes -= 1
+    if mes == 0:
+        mes = 12
+        ano -= 1
+    return f"{mes:02d}{ano}"
 
 
 def _encontrar(nome_imagem, confidence=0.8):
@@ -199,8 +211,32 @@ def pesquisar_evento(
         clicar_botao("btn_ok_3.png")
         return None  # sinaliza ao main.py para pular a empresa inteira
 
-    digitar_texto(fim_periodo)
-    pressionar_tab()
+    # Tenta fim_periodo; se der erro, decrementa mês até 12 tentativas
+    fim_atual = fim_periodo
+    for _ in range(12):
+        digitar_texto(fim_atual)
+        pressionar_tab()
+        if _encontrar(nome_imagem_msg_error) is None:
+            break
+        clicar_botao("btn_ok_3.png")
+        pyautogui.moveRel(50, 0)  # afasta o mouse do botão OK para não obstruir a próxima busca
+        fim_novo = _decrementar_mes(fim_atual)
+        registrar_log(
+            f"[AJUSTE] Período {fim_atual[:2]}/{fim_atual[2:]} inválido"
+            f" → tentando {fim_novo[:2]}/{fim_novo[2:]}"
+        )
+        fim_atual = fim_novo
+        pyautogui.hotkey("ctrl", "a")  # seleciona o campo para sobrescrever
+    else:
+        registrar_log("[ERRO] Nenhum período válido encontrado após 12 tentativas.")
+        return None
+
+    if fim_atual != fim_periodo:
+        registrar_log(
+            f"[AJUSTE] Período utilizado: {periodo[:2]}/{periodo[2:]}"
+            f" À {fim_atual[:2]}/{fim_atual[2:]}"
+        )
+
     digitar_texto(tipo_calculo)
     pressionar_tab()
     digitar_texto(filial_ativa)
@@ -217,7 +253,7 @@ def pesquisar_evento(
     pyautogui.click(posicao_listar)
 
     # Aguarda a validação aparecer (confirma que há dados na listagem)
-    posicao_validacao = aguardar_aparecer(nome_imagem_validacao)
+    posicao_validacao = aguardar_aparecer(nome_imagem_validacao, timeout=10)
     if posicao_validacao is None:
         print("  [~] Sem dados para este evento.")
         return False

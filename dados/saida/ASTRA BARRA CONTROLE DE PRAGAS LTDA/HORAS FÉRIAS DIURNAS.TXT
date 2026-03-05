@@ -1,0 +1,99 @@
+ 3009 - ASTRA BARRA CONTROLE DE PRAGAS LTDA                                                                          Pág.            1
+                                          HORAS FÉRIAS DIURNAS
+
+
+ Período:       11/20a  12/2025          Tipo: Cálculo Mensal
+ 
+ Evento     Colaborador                                        SIT    Competência    Pagamento        Referência           Valor
+
+
+ 0012 -Horas Férias Diurnas
+               ADRIANA GONCALVES LEAL                         001      03/2025      04/04/2025                                2.318,90
+
+               ADRIANA GONCALVES LEAL                         001      04/2025      07/05/2025                                    843,23
+               JOSE CARLOS DA CUNHA                           001      08/2025      05/09/2025                                    692,30
+
+               JOSE CARLOS DA CUNHA                           001      09/2025      06/10/2025                                    461,53
+               MARCIO PIRES PERES                             001      07/2025      06/08/2025                                2.890,07
+
+               THIEGO SILVA E SILVA                           001      11/2024      06/12/2024                                1.809,59
+
+               THIEGO SILVA E SILVA                           001      12/2024      07/01/2025                                    201,06
+               THIEGO SILVA E SILVA                           001      11/2025      05/12/2025                                2.461,63
+
+               THIEGO SILVA E SILVA                           001      12/2025      07/01/2026                                    175,83
+
+               ARLLEN ANDRADE SANTOS                          001      11/2024      06/12/2024                                1.722,89
+               ARLLEN ANDRADE SANTOS                          001      12/2024      07/01/2025                                    191,43
+
+               ARLLEN ANDRADE SANTOS                          001      11/2025      05/12/2025                                1.920,70
+
+               ARLLEN ANDRADE SANTOS                          001      12/2025      07/01/2026                                    137,19
+               IGOR SILVA PINHEIRO                            002      12/2024      07/01/2025                                    735,71
+
+               IGOR SILVA PINHEIRO                            002      01/2025      06/02/2025                                    113,19
+               IGOR SILVA PINHEIRO                            002      08/2025      05/09/2025                                    730,06
+
+               IGOR SILVA PINHEIRO                            002      09/2025      06/10/2025                                    182,51
+
+               IGOR SILVA PINHEIRO                            002      12/2025      07/01/2026                                    608,38
+               JOAO VICTOR GARCIA BERNARDINO                  001      10/2025      06/11/2025                                2.161,45
+
+               MARCUS VINICIUS DORNELLES DE M. SIMOES         001      08/2025      05/09/2025                                1.920,70
+
+               MARCUS VINICIUS DORNELLES DE M. SIMOES         001      09/2025      06/10/2025                                    137,19
+               ANA LUCIA DE SOUZA ALEXANDRE                   001      01/2025      06/02/2025                                    966,00
+
+               ANA LUCIA DE SOUZA ALEXANDRE                   001      02/2025      06/03/2025                                    644,00
+
+               BRUNO SILVA OLIVEIRA                           001      09/2025      06/10/2025                                2.057,89
+               TIAGO DOS SANTOS MADDEO                        001      01/2025      06/02/2025                                1.914,32
+
+               JONATHAN DE JESUS MESQUITA PEREIRA             001      06/2025      04/07/2025                                1.989,29
+               JONATHAN DE JESUS MESQUITA PEREIRA             001      07/2025      06/08/2025                                      68,60
+
+               SAMUEL DE SOUSA CARDOSO                        001      02/2025      06/03/2025                                1.591,02
+
+               SAMUEL DE SOUSA CARDOSO                        001      03/2025      04/04/2025                                    244,77
+               JOAO ANDRIEL ALMEIDA DA SILVA                  003      05/2025      06/06/2025                                1.722,89
+
+               JOAO ANDRIEL ALMEIDA DA SILVA                  003      06/2025      04/07/2025                                    191,43
+
+                                  Total de Colaboradores: 31                                               3.                   33.805,75
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FPRF004.OPE  -  05/03/2026  -  00:00:56                                         AUDISYSTEM CONTADORES E ASSOCIADOS

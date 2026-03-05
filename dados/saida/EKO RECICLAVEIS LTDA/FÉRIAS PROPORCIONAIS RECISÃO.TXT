@@ -1,0 +1,198 @@
+ 0680 - EKO RECICLAVEIS LTDA                                                                                         Pág.            1
+                                  FÉRIAS PROPORCIONAIS RECISÃO
+
+
+ Período:       11/20a  12/2025          Tipo: Cálculo Mensal
+ 
+ Evento     Colaborador                                        SIT    Competência    Pagamento        Referência           Valor
+
+
+ 0172 -Férias Proporc.Rescisäo
+               DOMICIO LIMA DA SILVA JUNIOR                   007      12/2024      07/01/2025                                    405,49
+
+               MARCIO ROSA DA SILVA                           007      09/2025      06/10/2025                                1.280,08
+               JIVANILDO DE JESUS SANTOS                      007      05/2025      06/06/2025                                1.280,08
+
+               JANINE BATISTA DE JESUS                        007      04/2025      07/05/2025                                    134,53
+               RODRIGO SOARES MAGALHAES                       007      11/2024      06/12/2024                                    859,64
+
+               KAILANY DE JESUS SILVA                         007      02/2025      06/03/2025                                1.269,17
+
+               FRANCISCO BEZERRA DE SOUZA                     007      02/2025      06/03/2025                                1.552,67
+               JEFERSON DOS SANTOS ARAGAO                     007      11/2024      06/12/2024                                    710,73
+
+               THIAGO DE LIMA DOURADO                         007      12/2024      07/01/2025                                    486,59
+
+               ECLEISON HENRIQUE  NUNES DA COSTA              007      01/2025      06/02/2025                                1.035,11
+               JOHNATAN ALVES DO AMARAL                       007      11/2025      05/12/2025                                    107,63
+
+               VALDENOR OLIVEIRA DA SILVA                     007      11/2024      06/12/2024                                    345,04
+
+               CARLOS AUGUSTO MATIAS MENDES                   007      11/2024      06/12/2024                                    253,83
+               CLEBERSON GOMES DE SOUSA                       007      11/2024      06/12/2024                                    126,92
+
+               RAIMUNDA MACIEL DA SILVA                       007      05/2025      06/06/2025                                    941,72
+               ROMERO NUNES MONTEIRO                          007      11/2024      06/12/2024                                    126,92
+
+               MIKAEL RICKELYSON Z DANTAS DOS SANTOS          007      11/2024      06/12/2024                                    126,92
+
+               CLEYSTER MAXSUEL SOUZA                         007      11/2024      06/12/2024                                    126,92
+               LUCIENE DE JESUS BATISTA                       007      01/2025      06/02/2025                                    380,75
+
+               VALDIR GONCALVES FERREIRA FILHO                007      11/2024      06/12/2024                                    126,92
+
+               MAXWELL PORFIRIO DIAS                          007      02/2025      06/03/2025                                    407,52
+               AILTON CAETANO ROSA                            007      01/2025      06/02/2025                                    270,33
+
+               LAUANE PEREIRA DE SOUZA                        007      12/2024      07/01/2025                                    135,16
+
+               LAWAN CHAVES DA SILVA                          007      06/2025      04/07/2025                                    807,19
+               NICOLAS CAGE OLIVEIRA SILVA                    007      01/2025      06/02/2025                                      50,77
+
+               EDER DELFINO DE FREITAS                        007      01/2025      06/02/2025                                    126,92
+               MARCO FRANKILIN SOARES MARCAL                  007      01/2025      06/02/2025                                    126,92
+
+               RAFAEL ALMEIDA MIRANDA                         007      03/2025      04/04/2025                                    403,60
+
+               ISMAEL AGUILAR BOTELHO                         007      05/2025      06/06/2025                                    859,64
+               EVANDRO ELIAS SOARES DA SILVA                  007      05/2025      06/06/2025                                    672,66
+
+               GERCIMAR FERREIRA                              007      10/2025      06/11/2025                                1.289,45
+
+               JOAO OLIVEIRA BRITO                            007      04/2025      07/05/2025                                    429,82
+               JOSE SANDRO FERREIRA DE ARAUJO                 007      02/2025      06/03/2025                                    172,52
+
+               PAULO CESAR MARQUES DE CASTRO                  007      02/2025      06/03/2025                                    134,53
+
+               ALCIDES MACHADO MARTINS JUNIOR                 007      04/2025      07/05/2025                                    548,61
+               TIAGO DE LIMA SIMAO                            007      03/2025      04/04/2025                                    134,53
+
+               SAMUEL COSTA VIEIRA                            007      04/2025      07/05/2025                                    114,62
+               FERNANDO DA SILVA MARQUES                      007      04/2025      07/05/2025                                    269,06
+
+               FLAVIO CAYKE REIS DE ALMEIDA                   007      04/2025      07/05/2025                                    269,06
+
+               RENATO FERREIRA SILVERIO                       007      05/2025      06/06/2025                                    107,63
+               MARIA LAIS DA SILVA SOUSA                      007      09/2025      06/10/2025                                    807,19
+
+               FRANCISCO BEZERRA DE SOUZA                     007      05/2025      06/06/2025                                    182,87
+
+               WELTON ANTONIO DA SILVA FILHO                  007      06/2025      04/07/2025                                    134,53
+               BRUNO GILIARD RODRIGUES TEIXEIRA               007      05/2025      06/06/2025                                    143,27
+
+               SUZIANE DIAS DOS SANTOS                        007      12/2025      07/01/2026                                1.012,35
+
+               MARIO PEREIRA SILVA                            007      06/2025      04/07/2025                                    182,87
+               DANILO DAVI MARTINS LINHARES                   007      07/2025      06/08/2025                                    135,03
+
+               RAYANE RODRIGUES SILVA                         007      07/2025      06/08/2025                                    134,53
+               DOMICIO LIMA DA SILVA JUNIOR                   007      10/2025      06/11/2025                                    672,66
+
+               FABRICIO CANDIDO DOS REIS                      007      06/2025      04/07/2025                                    143,27
+
+               GABRIEL BARROS DA CONCEICAO                    007      09/2025      06/10/2025                                    538,13
+               ARTHUR GUILHERME PALHARES BATISTA              007      07/2025      06/08/2025                                    134,53
+
+               CAIRO ELIAS FERREIRA                           007      08/2025      05/09/2025                                    143,27
+
+
+FPRF004.OPE  -  05/03/2026  -  02:22:20                                         AUDISYSTEM CONTADORES E ASSOCIADOS
+ 0680 - EKO RECICLAVEIS LTDA                                                                                         Pág.            2
+                                  FÉRIAS PROPORCIONAIS RECISÃO
+
+
+ Período:       11/20a  12/2025          Tipo: Cálculo Mensal
+ 
+ Evento     Colaborador                                        SIT    Competência    Pagamento        Referência           Valor
+
+               JEANDRO RODRIGUES DA SILVA                     007      11/2025      05/12/2025                                    573,09
+               DAVI DE CASTRO PINTO                           007      08/2025      05/09/2025                                    134,53
+
+               FLAVIO JOSE DE SANTANA                         007      09/2025      06/10/2025                                    182,87
+
+               VITOR AUGUSTO DA SILVA PEREIRA                 007      09/2025      06/10/2025                                    134,53
+               CICERO JOSE DA SILVA                           007      10/2025      06/11/2025                                    182,87
+
+               PABLO SALOMAO BARBOSA MELO                     007      11/2025      05/12/2025                                    134,53
+
+               LUCAS SOUZA NUNES                              007      11/2025      05/12/2025                                    107,63
+               VICTOR MACEDO BARBOSA                          007      12/2025      07/01/2026                                    134,53
+
+               MARCOS GOMES DA SILVA                          007      11/2025      05/12/2025                                    143,27
+               SAMUEL COSTA VIEIRA                            007      11/2025      05/12/2025                                    143,27
+
+               ADRIANO FILHO DE SOUZA BARBOSA                 007      12/2025      07/01/2026                                    144,62
+
+                                  Total de Colaboradores: 64                                               3.                   25.388,44
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FPRF004.OPE  -  05/03/2026  -  02:22:20                                         AUDISYSTEM CONTADORES E ASSOCIADOS

@@ -1,4 +1,7 @@
 import os
+import time
+
+import pyautogui
 
 from automacao import (
     aguardar,
@@ -9,6 +12,7 @@ from automacao import (
     pesquisar_evento,
     salvar_evento,
 )
+from config import PAUSA_CURTA
 from leitor_planilha import carregar_empresas, carregar_eventos
 from salvador import registrar_log, sanitizar_nome
 
@@ -73,7 +77,8 @@ for empresa in empresas:
     if not ok:
         registrar_log(f"[ERRO] Nao abriu aba de eventos: {nome_empresa}")
         continue
-
+    time.sleep(PAUSA_CURTA)
+    pyautogui.press("1")
     # Loop de eventos — reutiliza a aba aberta, só limpa o campo entre eventos
     for evento in eventos:
         id_evento = evento["id_evento"]
