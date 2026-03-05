@@ -12,7 +12,22 @@ OUTPUT_PATH = os.path.join(BASE_DIR, "passo_2", "planilha_empresas.xlsx")
 
 
 def ler_esocial():
-    pass
+    """Retorna lista de dicts na ordem do CSV."""
+    path = os.path.join(ENTRADA_DIR, "esocial.csv")
+    rows = []
+    with open(path, encoding="utf-8") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            if not row.get("id_evento", "").strip():
+                continue
+            rows.append({
+                "id_evento":    int(row["id_evento"].strip()),
+                "nome_esocial": row["nome_esocial"].strip(),
+                "irf":          row["irf"].strip(),
+                "tabela":       row["tabela"].strip(),
+                "demissao":     row["demissão"].strip(),
+            })
+    return rows
 
 def ler_eventos():
     pass
