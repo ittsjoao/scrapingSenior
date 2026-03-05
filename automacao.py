@@ -189,6 +189,80 @@ def inicio_evento(nome_imagem_btn_ok, nome_imagem_btn_evento):
     return True
 
 
+def configurar_filtros(
+    id_evento,
+    periodo,
+    fim_periodo,
+    tipo_calculo,
+    filial_ativa,
+    nome_imagem_msg_error,
+    nome_imagem_btn_listar,
+    nome_imagem_validacao,
+):
+    """
+    Executa o 1º evento com o fluxo completo (evento + período + filtros).
+    Retorna (fim_periodo_efetivo, tem_dados) ou None em caso de erro de período.
+    """
+    # 1. Digita o 1º evento e vai para o campo de período
+    digitar_texto(id_evento)
+    pressionar_tab()
+
+    # 2. Digita período início e verifica erro imediato
+    digitar_texto(periodo)
+    pressionar_tab()
+    if _encontrar(nome_imagem_msg_error) is not None:
+        print("  [!] Erro de período início. Pulando empresa.")
+        clicar_botao("btn_ok_3.png")
+        return None
+
+    # 3. Tenta fim_periodo, decrementa até 12x se necessário
+    fim_atual = fim_periodo
+    for _ in range(12):
+        digitar_texto(fim_atual)
+        pressionar_tab()
+        if _encontrar(nome_imagem_msg_error) is None:
+            break
+        clicar_botao("btn_ok_3.png")
+        pyautogui.moveRel(50, 0)
+        fim_novo = _decrementar_mes(fim_atual)
+        registrar_log(
+            f"[AJUSTE] Período {fim_atual[:2]}/{fim_atual[2:]} inválido"
+            f" → tentando {fim_novo[:2]}/{fim_novo[2:]}"
+        )
+        fim_atual = fim_novo
+        pyautogui.hotkey("ctrl", "a")
+    else:
+        registrar_log("[ERRO] Nenhum período válido encontrado após 12 tentativas.")
+        return None
+
+    if fim_atual != fim_periodo:
+        registrar_log(
+            f"[AJUSTE] Período utilizado: {periodo[:2]}/{periodo[2:]}"
+            f" à {fim_atual[:2]}/{fim_atual[2:]}"
+        )
+
+    # 4. Preenche tipo_calculo e filial_ativa
+    digitar_texto(tipo_calculo)
+    pressionar_tab()
+    digitar_texto(filial_ativa)
+    pressionar_tab()
+    pressionar_tab()
+    pressionar_enter()
+
+    # 5. Aguarda btn_listar aparecer e clica
+    posicao_listar = aguardar_aparecer(nome_imagem_btn_listar)
+    if posicao_listar is None:
+        print("  [!] btn_listar não apareceu no setup inicial.")
+        return None
+    pyautogui.click(posicao_listar)
+
+    # 6. Verifica se há dados (validação)
+    posicao_validacao = aguardar_aparecer(nome_imagem_validacao, timeout=10)
+    tem_dados = posicao_validacao is not None
+
+    return (fim_atual, tem_dados)
+
+
 def pesquisar_evento(
     id_evento,
     nome_imagem_msg_error,
