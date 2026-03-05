@@ -54,8 +54,59 @@ def ler_empresas():
                 empresas[nome] = id_
     return empresas
 
+COLLAB_RE = re.compile(
+    r'^\s{5,}'
+    r'([A-ZÁÉÍÓÚÃÕÂÊÔÀÇÜ][A-ZÁÉÍÓÚÃÕÂÊÔÀÇÜa-záéíóúãõâêôàçü\s\.\-]+?)'
+    r'\s{2,}(\d{3})\s+'
+    r'(\d{2}/\d{4})'
+)
+
+IGNORE_PATTERNS = [
+    re.compile(r'^\s*\d+\s+-\s+'),        # cabeçalho empresa
+    re.compile(r'^\s+\d{4}\s+-'),         # código evento
+    re.compile(r'Total de Colaboradores'),
+    re.compile(r'FPRF004'),
+    re.compile(r'Per[íi]odo:'),
+    re.compile(r'Tipo:'),
+    re.compile(r'Evento\s+Colaborador'),
+    re.compile(r'^\s*$'),                  # linha vazia
+    re.compile(r'P[áa]g\.'),              # página
+]
+
+
+def _ler_txt(path):
+    """Lê arquivo TXT tentando CP1252 depois latin-1."""
+    for enc in ("cp1252", "latin-1"):
+        try:
+            with open(path, encoding=enc) as f:
+                return f.readlines()
+        except UnicodeDecodeError:
+            continue
+    return []
+
+
 def parsear_txt(path):
-    pass
+    """
+    Retorna lista de dicts {colaborador, competencia}, deduplicados por colaborador.
+    Mantém apenas a primeira ocorrência de cada colaborador.
+    """
+    if not os.path.exists(path):
+        return []
+
+    linhas = _ler_txt(path)
+    vistos = {}  # colaborador → competencia (primeira ocorrência)
+
+    for linha in linhas:
+        if any(p.search(linha) for p in IGNORE_PATTERNS):
+            continue
+        m = COLLAB_RE.match(linha)
+        if m:
+            nome = " ".join(m.group(1).split())  # normaliza espaços internos
+            competencia = m.group(3)
+            if nome not in vistos:
+                vistos[nome] = competencia
+
+    return [{"colaborador": k, "competencia": v} for k, v in vistos.items()]
 
 def gerar_excel(esocial_rows, eventos, empresas, pastas_existentes):
     pass
