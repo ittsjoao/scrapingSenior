@@ -42,7 +42,17 @@ def ler_eventos():
     return eventos
 
 def ler_empresas():
-    pass
+    """Retorna dict {nome_empresa (str): id_empresa (str)}."""
+    path = os.path.join(ENTRADA_DIR, "empresas.csv")
+    empresas = {}
+    with open(path, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            nome = row.get("nome_empresa", "").strip()
+            id_  = row.get("id_empresa", "").strip()
+            if nome and id_:
+                empresas[nome] = id_
+    return empresas
 
 def parsear_txt(path):
     pass
