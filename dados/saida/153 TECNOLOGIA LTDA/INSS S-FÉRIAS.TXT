@@ -96,7 +96,7 @@
                ANTONIO HENRICH DE FREITAS BENTO AMARAL        001      11/2025      05/12/2025                                    102,66
 
 
-FPRF004.OPE  -  04/03/2026  -  22:56:52                                         AUDISYSTEM CONTADORES E ASSOCIADOS
+FPRF004.OPE  -  05/03/2026  -  09:53:41                                         AUDISYSTEM CONTADORES E ASSOCIADOS
  2245 - 153 TECNOLOGIA LTDA                                                                                          Pág.            2
                                                    INSS S-FÉRIAS
 
@@ -195,4 +195,4 @@ FPRF004.OPE  -  04/03/2026  -  22:56:52                                         
 
 
 
-FPRF004.OPE  -  04/03/2026  -  22:56:52                                         AUDISYSTEM CONTADORES E ASSOCIADOS
+FPRF004.OPE  -  05/03/2026  -  09:53:41                                         AUDISYSTEM CONTADORES E ASSOCIADOS

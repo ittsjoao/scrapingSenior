@@ -104,7 +104,6 @@ def limpar_evento():
 
 def pressionar_tab():
     pyautogui.press("tab")
-    time.sleep(PAUSA_CURTA)
 
 
 def pressionar_enter():
@@ -210,6 +209,7 @@ def configurar_filtros(
     # 2. Digita período início e verifica erro imediato
     digitar_texto(periodo)
     pressionar_tab()
+    time.sleep(PAUSA_CURTA)
     if _encontrar(nome_imagem_msg_error) is not None:
         print("  [!] Erro de período início. Pulando empresa.")
         clicar_botao("btn_ok_3.png")
@@ -220,6 +220,7 @@ def configurar_filtros(
     for _ in range(12):
         digitar_texto(fim_atual)
         pressionar_tab()
+        time.sleep(PAUSA_CURTA)
         if _encontrar(nome_imagem_msg_error) is None:
             break
         clicar_botao("btn_ok_3.png")
@@ -288,6 +289,7 @@ def pesquisar_evento(
         print("  [!] btn_mostrar não encontrado.")
         return False
     pyautogui.click(posicao_mostrar)
+    time.sleep(PAUSA_CURTA)
 
     # 3. Aguarda btn_listar aparecer e clica
     posicao_listar = aguardar_aparecer(nome_imagem_btn_listar)

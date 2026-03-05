@@ -1,0 +1,198 @@
+ 2245 - 153 TECNOLOGIA LTDA                                                                                          Pág.            1
+                                              1-3 FÉRIAS (FÉRIAS)
+
+
+ Período:       11/20a  12/2025          Tipo: Cálculo Mensal
+ 
+ Evento     Colaborador                                        SIT    Competência    Pagamento        Referência           Valor
+
+
+ 0140 -1/3 Férias
+               GIOVANA MATUSITA SOARES DE REZENDE             007      08/2025      05/09/2025                                    447,02
+
+               GIOVANA MATUSITA SOARES DE REZENDE             007      09/2025      06/10/2025                                    670,53
+               ELIZABETH SUAZO ANDRADE                        001      07/2025      06/08/2025                                    211,11
+
+               ELIZABETH SUAZO ANDRADE                        001      08/2025      05/09/2025                                    211,11
+               ELIZABETH SUAZO ANDRADE                        001      09/2025      06/10/2025                                    422,22
+
+               GUILHERME AUGUSTO DOS ANJOS                    002      12/2024      07/01/2025                                    302,57
+
+               GUILHERME AUGUSTO DOS ANJOS                    002      01/2025      06/02/2025                                      46,55
+               GUILHERME AUGUSTO DOS ANJOS                    002      11/2025      05/12/2025                                    127,85
+
+               GUILHERME AUGUSTO DOS ANJOS                    002      12/2025      07/01/2026                                    255,86
+
+               TALITHA LAURIE SILVA ARAUJO                    001      05/2025      06/06/2025                                    267,75
+               TALITHA LAURIE SILVA ARAUJO                    001      09/2025      06/10/2025                                    187,42
+
+               TALITHA LAURIE SILVA ARAUJO                    001      10/2025      06/11/2025                                    187,42
+
+               HELLEN CRISTINA FERREIRA COSTA                 001      11/2024      06/12/2024                                    383,78
+               HELLEN CRISTINA FERREIRA COSTA                 001      12/2024      07/01/2025                                      20,20
+
+               HELLEN CRISTINA FERREIRA COSTA                 001      03/2025      04/04/2025                                    211,62
+               GABRIELLA MORIAH GOMES DE SOUSA                001      12/2024      07/01/2025                                    309,13
+
+               GABRIELLA MORIAH GOMES DE SOUSA                001      01/2025      06/02/2025                                      28,10
+
+               GABRIELLA MORIAH GOMES DE SOUSA                001      09/2025      06/10/2025                                    409,78
+               GABRIELLA MORIAH GOMES DE SOUSA                001      12/2025      07/01/2026                                    315,44
+
+               MARCELO LIMA DA SILVA                          002      03/2025      04/04/2025                                    475,22
+
+               MARCELO LIMA DA SILVA                          002      12/2025      07/01/2026                                    264,01
+               NICOLE CORREIA ALVES                           001      12/2024      07/01/2025                                    262,58
+
+               NICOLE CORREIA ALVES                           001      01/2025      06/02/2025                                      20,20
+
+               NICOLE CORREIA ALVES                           001      04/2025      07/05/2025                                    190,46
+               NICOLE CORREIA ALVES                           001      05/2025      06/06/2025                                    148,14
+
+               NICOLE CORREIA ALVES                           001      11/2025      05/12/2025                                    296,27
+               VINICIUS OLIVEIRA FERREIRA                     001      05/2025      06/06/2025                                    401,62
+
+               VINICIUS OLIVEIRA FERREIRA                     001      07/2025      06/08/2025                                    133,87
+
+               JOAO VITOR DE SOUSA COSTA                      002      12/2025      07/01/2026                                    311,11
+               KIMBERLY BRENNDA ALVES                         001      12/2024      07/01/2025                                    169,53
+
+               KIMBERLY BRENNDA ALVES                         001      07/2025      06/08/2025                                    498,27
+
+               JENILSON MORAES DE FREITAS                     002      12/2024      07/01/2025                                    667,72
+               JENILSON MORAES DE FREITAS                     002      01/2025      06/02/2025                                    256,82
+
+               JENILSON MORAES DE FREITAS                     002      07/2025      06/08/2025                                    653,82
+
+               JENILSON MORAES DE FREITAS                     002      12/2025      07/01/2026                                    595,02
+               LUCAS GABRIEL SOUSA BARBOSA                    002      11/2025      05/12/2025                                    274,42
+
+               LUCAS GABRIEL SOUSA BARBOSA                    002      12/2025      07/01/2026                                    459,35
+               CAROLINA GUIMARAES FERREIRA DIAS               002      09/2025      06/10/2025                                    637,58
+
+               CAROLINA GUIMARAES FERREIRA DIAS               002      10/2025      06/11/2025                                    227,71
+
+               CAROLINA GUIMARAES FERREIRA DIAS               002      11/2025      05/12/2025                                      45,54
+               CAROLINA GUIMARAES FERREIRA DIAS               002      12/2025      07/01/2026                                    455,41
+
+               AMANDA ASSIS BALLESTA                          001      10/2025      06/11/2025                                    466,67
+
+               THIAGO DA SILVA LOUREIRO                       007      12/2024      07/01/2025                                    245,55
+               THIAGO DA SILVA LOUREIRO                       007      01/2025      06/02/2025                                      18,89
+
+               THIAGO DA SILVA LOUREIRO                       007      08/2025      05/09/2025                                    105,81
+
+               ARTHUR ALEXANDRE SILVA ARAUJO                  001      07/2025      06/08/2025                                    211,63
+               ARTHUR ALEXANDRE SILVA ARAUJO                  001      08/2025      05/09/2025                                    105,81
+
+               ARTHUR ALEXANDRE SILVA ARAUJO                  001      12/2025      07/01/2026                                    317,44
+               HELIO HIROYUKI TSUKIDE                         007      12/2024      07/01/2025                                    361,11
+
+               HELIO HIROYUKI TSUKIDE                         007      01/2025      06/02/2025                                      27,78
+
+               VICTORIA MACHADO BACELLAR                      001      09/2025      06/10/2025                                    345,84
+               VICTORIA MACHADO BACELLAR                      001      10/2025      06/11/2025                                    345,83
+
+               ANTONIO HENRICH DE FREITAS BENTO AMARAL        001      11/2025      05/12/2025                                    342,22
+
+
+FPRF004.OPE  -  05/03/2026  -  09:51:51                                         AUDISYSTEM CONTADORES E ASSOCIADOS
+ 2245 - 153 TECNOLOGIA LTDA                                                                                          Pág.            2
+                                              1-3 FÉRIAS (FÉRIAS)
+
+
+ Período:       11/20a  12/2025          Tipo: Cálculo Mensal
+ 
+ Evento     Colaborador                                        SIT    Competência    Pagamento        Referência           Valor
+
+               ROBERT CHRISTIAN JOSE DOS SANTOS NERIS         001      12/2025      07/01/2026                                    355,57
+
+                                  Total de Colaboradores: 54                                                                    15.710,28
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FPRF004.OPE  -  05/03/2026  -  09:51:51                                         AUDISYSTEM CONTADORES E ASSOCIADOS
