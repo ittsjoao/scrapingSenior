@@ -1,0 +1,27 @@
+COMO CAPTURAR AS IMAGENS DOS BOTOES DO SENIOR
+==============================================
+
+Para cada botão que o script precisa clicar, você deve salvar
+uma imagem recortada do botão nesta pasta.
+
+PASSO A PASSO:
+--------------
+1. Abra o Senior e navegue até a tela que tem o botão.
+2. Pressione  Win + Shift + S  para abrir a Ferramenta de Captura.
+3. Clique e arraste para recortar APENAS o botão (não muito além das bordas).
+4. O recorte vai para a área de transferência.
+5. Abra o Paint, cole (Ctrl+V), e salve como PNG nesta pasta.
+
+NOMES ESPERADOS PELO main.py:
+------------------------------
+  btn_abrir_modulo.png   → botão que abre o módulo no Senior
+  btn_campo_codigo.png   → botão ou área do campo onde se digita o código
+  btn_buscar.png         → botão de busca/pesquisa
+
+Você pode criar outros nomes e ajustar o main.py conforme necessário.
+
+DICA:
+-----
+Recorte com uma pequena margem ao redor do botão (2-3 pixels).
+Evite incluir partes que mudam (ex: texto de status ao lado).
+Quanto menor e mais único o recorte, mais preciso o clique.

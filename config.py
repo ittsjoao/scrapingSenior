@@ -14,6 +14,7 @@ INTERVALO = 0.5  # intervalo entre cada verificação de tela
 PASTA_ENTRADA = os.path.join("dados", "entrada")
 PASTA_SAIDA = os.path.join("dados", "saida")
 PASTA_BOTOES = os.path.join("capturas", "botoes")
+PASTA_BOTOES_COLAB = os.path.join("capturas", "botoes_colab")
 PASTA_PRINTS = os.path.join("capturas", "screenshots")
 PASTA_LOGS = "logs"
 

@@ -4,7 +4,8 @@
       "Skill(perplexity-search)",
       "WebSearch",
       "Bash(python:*)",
-      "Bash(pip install:*)"
+      "Bash(pip install:*)",
+      "Bash(wc:*)"
     ]
   }
 }

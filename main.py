@@ -28,7 +28,7 @@ from salvador import registrar_log, sanitizar_nome
 
 # Filtros usados em pesquisar_evento — ajuste conforme necessário
 PERIODO = "112024"
-FIM_PERIODO = "122025"
+FIM_PERIODO = "052025"
 TIPO_CALCULO = "11"
 FILIAL_ATIVA = "N"
 

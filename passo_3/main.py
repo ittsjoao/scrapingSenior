@@ -31,7 +31,7 @@ from planilha import carregar_dados
 
 # ── Configuração ───────────────────────────────────────────────────────────────
 
-COOKIES_FILE = os.path.join(os.path.dirname(__file__), "..", "cookies.txt")
+COOKIES_FILE = os.path.join(os.path.dirname(__file__), "cookies.txt")
 PLANILHA_ENTRADA = os.path.join(os.path.dirname(__file__), "..", "dados", "entrada", "eventos_irrf.xlsx")
 PASTA_TEMP_JNLP = os.path.join(tempfile.gettempdir(), "esocial_jnlp")
 

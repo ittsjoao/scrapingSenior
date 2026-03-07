@@ -1,13 +1,14 @@
 # passo_2/criar_planilha.py
-import os
 import csv
+import os
 import re
+
 from openpyxl import Workbook
-from openpyxl.styles import Font, PatternFill, Alignment
+from openpyxl.styles import Alignment, Font, PatternFill
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRADA_DIR = os.path.join(BASE_DIR, "dados", "entrada")
-SAIDA_DIR   = os.path.join(BASE_DIR, "dados", "saida")
+SAIDA_DIR = os.path.join(BASE_DIR, "dados", "saida")
 OUTPUT_PATH = os.path.join(BASE_DIR, "passo_2", "planilha_empresas.xlsx")
 
 
@@ -20,14 +21,17 @@ def ler_esocial():
         for row in reader:
             if not row.get("id_evento", "").strip():
                 continue
-            rows.append({
-                "id_evento":    int(row["id_evento"].strip()),
-                "nome_esocial": row["nome_esocial"].strip(),
-                "irf":          row["irf"].strip(),
-                "tabela":       row["tabela"].strip(),
-                "demissao":     row["demissão"].strip(),
-            })
+            rows.append(
+                {
+                    "id_evento": int(row["id_evento"].strip()),
+                    "nome_esocial": row["nome_esocial"].strip(),
+                    "irf": row["irf"].strip(),
+                    "tabela": row["tabela"].strip(),
+                    "demissao": row["demissão"].strip(),
+                }
+            )
     return rows
+
 
 def ler_eventos():
     """Retorna dict {id_evento (int): nome_evento (str)}."""
@@ -41,6 +45,7 @@ def ler_eventos():
             eventos[int(row["id_evento"].strip())] = row["nome_evento"].strip()
     return eventos
 
+
 def ler_empresas():
     """Retorna dict {nome_empresa (str): id_empresa (str)}."""
     path = os.path.join(ENTRADA_DIR, "empresas.csv")
@@ -49,28 +54,29 @@ def ler_empresas():
         reader = csv.DictReader(f, delimiter=";")
         for row in reader:
             nome = row.get("nome_empresa", "").strip()
-            id_  = row.get("id_empresa", "").strip()
+            id_ = row.get("id_empresa", "").strip()
             if nome and id_:
                 empresas[nome] = id_
     return empresas
 
+
 COLLAB_RE = re.compile(
-    r'^\s{5,}'
-    r'([A-ZÁÉÍÓÚÃÕÂÊÔÀÇÜ][A-ZÁÉÍÓÚÃÕÂÊÔÀÇÜa-záéíóúãõâêôàçü\s\.\-]+?)'
-    r'\s{2,}(\d{3})\s+'
-    r'(\d{2}/\d{4})'
+    r"^\s{5,}"
+    r"([A-ZÁÉÍÓÚÃÕÂÊÔÀÇÜ][A-ZÁÉÍÓÚÃÕÂÊÔÀÇÜa-záéíóúãõâêôàçü\s\.\-]+?)"
+    r"\s{2,}(\d{3})\s+"
+    r"(\d{2}/\d{4})"
 )
 
 IGNORE_PATTERNS = [
-    re.compile(r'^\s*\d+\s+-\s+'),        # cabeçalho empresa
-    re.compile(r'^\s+\d{4}\s+-'),         # código evento
-    re.compile(r'Total de Colaboradores'),
-    re.compile(r'FPRF004'),
-    re.compile(r'Per[íi]odo:'),
-    re.compile(r'Tipo:'),
-    re.compile(r'Evento\s+Colaborador'),
-    re.compile(r'^\s*$'),                  # linha vazia
-    re.compile(r'P[áa]g\.'),              # página
+    re.compile(r"^\s*\d+\s+-\s+"),  # cabeçalho empresa
+    re.compile(r"^\s+\d{4}\s+-"),  # código evento
+    re.compile(r"Total de Colaboradores"),
+    re.compile(r"FPRF004"),
+    re.compile(r"Per[íi]odo:"),
+    re.compile(r"Tipo:"),
+    re.compile(r"Evento\s+Colaborador"),
+    re.compile(r"^\s*$"),  # linha vazia
+    re.compile(r"P[áa]g\."),  # página
 ]
 
 
@@ -108,13 +114,23 @@ def parsear_txt(path):
 
     return [{"colaborador": k, "competencia": v} for k, v in vistos.items()]
 
+
 def gerar_excel(esocial_rows, eventos, empresas, pastas_existentes):
     wb = Workbook()
     ws = wb.active
     ws.title = "Planilha"
 
     # Cabeçalho
-    cabecalho = ["ID SENIOR", "EMPRESA", "EVENTO", "IRRF", "TABELA", "DEMISSÃO", "COLABORADOR", "COMPETENCIA"]
+    cabecalho = [
+        "ID SENIOR",
+        "EMPRESA",
+        "EVENTO",
+        "IRRF",
+        "TABELA",
+        "DEMISSÃO",
+        "COLABORADOR",
+        "COMPETENCIA",
+    ]
     header_font = Font(bold=True)
     header_fill = PatternFill(fill_type="solid", fgColor="D9D9D9")
     for col, titulo in enumerate(cabecalho, 1):
@@ -136,12 +152,12 @@ def gerar_excel(esocial_rows, eventos, empresas, pastas_existentes):
         id_senior = empresas.get(empresa, "")
 
         for esocial_row in esocial_rows:
-            id_evento    = esocial_row["id_evento"]
+            id_evento = esocial_row["id_evento"]
             nome_esocial = esocial_row["nome_esocial"]
-            irf          = esocial_row["irf"]
-            tabela       = esocial_row["tabela"]
-            demissao     = esocial_row["demissao"]
-            nome_evento  = eventos.get(id_evento)
+            irf = esocial_row["irf"]
+            tabela = esocial_row["tabela"]
+            demissao = esocial_row["demissao"]
+            nome_evento = eventos.get(id_evento)
 
             if nome_evento and tem_pasta:
                 txt_path = os.path.join(SAIDA_DIR, empresa, nome_evento + ".TXT")
@@ -149,7 +165,11 @@ def gerar_excel(esocial_rows, eventos, empresas, pastas_existentes):
             else:
                 colaboradores = []
 
-            linhas_evento = colaboradores if colaboradores else [{"colaborador": "", "competencia": ""}]
+            linhas_evento = (
+                colaboradores
+                if colaboradores
+                else [{"colaborador": "", "competencia": ""}]
+            )
 
             for colab in linhas_evento:
                 valores = [
@@ -175,10 +195,11 @@ def gerar_excel(esocial_rows, eventos, empresas, pastas_existentes):
 
     wb.save(OUTPUT_PATH)
 
+
 if __name__ == "__main__":
-    esocial_rows       = ler_esocial()
-    eventos            = ler_eventos()
-    empresas           = ler_empresas()
-    pastas_existentes  = sorted(os.listdir(SAIDA_DIR))
+    esocial_rows = ler_esocial()
+    eventos = ler_eventos()
+    empresas = ler_empresas()
+    pastas_existentes = sorted(os.listdir(SAIDA_DIR))
     gerar_excel(esocial_rows, eventos, empresas, pastas_existentes)
     print("Planilha gerada:", OUTPUT_PATH)

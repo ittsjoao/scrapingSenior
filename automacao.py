@@ -94,6 +94,16 @@ def digitar_texto(texto):
     time.sleep(PAUSA_CURTA)
 
 
+def selecionar_cod_empresa():
+    pyautogui.press("backspace")
+    pyautogui.press("tab")
+    pyautogui.press("tab")
+    pyautogui.press("tab")
+    pyautogui.press("tab")
+    pyautogui.press("tab")
+    pyautogui.press("enter")
+
+
 def limpar_evento():
     pyautogui.press("backspace")
     pyautogui.press("backspace")
@@ -191,6 +201,59 @@ def inicio_evento(nome_imagem_btn_ok, nome_imagem_btn_evento):
         pyautogui.click(posicao_ok_1)
     time.sleep(PAUSA_CURTA)
     # pyautogui.click(posicao_ok)  # segundo clique conforme fluxo original
+    return True
+
+
+def inicio_relacao(nome_btn_relacao, nome_tb_geral, validador_entrada, msg_erro):
+    posicao = aguardar_aparecer(nome_btn_relacao)
+    if posicao is None:
+        return False
+    pyautogui.click(posicao)
+
+    posicao_tb = aguardar_aparecer(nome_tb_geral)
+    if posicao_tb is None:
+        return False
+
+    digitar_texto("250")
+    pressionar_enter()
+    if _encontrar(msg_erro) is not None:
+        clicar_botao("btn_ok_3.png")
+        return None
+    aguardar_aparecer(validador_entrada)
+    selecionar_cod_empresa()
+    return True
+
+
+def listar_colaboradores(nome_btn_relacao, nome_tb_geral, validador_entrada, msg_erro):
+    """
+    Abre a relação de colaboradores de uma empresa.
+    Retorna True se há dados, None se empresa sem colaboradores, False se erro de navegação.
+    """
+    posicao = aguardar_aparecer(nome_btn_relacao)
+    if posicao is None:
+        return False
+    pyautogui.doubleClick(posicao)
+
+    posicao_tb = aguardar_aparecer(nome_tb_geral)
+    if posicao_tb is None:
+        return False
+
+    pyautogui.press("2")
+    pyautogui.press("5")
+    pyautogui.press("0")
+    pressionar_enter()
+    if _encontrar(msg_erro) is not None:
+        clicar_botao("btn_ok_3.png")
+        return None
+
+    aguardar_aparecer(validador_entrada)
+
+    # Navega para o campo de código: backspace → enter → 5 tabs → enter
+    pyautogui.press("backspace")
+    for _ in range(5):
+        pressionar_tab()
+    pressionar_enter()
+
     return True
 
 
@@ -310,6 +373,24 @@ def pesquisar_evento(
         print("  [~] Sem dados para este evento.")
         return False
 
+    return True
+
+
+def salvar_colab(nome_btn_salvar, caminho_arquivo, nome_arquivo, nome_btn_ok_confirmar):
+    posicao_btn_salvar = aguardar_aparecer(nome_btn_salvar)
+    if posicao_btn_salvar is None:
+        return False
+    pyautogui.click(posicao_btn_salvar)
+    digitar_texto(caminho_arquivo + nome_arquivo + ".txt")
+    pressionar_tab()
+    pressionar_baixo()
+    pressionar_tab()
+    pressionar_enter()
+    posicao_ok2 = aguardar_aparecer(nome_btn_ok_confirmar, timeout=5)
+    if posicao_ok2 is not None:
+        pyautogui.click(posicao_ok2)
+    fechar()
+    fechar()
     return True
 
 
