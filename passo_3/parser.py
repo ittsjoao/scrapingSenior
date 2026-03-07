@@ -18,39 +18,41 @@ def extrair_guid_home(html):
     return None
 
 
+_TABELA_INDEX = {"HOLERITE": 0, "FÉRIAS": 1}
+
+
 def parsear_tabela_funcionario(html, evento, evento_aux, tabela_esperada):
     """
-    Parseia a tabela de rúbricas de um funcionário.
-    Procura linha onde a coluna "Descrição" bate com evento ou evento_aux
-    e a coluna "Tabela" bate com tabela_esperada (se informada).
+    Parseia a(s) tabela(s) de rúbricas de um funcionário.
+
+    tabela_esperada pode ser:
+      - "HOLERITE" → busca apenas na 1ª tabela sem-paginacao da página
+      - "FÉRIAS"   → busca apenas na 2ª tabela sem-paginacao da página
+      - ""         → busca em todas as tabelas
 
     Retorna código da rúbrica (coluna "Código") ou None.
-
-    Estrutura da tabela:
-      Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
-    Índices:   0         1      2           3             4                 5       6                7       8
     """
     soup = BeautifulSoup(html, "lxml")
-    tabela = soup.find("table", class_=lambda c: c and "sem-paginacao" in c)
-    if not tabela:
+    todas = soup.find_all("table", class_=lambda c: c and "sem-paginacao" in c)
+    if not todas:
         return None
 
-    for tr in tabela.find_all("tr")[1:]:  # pula cabeçalho
-        tds = tr.find_all("td")
-        if len(tds) < 4:
-            continue
+    chave = tabela_esperada.strip().upper() if tabela_esperada else ""
+    if chave in _TABELA_INDEX:
+        idx = _TABELA_INDEX[chave]
+        tabelas = [todas[idx]] if idx < len(todas) else []
+    else:
+        tabelas = todas
 
-        col_tabela    = tds[0].get_text(strip=True)
-        col_codigo    = tds[1].get_text(strip=True)
-        col_descricao = tds[3].get_text(strip=True)
-
-        # Filtra por tabela se informada
-        if tabela_esperada and col_tabela != tabela_esperada:
-            continue
-
-        descricao_upper = col_descricao.upper()
-        if evento.upper() in descricao_upper or (evento_aux and evento_aux.upper() in descricao_upper):
-            return col_codigo
+    for tabela in tabelas:
+        for tr in tabela.find_all("tr")[1:]:  # pula cabeçalho
+            tds = tr.find_all("td")
+            if len(tds) < 4:
+                continue
+            col_codigo    = tds[1].get_text(strip=True)
+            col_descricao = tds[3].get_text(strip=True).upper()
+            if evento.upper() in col_descricao or (evento_aux and evento_aux.upper() in col_descricao):
+                return col_codigo
 
     return None
 
