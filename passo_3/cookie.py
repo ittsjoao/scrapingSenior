@@ -103,6 +103,16 @@ def trocar_perfil(session, usuario_logado_procurador, cpf_procurador):
     print(f"  [trocarPerfil] Status: {resp.status_code}")
 
 
+def extrair_nome_empresa(session):
+    """
+    Extrai o nome da empresa do cookie UsuarioLogado.
+    Retorna string com o nome ou "Empresa desconhecida" se não encontrar.
+    """
+    valor = session.cookies.get("UsuarioLogado", "")
+    m = re.search(r"Nome=([^&]+)", valor)
+    return m.group(1) if m else "Empresa desconhecida"
+
+
 def acessar_home_empresa(session):
     """
     Acessa a home da empresa após selecionar_empresa.
