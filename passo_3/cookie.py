@@ -128,21 +128,47 @@ def acessar_home_empresa(session):
     return resp.text
 
 
-def acessar_tabela_funcionário(session, cpf, competencia, possui_dae="False"):
+def acessar_lista_remuneracao(session, competencia, guid, possui_dae="False"):
     """
-    Acessa Lista de Rúbricas de um funcionário específico.
-    Retorna o HTML da página ou None em caso de erro.
+    GET em ListaRemuneracao para obter o __RequestVerificationToken necessário
+    para o POST de RemuneracaoCompleto.
+    Retorna HTML ou None.
     """
     url = (
-        f"https://www.esocial.gov.br/portal/FolhaPagamento/RemuneracaoCompleto"
-        f"?cpf={cpf}&competencia={competencia}&PossuiDae={possui_dae}&tipo=1200&visualizar=True"
+        f"https://www.esocial.gov.br/portal/FolhaPagamento/ListaRemuneracao"
+        f"?Competencia={competencia}&Tipo=1200&PossuiDae={possui_dae}"
     )
     headers = {
         **HEADERS_BASE,
-        "Referer": "https://www.esocial.gov.br/portal/FolhaPagamento/GestaoFolha",
+        "Referer": f"https://www.esocial.gov.br/portal/FolhaPagamento/GestaoFolha?id={guid}",
     }
     resp = session.get(url, headers=headers)
-    print(f"  [tabela] Status: {resp.status_code} | tamanho: {len(resp.text)} bytes")
+    print(f"  [lista] Status: {resp.status_code} | {len(resp.text)} bytes | competencia={competencia}")
+    if resp.status_code != 200 or "eSocial" not in resp.text:
+        print("  [!] ListaRemuneracao inesperada")
+        return None
+
+    return resp.text
+
+
+def acessar_tabela_funcionário(session, cpf, competencia, guid, possui_dae="False"):
+    """
+    GET para RemuneracaoCompleto com Referer apontando para ListaRemuneracao.
+    Retorna o HTML com as tabelas de rúbricas ou None em caso de erro.
+    """
+    url = (
+        f"https://www.esocial.gov.br/portal/FolhaPagamento/RemuneracaoCompleto"
+        f"?cpf={cpf}&competencia={competencia}&possuiDae={possui_dae}&tipo=1200&visualizar=true"
+    )
+    headers = {
+        **HEADERS_BASE,
+        "Referer": (
+            f"https://www.esocial.gov.br/portal/FolhaPagamento/ListaRemuneracao"
+            f"?Competencia={competencia}&Tipo=1200&PossuiDae={possui_dae}"
+        ),
+    }
+    resp = session.get(url, headers=headers)
+    print(f"  [tabela] Status: {resp.status_code} | tamanho: {len(resp.text)} bytes | cpf={cpf} mes={competencia}")
     if resp.status_code != 200 or "eSocial" not in resp.text:
         print("  [!] Resposta inesperada — sessão pode ter expirado")
         return None

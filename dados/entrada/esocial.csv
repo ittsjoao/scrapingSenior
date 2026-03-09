@@ -1,22 +1,25 @@
-id_evento;nome_esocial;irf;tabela;demissão
-216;MÉDIAS VARIAVEIS 13º INTEGRADO;12;Holerite;Não
-100;AVISO PRÉVIO INDENIZADO;74;Holerite;Sim
-12;HORAS FÉRIAS DIURNAS;09;Holerite;Não
-12;1/3 FÉRIAS;09;Holerite;Não
-140;1/3 FÉRIAS;13;Férias;Não
-136;MÉDIA VARIÁVEIS FÉRIAS;09;Holerite;Não
-136;MÉDIA VARIÁVEL FÉRIAS;13;Férias;Não
-148;ABONO PECUNIÁRIO FÉRIAS;75;Holerite;Não
-152;MÉDIA VARIÁVEIS ABONO;09;Holerite;Não
-152;MÉDIA VARIÁVEIS ABONO;75;Férias;Não
-160;1/3 ABONO;09;Holerite;Não
-1955;DIFERENCA INSS FÉRIAS;41;Holerite;Não
-184;1/3 FÉRIAS VENCIDAS - PROPORCIONAL RECISAO;74;Holerite;Sim
-172;FÉRIAS PROPORCIONAIS RECISÃO;74;Holerite;Sim
-1954;DEVOLUCAO DE INSS FÉRIAS;43;Holerite;Não
-301;INSS S-FÉRIAS;43;Holerite;Não
-301;INSS RPA;41;Holerite;Não
-1065;INSS PRÓ LABORE;41;Holerite;Não
-170;FÉRIAS VENCIDAS RESCISÃO;74;Holerite;Não
-12;HORAS FÉRIAS DIURNAS;13;Férias;Não
-160;1/3 ABONO FÉRIAS;75;Férias;Não
+﻿id_evento;nome_esocial;nome_esocial_aux;irrf;tabela;demissão
+136;Média Variáveis Férias;MÉDIA VARIÁVEIS FÉRIAS;9;Holerite;Não
+136;Média Variáveis Férias;MÉDIA VARIÁVEIS FÉRIAS;13;Férias;Não
+152;Média Variáveis Abono Pec;MÉDIA VARIÁVEIS ABONO;9;Holerite;Não
+152;Média Variáveis Abono Pec;MÉDIA VARIÁVEIS ABONO;75;Férias;Não
+216;Média Variaveis 13º Integ;MÉDIAS VARIAVEIS 13º INTEGRADO;12;Holerite;Não
+1065;INSS s/ Pro-Labore;INSS MENSAL (PRÓ-LABORE);41;Holerite;Não
+301;INSS s/ Férias;INSS FÉRIAS;43;Holerite;Não
+12;Horas Férias Diurnas;HORAS FÉRIAS DIURNAS;9;Holerite;Não
+12;Horas Férias Diurnas;HORAS FÉRIAS DIURNAS;13;Férias;Não
+170;Férias Vencidas Rescisäo;FÉRIAS VENCIDAS RESCISÃO;74;Demissão;Sim
+172;Férias Proporc.Rescisäo;FÉRIAS PROP .RESCISÃO;74;Holerite;Não
+1955;Diferença de INSS Férias;INSS DIF. INSS FÉRIAS;41;Holerite;Não
+1954;Devolucao de INSS Férias;DEVOLUÇÃO INSS FÉRIAS;43;Holerite;Não
+100;Aviso Prévio Indenizado;AVISO PRÉVIO INDENIZADO;74;Demissão;Sim
+148;Abono Pecuniário Férias;ABONO PECUNIÁRIO;75;Férias;Não
+160;1/3 s. Abono Pecuniário;1/3 ABONO;9;Holerite;Não
+160;1/3 s. Abono Pecuniário;1/3 ABONO;75;Férias;Não
+170;1/3 Férias Rescisäo;1/3 FÉRIAS VENCIDAS RESCISÃO;74;Demissão;Sim
+184;1/3 Férias Rescisäo;1/3 FÉRIAS PROP .RESCISÃO;74;Demissão;Sim
+140;1/3 Férias;1/3 FÉRIAS;13;Férias;Não
+1743;Premiacao;PREMIAÇÃO;11;Holerite;Não
+344;DSR sobre Faltas;DSR sobre Faltas;11;Holerite;Não
+278;Salário Família;SALÁRIO FAMÍLIA;79;Holerite;Não
+958;Sal. Família mes anterior;SALÁRIO FAMÍLIA MÊS ANTERIOR;79;Holerite;Não

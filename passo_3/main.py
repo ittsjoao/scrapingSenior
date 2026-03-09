@@ -11,6 +11,7 @@ from cookie import (
     trocar_perfil,
     extrair_nome_empresa,
     acessar_home_empresa,
+    acessar_lista_remuneracao,
     acessar_tabela_funcionário,
     buscar_rubrica,
     abrir_edicao_rubrica,
@@ -26,7 +27,7 @@ from parser import (
     extrair_link_jnlp,
 )
 from entradas import carregar_empresas, carregar_eventos
-from saida import log_descoberta, log_na, log_ajuste, salvar_planilha
+from saida import log_descoberta, log_na, log_ajuste, salvar_planilha, salvar_tabelas_validacao
 
 # ── Configuração ───────────────────────────────────────────────────────────────
 
@@ -66,9 +67,10 @@ def assinar_jnlp(session):
         return False
 
 
-def buscar_codigos(session, cpfs, eventos_ativos):
+def buscar_codigos(session, cpfs, eventos_ativos, nome_empresa, guid):
     """
     Itera CPFs × meses até encontrar todos os eventos pendentes ou esgotar as opções.
+    Para cada CPF: percorre meses 12/2025 → 11/2024 até resolver todos os eventos.
 
     Retorna dict: {nome_evento: {"codigo": str, "cpf": str, "mes": str}}
     """
@@ -81,14 +83,19 @@ def buscar_codigos(session, cpfs, eventos_ativos):
         for mes in MESES:
             if not pendentes:
                 break
-            html = acessar_tabela_funcionário(session, cpf, mes)
+            html_lista = acessar_lista_remuneracao(session, mes, guid)
+            if not html_lista:
+                continue
+            html = acessar_tabela_funcionário(session, cpf, mes, guid)
             if not html:
                 continue
+            salvar_tabelas_validacao(html, nome_empresa, cpf, mes)
             for nome, evento in list(pendentes.items()):
                 codigo = parsear_tabela_funcionario(html, evento["nome"], evento["aux"], evento["tabela"])
                 if codigo:
                     encontrados[nome] = {"codigo": codigo, "cpf": cpf, "mes": mes}
                     del pendentes[nome]
+                    print(f"  [ENCONTRADO] CPF {cpf} | {mes} | {nome} → {codigo}")
 
     return encontrados
 
@@ -178,8 +185,8 @@ def main():
 
         print(f"  [GUID] {guid}")
 
-        # ── Busca: CPF × mês até encontrar todos os eventos ──────────────
-        encontrados = buscar_codigos(session, cpfs, eventos_ativos)
+        # ── Busca: mês × CPF até encontrar todos os eventos ──────────────
+        encontrados = buscar_codigos(session, cpfs, eventos_ativos, nome_empresa, guid)
 
         # ── Validação e correção ──────────────────────────────────────────
         status_eventos = {}

@@ -5,7 +5,9 @@
       "WebSearch",
       "Bash(python:*)",
       "Bash(pip install:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(python3:*)",
+      "Bash(ls:*)"
     ]
   }
 }

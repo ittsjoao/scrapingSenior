@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 
 import openpyxl
+from bs4 import BeautifulSoup
 
 _TS    = datetime.now().strftime("%Y%m%d_%H%M%S")
 _PASTA = os.path.dirname(__file__)
@@ -10,6 +11,14 @@ _PASTA = os.path.dirname(__file__)
 ARQUIVO_DESCOBERTAS = os.path.join(_PASTA, f"log_descobertas_{_TS}.txt")
 ARQUIVO_AJUSTES     = os.path.join(_PASTA, f"log_ajustes_{_TS}.txt")
 ARQUIVO_PLANILHA    = os.path.join(_PASTA, f"resultado_{_TS}.xlsx")
+PASTA_TABELAS = os.path.join(_PASTA, f"tabelas_{_TS}")
+
+_ROTULOS_TABELA = {0: "HOLERITE", 1: "FÉRIAS"}
+
+
+def _nome_seguro(texto):
+    """Remove caracteres inválidos para nomes de arquivo/pasta."""
+    return "".join(c if c.isalnum() or c in " _-" else "_" for c in texto).strip()
 
 
 def log_descoberta(nome_empresa, codigo_rubrica, cpf, irrf_ok):
@@ -44,6 +53,45 @@ def log_ajuste(nome_empresa, nome_evento, irrf_antigo, irrf_novo):
     with open(ARQUIVO_AJUSTES, "a", encoding="utf-8") as f:
         f.write(linha)
     print(f"  [ajuste] {linha.strip()}")
+
+
+def salvar_tabelas_validacao(html, nome_empresa, cpf, mes):
+    """
+    Salva as tabelas do HTML em PASTA_TABELAS/<empresa>/<cpf>.txt
+    A 1ª tabela é rotulada HOLERITE, a 2ª é FÉRIAS.
+    Cada mês é anexado ao mesmo arquivo do colaborador.
+    No terminal exibe apenas: CPF | MÊS | TABELA | N rúbricas
+    """
+    soup    = BeautifulSoup(html, "lxml")
+    tabelas = soup.find_all("table", class_=lambda c: c and "sem-paginacao" in c)
+
+    if not tabelas:
+        return
+
+    pasta_empresa = os.path.join(PASTA_TABELAS, _nome_seguro(nome_empresa))
+    os.makedirs(pasta_empresa, exist_ok=True)
+
+    caminho = os.path.join(pasta_empresa, f"{cpf}.txt")
+
+    with open(caminho, "a", encoding="utf-8") as f:
+        f.write(f"\n{'='*70}\nMÊS: {mes}\n{'='*70}\n")
+
+        for i, tabela in enumerate(tabelas):
+            rotulo = _ROTULOS_TABELA.get(i, f"TABELA {i+1}")
+            linhas_dados = tabela.find_all("tr")[1:]  # exclui cabeçalho
+            total = len(linhas_dados)
+
+            print(f"  CPF {cpf} | {mes} | {rotulo} | {total} rúbricas")
+
+            f.write(f"\n--- {rotulo} ---\n")
+            # cabeçalho
+            cabecalho_tr = tabela.find("tr")
+            if cabecalho_tr:
+                cols = [td.get_text(strip=True) for td in cabecalho_tr.find_all(["th", "td"])]
+                f.write(" | ".join(cols) + "\n")
+            for tr in linhas_dados:
+                cols = [td.get_text(strip=True) for td in tr.find_all(["th", "td"])]
+                f.write(" | ".join(cols) + "\n")
 
 
 def salvar_planilha(resultados, eventos_ativos, eventos_demissao):
