@@ -126,6 +126,21 @@ def pressionar_baixo():
     time.sleep(PAUSA_CURTA)
 
 
+def pressionar_baixo_11():
+    pyautogui.press("down")
+    pyautogui.press("down")
+    pyautogui.press("down")
+    pyautogui.press("down")
+    pyautogui.press("down")
+    pyautogui.press("down")
+    pyautogui.press("down")
+    pyautogui.press("down")
+    pyautogui.press("down")
+    pyautogui.press("down")
+    pyautogui.press("down")
+    time.sleep(PAUSA_CURTA)
+
+
 def fechar():
     pyautogui.hotkey("alt", "f4")
     time.sleep(PAUSA_CURTA)
@@ -241,19 +256,18 @@ def listar_colaboradores(nome_btn_relacao, nome_tb_geral, validador_entrada, msg
     pyautogui.press("2")
     pyautogui.press("5")
     pyautogui.press("0")
+    return True
+
+
+def loop_colaboradores(msg_erro, id_empresa):
     pressionar_enter()
     if _encontrar(msg_erro) is not None:
         clicar_botao("btn_ok_3.png")
         return None
-
-    aguardar_aparecer(validador_entrada)
-
-    # Navega para o campo de código: backspace → enter → 5 tabs → enter
-    pyautogui.press("backspace")
+    digitar_texto(id_empresa)
     for _ in range(5):
         pressionar_tab()
     pressionar_enter()
-
     return True
 
 
@@ -376,20 +390,19 @@ def pesquisar_evento(
     return True
 
 
-def salvar_colab(nome_btn_salvar, caminho_arquivo, nome_arquivo, nome_btn_ok_confirmar):
+def salvar_colab(nome_btn_salvar, caminho_arquivo, nome_arquivo, nome_msg_erro):
     posicao_btn_salvar = aguardar_aparecer(nome_btn_salvar)
     if posicao_btn_salvar is None:
         return False
     pyautogui.click(posicao_btn_salvar)
-    digitar_texto(caminho_arquivo + nome_arquivo + ".txt")
+    time.sleep(PAUSA_CURTA)  # aguarda o diálogo de salvar abrir antes de digitar
+    digitar_texto(caminho_arquivo + nome_arquivo)
     pressionar_tab()
-    pressionar_baixo()
+    pressionar_baixo_11()
     pressionar_tab()
     pressionar_enter()
-    posicao_ok2 = aguardar_aparecer(nome_btn_ok_confirmar, timeout=5)
-    if posicao_ok2 is not None:
-        pyautogui.click(posicao_ok2)
-    fechar()
+    if aguardar_aparecer(nome_msg_erro, timeout=0.3) is not None:
+        pressionar_enter()
     fechar()
     return True
 

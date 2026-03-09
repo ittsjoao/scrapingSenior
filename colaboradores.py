@@ -1,14 +1,13 @@
 import os
 
 import automacao
-from config import PASTA_BOTOES_COLAB
 from automacao import (
     aguardar,
-    fechar,
     listar_colaboradores,
-    pesquisar_empresa,
+    loop_colaboradores,
     salvar_colab,
 )
+from config import PASTA_BOTOES_COLAB
 from leitor_planilha import carregar_empresas
 from salvador import registrar_log, sanitizar_nome
 
@@ -24,6 +23,17 @@ aguardar(5)
 
 empresas = carregar_empresas()
 
+# Entra na tela de relação uma única vez
+ok = listar_colaboradores(
+    "btn_relacao.png",
+    "tb_principal.png",
+    "validador.png",
+    "erro_listar.png",
+)
+if not ok:
+    registrar_log("[ERRO] Não foi possível abrir a tela de relação.")
+    raise SystemExit(1)
+
 # --------------------------------------------------
 # Loop principal — empresa por empresa
 # --------------------------------------------------
@@ -35,31 +45,13 @@ for empresa in empresas:
     )
     registrar_log(f"Iniciando empresa: {nome_empresa} (ID: {id_empresa})")
 
-    ok = pesquisar_empresa(
-        "btn_selecionar_empresa.png",
-        "btn_preencher_empresa.png",
-        "btn_pesquisar_empresa.png",
-        "btn_ok_salvar.png",
-        id_empresa,
-    )
+    ok = loop_colaboradores("erro_listar.png", id_empresa)
     if not ok:
-        registrar_log(f"[ERRO] Empresa nao encontrada, pulando: {nome_empresa}")
-        fechar()
-        continue
-
-    ok = listar_colaboradores(
-        "btn_relacao.png",
-        "tb_principal.png",
-        "validador.png",
-        "erro_listar.png",
-    )
-    if not ok:
-        registrar_log(f"[ERRO] Empresa {nome_empresa} sem colaboradores")
-        fechar()
+        registrar_log(f"[AVISO] Empresa sem colaboradores: {nome_empresa}")
         continue
 
     salvar_colab(
-        "btn_diskette.png", pasta_empresa + os.sep, "colaboradores", "btn_ok_2.png"
+        "btn_diskette.png", pasta_empresa + os.sep, "colaboradores", "salvar_again.png"
     )
 
     registrar_log(f"Empresa concluida: {nome_empresa}")
