@@ -7,7 +7,9 @@
       "Bash(pip install:*)",
       "Bash(wc:*)",
       "Bash(python3:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(npx skills:*)",
+      "Bash(cp \"C:/Users/Auster/Documents/GitHub/scrapingSenior/passo_3/cookies.txt\" \"C:/Users/Auster/Documents/GitHub/scrapingSenior/passo_3/cookies/worker_1.txt\" && cd \"C:/Users/Auster/Documents/GitHub/scrapingSenior/passo_3\" && python -c \"\nfrom auditor_parallel import _encontrar_cookies, _caminho_saida\ncookies = _encontrar_cookies\\(\\)\nprint\\('Cookies detectados:', cookies\\)\nprint\\('Caminho JSON:', _caminho_saida\\(\\)\\)\n\")"
     ]
   }
 }
