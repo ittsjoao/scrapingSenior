@@ -2,6 +2,7 @@
 import os
 import subprocess
 import tempfile
+import time
 
 import requests
 
@@ -74,8 +75,9 @@ def buscar_codigos(session, cpfs, eventos_ativos, nome_empresa, guid):
 
     Retorna dict: {nome_evento: {"codigo": str, "cpf": str, "mes": str}}
     """
-    pendentes   = {e["nome"]: e for e in eventos_ativos}
-    encontrados = {}
+    pendentes    = {e["nome"]: e for e in eventos_ativos}
+    encontrados  = {}
+    _cache_lista = {}
 
     for cpf in cpfs:
         if not pendentes:
@@ -83,9 +85,11 @@ def buscar_codigos(session, cpfs, eventos_ativos, nome_empresa, guid):
         for mes in MESES:
             if not pendentes:
                 break
-            html_lista = acessar_lista_remuneracao(session, mes, guid)
-            if not html_lista:
+            if mes not in _cache_lista:
+                _cache_lista[mes] = acessar_lista_remuneracao(session, mes, guid)
+            if not _cache_lista[mes]:
                 continue
+            time.sleep(0.8)
             html = acessar_tabela_funcionário(session, cpf, mes, guid)
             if not html:
                 continue

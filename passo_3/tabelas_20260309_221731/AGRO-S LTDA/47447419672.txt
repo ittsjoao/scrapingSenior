@@ -1,0 +1,168 @@
+
+======================================================================
+MÊS: 202512
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1087,80 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202511
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1087,80 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202510
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1087,80 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202509
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1087,80 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202508
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1087,80 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202507
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1087,80 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202506
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1087,80 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202505
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1087,80 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202504
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1087,80 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202503
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1100,53 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202502
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1100,53 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202501
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 8157,41 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 897,31 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1100,53 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202412
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | _ | - | - | - | 7786,02 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 856,46 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1009,63 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202411
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000188 | Vencimento | Pró Labore | - | - | - | - | 7786,02 | -
+1 | SEAGRO-SEI00000000000000000193 | Desconto | INSS s/ Pro-Labore | 11,00 | - | - | - | 856,46 | -
+1 | SEAGRO-SEI00000000000000000003 | Desconto | IRRF s/ Pro-Labore | 4,00 | - | - | - | 1009,63 | -
+
+--- FÉRIAS ---

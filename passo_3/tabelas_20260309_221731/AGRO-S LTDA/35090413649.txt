@@ -1,0 +1,156 @@
+
+======================================================================
+MÊS: 202512
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000242 | Vencimento | Horas Normais | _ | - | - | - | 1976,52 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1976,52 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202511
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000242 | Vencimento | Horas Normais | _ | - | - | - | 1976,52 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1976,52 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202510
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000242 | Vencimento | Horas Normais | _ | - | - | - | 1976,52 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1976,52 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202509
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000242 | Vencimento | Horas Normais | _ | - | - | - | 1976,52 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1976,52 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202508
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000242 | Vencimento | Horas Normais | _ | - | - | - | 1976,52 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1976,52 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202507
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000242 | Vencimento | Horas Normais | _ | - | - | - | 1976,52 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1976,52 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202506
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000242 | Vencimento | Horas Normais | _ | - | - | - | 1976,52 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1976,52 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202505
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000242 | Vencimento | Horas Normais | _ | - | - | - | 1976,52 | -
+1 | SEAGRO-SEI00000000000000000196 | Desconto | INSS | 7,50 | - | - | - | 12,24 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1813,31 | -
+1 | SEAGRO-SEI00000000000000000005 | Informativa | FGTS | _ | - | - | - | 13,05 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202504
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000242 | Vencimento | Horas Normais | _ | - | - | - | 1813,32 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1813,31 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202503
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000191 | Vencimento | Horas Normais | 220,00 | - | - | - | 1813,32 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1813,31 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202502
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000191 | Vencimento | Horas Normais | 220,00 | - | - | - | 1813,32 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1813,31 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202501
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000191 | Vencimento | Horas Normais | 220,00 | - | - | - | 1813,32 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1813,31 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202412
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000191 | Vencimento | Horas Normais | 220,00 | - | - | - | 1813,32 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | _ | - | - | - | 1813,31 | -
+
+--- FÉRIAS ---
+
+======================================================================
+MÊS: 202411
+======================================================================
+
+--- HOLERITE ---
+Tabela | Código | Tipo | Descrição | Quantidade | Número contrato | Fator | Valor Unitário | Valor | Ações
+1 | SEAGRO-SEI00000000000000000191 | Vencimento | Horas Normais | 220,00 | - | - | - | 1813,32 | -
+1 | SEAGRO-SEI00000000000000000231 | Desconto | Desc.Faltas em Dias | - | - | - | - | 1813,31 | -
+
+--- FÉRIAS ---
