@@ -4,3 +4,6 @@ Pillow
 openpyxl
 opencv-python
 pyperclip
+requests
+bs4
+lxml

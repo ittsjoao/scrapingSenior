@@ -63,7 +63,9 @@ def selecionar_empresa(session, cnpj_formatado):
         match = re.search(r"UsuarioLogado=([^;]+)", set_cookie)
         if match:
             break
-        print(f"  [!] Tentativa {tentativa} — servidor sem sessão (status {resp.status_code}), retentando...")
+        print(
+            f"  [!] Tentativa {tentativa} — servidor sem sessão (status {resp.status_code}), retentando..."
+        )
         time.sleep(0.5)
 
     if not match:
@@ -71,8 +73,12 @@ def selecionar_empresa(session, cnpj_formatado):
 
     usuario_logado = match.group(1)
 
-    session.cookies.set("UsuarioLogado", usuario_logado, domain="www.esocial.gov.br", path="/")
-    session.cookies.set("usuario_logado_ws", cnpj_formatado, domain="www.esocial.gov.br", path="/")
+    session.cookies.set(
+        "UsuarioLogado", usuario_logado, domain="www.esocial.gov.br", path="/"
+    )
+    session.cookies.set(
+        "usuario_logado_ws", cnpj_formatado, domain="www.esocial.gov.br", path="/"
+    )
 
     # Segue o redirect — consolida a sessão no servidor que respondeu ao POST
     location = resp.headers.get("Location", "")
@@ -88,8 +94,15 @@ def selecionar_empresa(session, cnpj_formatado):
 
 def trocar_perfil(session, usuario_logado_procurador, cpf_procurador):
     """Reseta o contexto de volta ao procurador após terminar uma empresa."""
-    session.cookies.set("UsuarioLogado", usuario_logado_procurador, domain="www.esocial.gov.br", path="/")
-    session.cookies.set("usuario_logado_ws", cpf_procurador, domain="www.esocial.gov.br", path="/")
+    session.cookies.set(
+        "UsuarioLogado",
+        usuario_logado_procurador,
+        domain="www.esocial.gov.br",
+        path="/",
+    )
+    session.cookies.set(
+        "usuario_logado_ws", cpf_procurador, domain="www.esocial.gov.br", path="/"
+    )
 
     headers = {
         **HEADERS_BASE,
@@ -108,7 +121,10 @@ def extrair_nome_empresa(session):
     Extrai o nome da empresa do cookie UsuarioLogado.
     Retorna string com o nome ou "Empresa desconhecida" se não encontrar.
     """
-    valor = session.cookies.get("UsuarioLogado", "")
+    valor = (
+        session.cookies.get("UsuarioLogado", domain="www.esocial.gov.br", path="/")
+        or ""
+    )
     m = re.search(r"Nome=([^&]+)", valor)
     return m.group(1) if m else "Empresa desconhecida"
 
@@ -118,8 +134,13 @@ def acessar_home_empresa(session):
     Acessa a home da empresa após selecionar_empresa.
     Retorna HTML (contém o link Rubrica/CadastroCompleto?id=GUID) ou None.
     """
-    url = "https://www.esocial.gov.br/portal/Home/Inicial?tipoEmpregador=EMPREGADOR_GERAL"
-    headers = {**HEADERS_BASE, "Referer": "https://www.esocial.gov.br/portal/Home/Index"}
+    url = (
+        "https://www.esocial.gov.br/portal/Home/Inicial?tipoEmpregador=EMPREGADOR_GERAL"
+    )
+    headers = {
+        **HEADERS_BASE,
+        "Referer": "https://www.esocial.gov.br/portal/Home/Index",
+    }
     resp = session.get(url, headers=headers)
     print(f"  [home] Status: {resp.status_code} | {len(resp.text)} bytes")
     if resp.status_code != 200 or "eSocial" not in resp.text:
@@ -143,7 +164,9 @@ def acessar_lista_remuneracao(session, competencia, guid, possui_dae="False"):
         "Referer": f"https://www.esocial.gov.br/portal/FolhaPagamento/GestaoFolha?id={guid}",
     }
     resp = session.get(url, headers=headers)
-    print(f"  [lista] Status: {resp.status_code} | {len(resp.text)} bytes | competencia={competencia}")
+    print(
+        f"  [lista] Status: {resp.status_code} | {len(resp.text)} bytes | competencia={competencia}"
+    )
     if resp.status_code != 200 or "eSocial" not in resp.text:
         print("  [!] ListaRemuneracao inesperada")
         return None
@@ -168,7 +191,9 @@ def acessar_tabela_funcionário(session, cpf, competencia, guid, possui_dae="Fal
         ),
     }
     resp = session.get(url, headers=headers)
-    print(f"  [tabela] Status: {resp.status_code} | tamanho: {len(resp.text)} bytes | cpf={cpf} mes={competencia}")
+    print(
+        f"  [tabela] Status: {resp.status_code} | tamanho: {len(resp.text)} bytes | cpf={cpf} mes={competencia}"
+    )
     if resp.status_code != 200 or "eSocial" not in resp.text:
         print("  [!] Resposta inesperada — sessão pode ter expirado")
         return None
@@ -178,7 +203,10 @@ def acessar_tabela_funcionário(session, cpf, competencia, guid, possui_dae="Fal
 def acessar_rubrica(session, guid):
     """Abre a página de busca de rubricas. Retorna HTML ou None."""
     url = f"https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto?id={guid}"
-    headers = {**HEADERS_BASE, "Referer": "https://www.esocial.gov.br/portal/FolhaPagamento/GestaoFolha"}
+    headers = {
+        **HEADERS_BASE,
+        "Referer": "https://www.esocial.gov.br/portal/FolhaPagamento/GestaoFolha",
+    }
     resp = session.get(url, headers=headers)
     print(f"  [rubrica] Status: {resp.status_code} | {len(resp.text)} bytes")
     if resp.status_code != 200 or "eSocial" not in resp.text:
@@ -193,8 +221,16 @@ def buscar_rubrica(session, guid, codigo_rubrica, id_tabela_rubrica="0", pagina=
     Retorna HTML com os resultados (contém idRubrica e idEvento).
     """
     url = f"https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto?id={guid}"
-    data = {"IdTabelaRubrica": id_tabela_rubrica, "Codigo": codigo_rubrica, "Pagina": pagina}
-    headers = {**HEADERS_BASE, "Referer": url, "Content-Type": "application/x-www-form-urlencoded"}
+    data = {
+        "IdTabelaRubrica": id_tabela_rubrica,
+        "Codigo": codigo_rubrica,
+        "Pagina": pagina,
+    }
+    headers = {
+        **HEADERS_BASE,
+        "Referer": url,
+        "Content-Type": "application/x-www-form-urlencoded",
+    }
     resp = session.post(url, data=data, headers=headers)
     print(f"  [buscar_rubrica] Status: {resp.status_code} | {len(resp.text)} bytes")
     if resp.status_code != 200 or "eSocial" not in resp.text:
@@ -209,7 +245,10 @@ def abrir_edicao_rubrica(session, id_rubrica, id_evento, guid):
         f"https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto/Editar"
         f"?idRubrica={id_rubrica}&idEvento={id_evento}"
     )
-    headers = {**HEADERS_BASE, "Referer": f"https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto?id={guid}"}
+    headers = {
+        **HEADERS_BASE,
+        "Referer": f"https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto?id={guid}",
+    }
     resp = session.get(url, headers=headers)
     print(f"  [abrir_edicao] Status: {resp.status_code} | {len(resp.text)} bytes")
     if resp.status_code != 200 or "eSocial" not in resp.text:
@@ -226,16 +265,25 @@ def salvar_edicao(session, id_rubrica, id_evento, campos_form):
     """
     url = "https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto/Editar"
     referer = f"https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto/Editar?idRubrica={id_rubrica}&idEvento={id_evento}"
-    headers = {**HEADERS_BASE, "Referer": referer, "Content-Type": "application/x-www-form-urlencoded"}
+    headers = {
+        **HEADERS_BASE,
+        "Referer": referer,
+        "Content-Type": "application/x-www-form-urlencoded",
+    }
     resp = session.post(url, data=campos_form, headers=headers, allow_redirects=False)
-    print(f"  [salvar_edicao] Status: {resp.status_code} | Location: {resp.headers.get('Location', '-')}")
+    print(
+        f"  [salvar_edicao] Status: {resp.status_code} | Location: {resp.headers.get('Location', '-')}"
+    )
     return resp.status_code, resp.text
 
 
 def acessar_assinadoc(session):
     """GET /portal/Assinadoc — página com o link .jnlp para assinar. Retorna HTML ou None."""
     url = "https://www.esocial.gov.br/portal/Assinadoc"
-    headers = {**HEADERS_BASE, "Referer": "https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto/Editar"}
+    headers = {
+        **HEADERS_BASE,
+        "Referer": "https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto/Editar",
+    }
     resp = session.get(url, headers=headers)
     print(f"  [assinadoc] Status: {resp.status_code} | {len(resp.text)} bytes")
     return resp.text if resp.status_code == 200 else None
