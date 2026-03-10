@@ -161,40 +161,45 @@ def worker(worker_id, cookies_path, queue, lock, json_path, eventos_ativos, even
         print(f"[W{worker_id}] {'='*50}", flush=True)
         print(f"[W{worker_id}] [EMPRESA] {cnpj}", flush=True)
 
-        cpfs = empresas.get(cnpj, [])
+        try:
+            cpfs = empresas.get(cnpj, [])
 
-        ok = selecionar_empresa(session, cnpj)
-        if not ok:
-            print(f"[W{worker_id}] [!] Falha ao selecionar {cnpj}", flush=True)
+            ok = selecionar_empresa(session, cnpj)
+            if not ok:
+                print(f"[W{worker_id}] [!] Falha ao selecionar {cnpj} — devolvendo à fila", flush=True)
+                queue.put(cnpj)
+                continue
+
+            nome      = extrair_nome_empresa(session)
+            html_home = acessar_home_empresa(session)
+            guid      = extrair_guid_home(html_home) if html_home else None
+            if not guid:
+                print(f"[W{worker_id}] [!] GUID não encontrado para {cnpj} — devolvendo à fila", flush=True)
+                queue.put(cnpj)
+                continue
+
+            print(f"[W{worker_id}] [Nome] {nome} | [GUID] {guid}", flush=True)
+
+            # Auditoria ocorre FORA do lock — workers rodam em paralelo aqui
+            rubricas = auditar_empresa(session, guid, cpfs, eventos_ativos, eventos_demissao)
+
+            # Salva resultado — dentro do lock (~50ms)
+            with lock:
+                dados = _ler_json(json_path)
+                dados[cnpj] = {
+                    "nome":        nome,
+                    "worker":      worker_id,
+                    "auditado_em": datetime.now().isoformat(timespec="seconds"),
+                    "rubricas":    rubricas,
+                }
+                _salvar_json(dados, json_path)
+
+            print(f"[W{worker_id}] [SALVO] {cnpj}", flush=True)
             trocar_perfil(session, usuario_logado_procurador, cpf_procurador)
-            continue
 
-        nome      = extrair_nome_empresa(session)
-        html_home = acessar_home_empresa(session)
-        guid      = extrair_guid_home(html_home) if html_home else None
-        if not guid:
-            print(f"[W{worker_id}] [!] GUID não encontrado para {cnpj}", flush=True)
-            trocar_perfil(session, usuario_logado_procurador, cpf_procurador)
-            continue
-
-        print(f"[W{worker_id}] [Nome] {nome} | [GUID] {guid}", flush=True)
-
-        # Auditoria ocorre FORA do lock — workers rodam em paralelo aqui
-        rubricas = auditar_empresa(session, guid, cpfs, eventos_ativos, eventos_demissao)
-
-        # Salva resultado — dentro do lock (~50ms)
-        with lock:
-            dados = _ler_json(json_path)
-            dados[cnpj] = {
-                "nome":        nome,
-                "worker":      worker_id,
-                "auditado_em": datetime.now().isoformat(timespec="seconds"),
-                "rubricas":    rubricas,
-            }
-            _salvar_json(dados, json_path)
-
-        print(f"[W{worker_id}] [SALVO] {cnpj}", flush=True)
-        trocar_perfil(session, usuario_logado_procurador, cpf_procurador)
+        except Exception as e:
+            print(f"[W{worker_id}] [ERRO] {cnpj} — {e} — devolvendo à fila", flush=True)
+            queue.put(cnpj)
 
     print(f"[W{worker_id}] Fila vazia — encerrando", flush=True)
 
