@@ -27,6 +27,85 @@ def _encontrar_cookies():
     return sorted(glob.glob(os.path.join(COOKIES_DIR, "worker_*.txt")))
 
 
+def _testar_sessao(worker_id, cookies_path):
+    """
+    Testa se a sessão do worker está ativa no portal eSocial.
+    Retorna (ok: bool, motivo: str|None).
+    """
+    try:
+        cookies_base = ler_cookies(cookies_path)
+    except Exception as e:
+        return False, f"erro ao ler arquivo: {e}"
+
+    usuario = cookies_base.get("UsuarioLogado", "")
+    if not usuario:
+        return False, "cookie UsuarioLogado ausente"
+
+    session = requests.Session()
+    session.cookies.update(cookies_base)
+
+    try:
+        resp = session.get(
+            "https://www.esocial.gov.br/portal/Home/Index",
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:148.0) Gecko/20100101 Firefox/148.0"},
+            allow_redirects=False,
+            timeout=15,
+        )
+    except Exception as e:
+        return False, f"erro de conexão: {e}"
+
+    location = resp.headers.get("Location", "")
+    if resp.status_code in (301, 302) and any(k in location for k in ("login", "Login", "Account")):
+        return False, "sessão expirada (redirect para login)"
+
+    if resp.status_code not in (200, 302):
+        return False, f"status inesperado: {resp.status_code}"
+
+    return True, None
+
+
+def _validar_workers(cookies_files):
+    """
+    Testa todos os workers e solicita troca dos cookies inválidos.
+    Loop até o usuário confirmar, pular inválidos ou cancelar.
+    Retorna lista de cookies_files válidos.
+    """
+    while True:
+        print("\n[CHECK] Testando conexão dos workers...")
+        invalidos = []
+
+        for i, path in enumerate(cookies_files, start=1):
+            ok, motivo = _testar_sessao(i, path)
+            status = "OK" if ok else f"FALHOU — {motivo}"
+            print(f"  [W{i}] {os.path.basename(path)} — {status}")
+            if not ok:
+                invalidos.append(path)
+
+        if not invalidos:
+            print("[CHECK] Todos os workers OK.\n")
+            return cookies_files
+
+        print(f"\n[CHECK] {len(invalidos)} worker(s) com sessão inválida.")
+        print("  [Enter] Substituí os cookies, testar novamente")
+        print("  [s]     Ignorar inválidos e continuar com os válidos")
+        print("  [q]     Cancelar")
+
+        escolha = input(">> ").strip().lower()
+
+        if escolha == "q":
+            print("[!] Cancelado.")
+            sys.exit(0)
+        elif escolha == "s":
+            invalidos_set = set(invalidos)
+            validos = [p for p in cookies_files if p not in invalidos_set]
+            if not validos:
+                print("[!] Nenhum worker válido. Cancelando.")
+                sys.exit(1)
+            print(f"[CHECK] Continuando com {len(validos)} worker(s) válido(s).\n")
+            return validos
+        # [Enter] → re-testa (usuário já substituiu os arquivos)
+
+
 def _encontrar_json_mais_recente():
     arquivos = sorted(glob.glob(os.path.join(PASTA_SAIDA, "auditoria_*.json")))
     return arquivos[-1] if arquivos else None
@@ -129,6 +208,9 @@ def main():
 
     n_workers = len(cookies_files)
     print(f"[PARALLEL] {n_workers} worker(s): {[os.path.basename(f) for f in cookies_files]}")
+
+    cookies_files = _validar_workers(cookies_files)
+    n_workers = len(cookies_files)
 
     retomar = None
     if "--retomar" in sys.argv:
