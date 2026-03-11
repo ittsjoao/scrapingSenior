@@ -12,6 +12,7 @@ HEADERS_BASE = {
 
 PAUSA_COLETIVA_LIMIAR = 6.0   # se TODOS os workers > 6s, pausa coletiva
 PAUSA_COLETIVA_DURACAO = 120  # segundos (2 minutos)
+PAUSA_COLETIVA_COOLDOWN = 300  # após pausa coletiva, aguarda 5min antes de poder disparar outra
 
 PAUSA_PERIODICA_A_CADA = 500   # requests totais entre todos os workers
 PAUSA_PERIODICA_DURACAO = 300  # segundos (5 minutos)
@@ -53,6 +54,7 @@ class Throttle:
                     flush=True,
                 )
                 time.sleep(restante)
+                self._delay = 0.0  # servidor descansou, reseta delay individual
                 return
 
         if self._delay > 0:
@@ -89,6 +91,10 @@ class Throttle:
                 pausa_ate = time.time() + PAUSA_PERIODICA_DURACAO
                 self._shared_pause_until.value = pausa_ate
                 self._delay = 0.0
+                # Reseta tempos para evitar pausa coletiva imediata ao retomar
+                if self._shared_times is not None:
+                    for i in range(self._n_workers):
+                        self._shared_times[i] = 0.0
                 print(
                     f"\n  [PAUSA PERIÓDICA] {contagem} requests atingidas"
                     f" — pausando {PAUSA_PERIODICA_DURACAO}s (5min)\n",
@@ -99,13 +105,28 @@ class Throttle:
         """Se TODOS os workers estão com resposta > LIMIAR, ativa pausa coletiva de 2min."""
         if self._shared_pause_until is None:
             return
-        if self._shared_pause_until.value > time.time():
+
+        agora = time.time()
+        pause_until = self._shared_pause_until.value
+
+        # Pausa ativa — não re-disparar
+        if pause_until > agora:
             return
+
+        # Cooldown: após pausa terminar, aguarda COOLDOWN antes de poder disparar outra.
+        # pause_until > 0 indica que já houve ao menos uma pausa.
+        # (agora - pause_until) = tempo desde que a última pausa expirou.
+        if pause_until > 0 and (agora - pause_until) < PAUSA_COLETIVA_COOLDOWN:
+            return
+
         tempos = [self._shared_times[i] for i in range(self._n_workers)]
         if all(t > PAUSA_COLETIVA_LIMIAR for t in tempos):
-            pausa_ate = time.time() + PAUSA_COLETIVA_DURACAO
+            pausa_ate = agora + PAUSA_COLETIVA_DURACAO
             self._shared_pause_until.value = pausa_ate
             self._delay = 0.0
+            # Reseta tempos para evitar re-disparo por requests em voo
+            for i in range(self._n_workers):
+                self._shared_times[i] = 0.0
             print(
                 f"\n  [PAUSA COLETIVA] Todos os {self._n_workers} workers com resposta >"
                 f" {PAUSA_COLETIVA_LIMIAR}s — pausando {PAUSA_COLETIVA_DURACAO}s"
