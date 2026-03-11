@@ -35,11 +35,10 @@ from saida import log_descoberta, log_na, log_ajuste, salvar_planilha, salvar_ta
 COOKIES_FILE    = os.path.join(os.path.dirname(__file__), "cookies.txt")
 PASTA_TEMP_JNLP = os.path.join(tempfile.gettempdir(), "esocial_jnlp")
 
-# Meses de busca: 12/2025 → 11/2024 (ordem decrescente)
+# Meses de busca: 12/2025 → 03/2025 (ordem decrescente, reduzido de 14 para 10)
 MESES = [
     "202512", "202511", "202510", "202509", "202508", "202507",
-    "202506", "202505", "202504", "202503", "202502", "202501",
-    "202412", "202411",
+    "202506", "202505", "202504", "202503",
 ]
 
 # ── Helpers ────────────────────────────────────────────────────────────────────

@@ -1,39 +1,53 @@
 # passo_3/auditor.py
+import glob
 import json
 import os
 import sys
-import glob
 from datetime import datetime
 
 import requests
 
 from cookie import (
-    ler_cookies,
-    selecionar_empresa,
-    trocar_perfil,
-    extrair_nome_empresa,
+    abrir_edicao_rubrica,
     acessar_home_empresa,
     acessar_lista_remuneracao,
     acessar_tabela_funcionário,
     buscar_rubrica,
-    abrir_edicao_rubrica,
-)
-from parser import (
-    extrair_guid_home,
-    parsear_tabela_funcionario,
-    parsear_busca_rubrica,
-    parsear_form_edicao,
+    extrair_nome_empresa,
+    ler_cookies,
+    selecionar_empresa,
+    trocar_perfil,
 )
 from entradas import carregar_empresas, carregar_eventos
+from parser import (
+    extrair_guid_home,
+    parsear_busca_rubrica,
+    parsear_form_edicao,
+    parsear_tabela_funcionario,
+)
 
 COOKIES_FILE = os.path.join(os.path.dirname(__file__), "cookies.txt")
-PASTA_SAIDA  = os.path.join(os.path.dirname(__file__), "..", "dados", "saida")
+PASTA_SAIDA = os.path.join(os.path.dirname(__file__), "..", "dados", "saida")
 
 MESES = [
-    "202512", "202511", "202510", "202509", "202508", "202507",
-    "202506", "202505", "202504", "202503", "202502", "202501",
-    "202412", "202411",
+    "202512",
+    "202511",
+    "202510",
+    "202509",
+    "202508",
+    "202507",
+    "202506",
+    "202505",
+    "202504",
+    "202503",
+    "202502",
+    "202501",
+    "202412",
+    "202411",
 ]
+
+# Quantos meses consecutivos sem dados para pular o CPF
+EARLY_EXIT_MESES = 5
 
 
 def _caminho_saida(retomar=None):
@@ -61,18 +75,31 @@ def _encontrar_mais_recente():
     return arquivos[-1] if arquivos else None
 
 
-def _rubrica_na(nome_evento, irrf_esperado, motivo, cpf=None, competencia=None, guid=None):
+def _rubrica_na(
+    nome_evento, irrf_esperado, motivo, cpf=None, competencia=None, guid=None
+):
     return {
-        "id_rubrica": None, "id_evento": None, "guid": guid,
-        "nome_evento": nome_evento, "cpf": cpf, "competencia": competencia,
-        "irrf_atual": None, "irrf_esperado": irrf_esperado,
-        "campos_form": {}, "status": "N/A", "motivo": motivo,
+        "id_rubrica": None,
+        "id_evento": None,
+        "guid": guid,
+        "nome_evento": nome_evento,
+        "cpf": cpf,
+        "competencia": competencia,
+        "irrf_atual": None,
+        "irrf_esperado": irrf_esperado,
+        "campos_form": {},
+        "status": "N/A",
+        "motivo": motivo,
     }
 
 
 def auditar_empresa(session, guid, cpfs, eventos_ativos, eventos_demissao):
     """
     Itera CPFs × meses × eventos e retorna lista de dicts de rúbrica com status.
+
+    Otimizações:
+    - Cache de acessar_lista_remuneracao por mês (evita request repetida)
+    - Early-exit: pula CPF após EARLY_EXIT_MESES consecutivos sem dados
     """
     rubricas = []
     ev_por_nome = {ev["nome"]: ev for ev in eventos_ativos}
@@ -82,23 +109,42 @@ def auditar_empresa(session, guid, cpfs, eventos_ativos, eventos_demissao):
         rubricas.append(_rubrica_na(ev["nome"], ev["irrf"], "demissão", guid=guid))
 
     # Busca códigos: CPF × mês até resolver todos os eventos ativos
-    pendentes  = dict(ev_por_nome)
+    pendentes = dict(ev_por_nome)
     encontrados = {}  # nome_evento → {codigo, cpf, mes}
+    _cache_lista = {}  # cache de acessar_lista_remuneracao por mês
 
     for cpf in cpfs:
         if not pendentes:
             break
+        meses_vazios = 0  # contador para early-exit
         for mes in MESES:
             if not pendentes:
                 break
-            html_lista = acessar_lista_remuneracao(session, mes, guid)
-            if not html_lista:
+            # Cache: só faz a request de lista_remuneracao 1x por mês por empresa
+            if mes not in _cache_lista:
+                _cache_lista[mes] = acessar_lista_remuneracao(session, mes, guid)
+            if not _cache_lista[mes]:
+                meses_vazios += 1
+                if meses_vazios >= EARLY_EXIT_MESES:
+                    print(
+                        f"  [skip] CPF {cpf} — {EARLY_EXIT_MESES} meses sem lista, pulando"
+                    )
+                    break
                 continue
             html = acessar_tabela_funcionário(session, cpf, mes, guid)
             if not html:
+                meses_vazios += 1
+                if meses_vazios >= EARLY_EXIT_MESES:
+                    print(
+                        f"  [skip] CPF {cpf} — {EARLY_EXIT_MESES} meses sem dados, pulando"
+                    )
+                    break
                 continue
+            meses_vazios = 0  # reset: encontrou dados neste mês
             for nome, ev in list(pendentes.items()):
-                codigo = parsear_tabela_funcionario(html, ev["nome"], ev["aux"], ev["tabela"])
+                codigo = parsear_tabela_funcionario(
+                    html, ev["nome"], ev["aux"], ev["tabela"]
+                )
                 if codigo:
                     encontrados[nome] = {"codigo": codigo, "cpf": cpf, "mes": mes}
                     del pendentes[nome]
@@ -110,63 +156,93 @@ def auditar_empresa(session, guid, cpfs, eventos_ativos, eventos_demissao):
 
     # Valida IRRF para cada evento encontrado
     for nome, info in encontrados.items():
-        ev     = ev_por_nome[nome]
+        ev = ev_por_nome[nome]
         codigo = info["codigo"]
-        cpf    = info["cpf"]
-        mes    = info["mes"]
+        cpf = info["cpf"]
+        mes = info["mes"]
 
         if len(codigo) < 28:
-            rubricas.append(_rubrica_na(nome, ev["irrf"], f"código curto: {codigo}", cpf, mes, guid))
+            rubricas.append(
+                _rubrica_na(nome, ev["irrf"], f"código curto: {codigo}", cpf, mes, guid)
+            )
             continue
 
         html_busca = buscar_rubrica(session, guid, codigo)
         if not html_busca:
-            rubricas.append(_rubrica_na(nome, ev["irrf"], "buscar_rubrica falhou", cpf, mes, guid))
+            rubricas.append(
+                _rubrica_na(nome, ev["irrf"], "buscar_rubrica falhou", cpf, mes, guid)
+            )
             continue
 
         id_rubrica, id_evento = parsear_busca_rubrica(html_busca)
         if not id_rubrica:
-            rubricas.append(_rubrica_na(nome, ev["irrf"], "id_rubrica não encontrado", cpf, mes, guid))
+            rubricas.append(
+                _rubrica_na(
+                    nome, ev["irrf"], "id_rubrica não encontrado", cpf, mes, guid
+                )
+            )
             continue
 
         html_edicao = abrir_edicao_rubrica(session, id_rubrica, id_evento, guid)
         if not html_edicao:
-            rubricas.append({
-                "id_rubrica": id_rubrica, "id_evento": id_evento, "guid": guid,
-                "nome_evento": nome, "cpf": cpf, "competencia": mes,
-                "irrf_atual": None, "irrf_esperado": ev["irrf"],
-                "campos_form": {}, "status": "N/A", "motivo": "abrir_edicao falhou",
-            })
+            rubricas.append(
+                {
+                    "id_rubrica": id_rubrica,
+                    "id_evento": id_evento,
+                    "guid": guid,
+                    "nome_evento": nome,
+                    "cpf": cpf,
+                    "competencia": mes,
+                    "irrf_atual": None,
+                    "irrf_esperado": ev["irrf"],
+                    "campos_form": {},
+                    "status": "N/A",
+                    "motivo": "abrir_edicao falhou",
+                }
+            )
             continue
 
         campos = parsear_form_edicao(html_edicao)
         if not campos:
-            rubricas.append({
-                "id_rubrica": id_rubrica, "id_evento": id_evento, "guid": guid,
-                "nome_evento": nome, "cpf": cpf, "competencia": mes,
-                "irrf_atual": None, "irrf_esperado": ev["irrf"],
-                "campos_form": {}, "status": "N/A", "motivo": "parsear_form falhou",
-            })
+            rubricas.append(
+                {
+                    "id_rubrica": id_rubrica,
+                    "id_evento": id_evento,
+                    "guid": guid,
+                    "nome_evento": nome,
+                    "cpf": cpf,
+                    "competencia": mes,
+                    "irrf_atual": None,
+                    "irrf_esperado": ev["irrf"],
+                    "campos_form": {},
+                    "status": "N/A",
+                    "motivo": "parsear_form falhou",
+                }
+            )
             continue
 
-        irrf_atual    = str(campos.get("DadosRubrica.CodigoIncidenciaIR", ""))
+        irrf_atual = str(campos.get("DadosRubrica.CodigoIncidenciaIR", ""))
         irrf_esperado = str(ev["irrf"])
-        status        = "CORRETO" if irrf_atual == irrf_esperado else "ERRADO"
+        status = "CORRETO" if irrf_atual == irrf_esperado else "ERRADO"
 
-        print(f"  [{status}] {nome} | irrf_atual={irrf_atual} | irrf_esperado={irrf_esperado}")
+        print(
+            f"  [{status}] {nome} | irrf_atual={irrf_atual} | irrf_esperado={irrf_esperado}"
+        )
 
-        rubricas.append({
-            "id_rubrica":    id_rubrica,
-            "id_evento":     id_evento,
-            "guid":          guid,
-            "nome_evento":   nome,
-            "cpf":           cpf,
-            "competencia":   mes,
-            "irrf_atual":    irrf_atual,
-            "irrf_esperado": irrf_esperado,
-            "campos_form":   campos,
-            "status":        status,
-        })
+        rubricas.append(
+            {
+                "id_rubrica": id_rubrica,
+                "id_evento": id_evento,
+                "guid": guid,
+                "nome_evento": nome,
+                "cpf": cpf,
+                "competencia": mes,
+                "irrf_atual": irrf_atual,
+                "irrf_esperado": irrf_esperado,
+                "campos_form": campos,
+                "status": status,
+            }
+        )
 
     return rubricas
 
@@ -181,7 +257,7 @@ def main():
             print("[RESUME] Nenhum arquivo encontrado, iniciando novo.")
 
     caminho = _caminho_saida(retomar)
-    dados   = _carregar_existente(caminho)
+    dados = _carregar_existente(caminho)
     ja_auditados = set(dados.keys())
     print(f"[JSON] {caminho}")
     print(f"[RESUME] CNPJs já auditados: {len(ja_auditados)}")
@@ -191,13 +267,13 @@ def main():
     session.cookies.update(cookies_base)
 
     usuario_logado_procurador = cookies_base.get("UsuarioLogado", "")
-    cpf_procurador            = cookies_base.get("usuario_logado_ws", "")
+    cpf_procurador = cookies_base.get("usuario_logado_ws", "")
 
-    empresas                         = carregar_empresas()
+    empresas = carregar_empresas()
     eventos_ativos, eventos_demissao = carregar_eventos()
 
     for cnpj, cpfs in empresas.items():
-        print(f"\n{'='*60}")
+        print(f"\n{'=' * 60}")
         print(f"[EMPRESA] {cnpj}")
 
         if cnpj in ja_auditados:
@@ -222,12 +298,14 @@ def main():
 
         print(f"  [GUID] {guid}")
 
-        rubricas = auditar_empresa(session, guid, cpfs, eventos_ativos, eventos_demissao)
+        rubricas = auditar_empresa(
+            session, guid, cpfs, eventos_ativos, eventos_demissao
+        )
 
         dados[cnpj] = {
-            "nome":        nome,
+            "nome": nome,
             "auditado_em": datetime.now().isoformat(timespec="seconds"),
-            "rubricas":    rubricas,
+            "rubricas": rubricas,
         }
         _salvar(dados, caminho)
         print(f"  [SALVO] {caminho}")

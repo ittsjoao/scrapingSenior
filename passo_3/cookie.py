@@ -10,6 +10,38 @@ HEADERS_BASE = {
 }
 
 
+class Throttle:
+    """Throttle adaptativo: mede tempo das requests e aplica backoff quando o servidor está lento."""
+
+    LIMIAR_LENTO = 5.0   # segundos — acima disso considera lento
+    LIMIAR_RAPIDO = 3.0  # abaixo disso considera rápido de novo
+    DELAY_MAX = 2.0
+
+    def __init__(self):
+        self._delay = 0.0
+
+    def antes(self):
+        """Chama antes de cada request. Aplica sleep se necessário."""
+        if self._delay > 0:
+            time.sleep(self._delay)
+
+    def depois(self, duracao):
+        """Chama depois de cada request com a duração em segundos."""
+        if duracao > self.LIMIAR_LENTO:
+            self._delay = min(self._delay + 0.5, self.DELAY_MAX)
+            print(f"  [throttle] resposta lenta ({duracao:.1f}s) → delay={self._delay:.1f}s")
+        elif duracao < self.LIMIAR_RAPIDO and self._delay > 0:
+            self._delay = max(self._delay - 0.25, 0.0)
+
+    @property
+    def delay(self):
+        return self._delay
+
+
+# Instância global — cada processo (worker) terá a sua via fork
+_throttle = Throttle()
+
+
 def ler_cookies(arquivo):
     cookies = {}
     with open(arquivo, "r") as f:
@@ -163,7 +195,10 @@ def acessar_lista_remuneracao(session, competencia, guid, possui_dae="False"):
         **HEADERS_BASE,
         "Referer": f"https://www.esocial.gov.br/portal/FolhaPagamento/GestaoFolha?id={guid}",
     }
+    _throttle.antes()
+    t0 = time.monotonic()
     resp = session.get(url, headers=headers)
+    _throttle.depois(time.monotonic() - t0)
     print(
         f"  [lista] Status: {resp.status_code} | {len(resp.text)} bytes | competencia={competencia}"
     )
@@ -190,7 +225,10 @@ def acessar_tabela_funcionário(session, cpf, competencia, guid, possui_dae="Fal
             f"?Competencia={competencia}&Tipo=1200&PossuiDae={possui_dae}"
         ),
     }
+    _throttle.antes()
+    t0 = time.monotonic()
     resp = session.get(url, headers=headers)
+    _throttle.depois(time.monotonic() - t0)
     print(
         f"  [tabela] Status: {resp.status_code} | tamanho: {len(resp.text)} bytes | cpf={cpf} mes={competencia}"
     )
@@ -231,7 +269,10 @@ def buscar_rubrica(session, guid, codigo_rubrica, id_tabela_rubrica="0", pagina=
         "Referer": url,
         "Content-Type": "application/x-www-form-urlencoded",
     }
+    _throttle.antes()
+    t0 = time.monotonic()
     resp = session.post(url, data=data, headers=headers)
+    _throttle.depois(time.monotonic() - t0)
     print(f"  [buscar_rubrica] Status: {resp.status_code} | {len(resp.text)} bytes")
     if resp.status_code != 200 or "eSocial" not in resp.text:
         print("  [!] Resposta inesperada")
@@ -249,7 +290,10 @@ def abrir_edicao_rubrica(session, id_rubrica, id_evento, guid):
         **HEADERS_BASE,
         "Referer": f"https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto?id={guid}",
     }
+    _throttle.antes()
+    t0 = time.monotonic()
     resp = session.get(url, headers=headers)
+    _throttle.depois(time.monotonic() - t0)
     print(f"  [abrir_edicao] Status: {resp.status_code} | {len(resp.text)} bytes")
     if resp.status_code != 200 or "eSocial" not in resp.text:
         print("  [!] Resposta inesperada")
