@@ -3,12 +3,14 @@ import glob
 import json
 import multiprocessing
 import os
+import signal
 import sys
 from datetime import datetime
 
 import requests
 
 from cookie import (
+    _throttle,
     ler_cookies,
     selecionar_empresa,
     trocar_perfil,
@@ -131,11 +133,18 @@ def _salvar_json(dados, caminho):
         json.dump(dados, f, ensure_ascii=False, indent=2)
 
 
-def worker(worker_id, cookies_path, queue, lock, json_path, eventos_ativos, eventos_demissao, empresas):
+def worker(worker_id, cookies_path, queue, lock, json_path, eventos_ativos, eventos_demissao, empresas, stop_event, shared_times, shared_pause_until, n_workers):
     """
     Processo filho.
     Consome CNPJs da fila, audita cada empresa e salva no JSON compartilhado.
+    Verifica stop_event antes de pegar o próximo CNPJ (pause gracioso via Ctrl+C).
     """
+    # Workers ignoram SIGINT — o main cuida disso via stop_event
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+
+    # Configura throttle compartilhado para pausa coletiva
+    _throttle.configurar_compartilhado(shared_times, shared_pause_until, worker_id - 1, n_workers)
+
     print(f"[W{worker_id}] Iniciando | cookies: {os.path.basename(cookies_path)}", flush=True)
 
     session = requests.Session()
@@ -145,7 +154,7 @@ def worker(worker_id, cookies_path, queue, lock, json_path, eventos_ativos, even
     usuario_logado_procurador = cookies_base.get("UsuarioLogado", "")
     cpf_procurador            = cookies_base.get("usuario_logado_ws", "")
 
-    while True:
+    while not stop_event.is_set():
         try:
             cnpj = queue.get_nowait()
         except Exception:
@@ -201,7 +210,8 @@ def worker(worker_id, cookies_path, queue, lock, json_path, eventos_ativos, even
             print(f"[W{worker_id}] [ERRO] {cnpj} — {e} — devolvendo à fila", flush=True)
             queue.put(cnpj)
 
-    print(f"[W{worker_id}] Fila vazia — encerrando", flush=True)
+    motivo = "PAUSA solicitada (Ctrl+C)" if stop_event.is_set() else "Fila vazia"
+    print(f"[W{worker_id}] {motivo} — encerrando", flush=True)
 
 
 def main():
@@ -240,23 +250,38 @@ def main():
     print(f"[PARALLEL] {queue.qsize()} CNPJs na fila")
 
     lock = multiprocessing.Lock()
+    stop_event = multiprocessing.Event()
+
+    # Estado compartilhado para pausa coletiva (todos workers lentos → pausa 2min)
+    shared_times = multiprocessing.Array("d", [0.0] * n_workers)
+    shared_pause_until = multiprocessing.Value("d", 0.0)
 
     processos = []
     for i, cookies_path in enumerate(cookies_files, start=1):
         p = multiprocessing.Process(
             target=worker,
             args=(i, cookies_path, queue, lock, json_path,
-                  eventos_ativos, eventos_demissao, empresas),
+                  eventos_ativos, eventos_demissao, empresas, stop_event,
+                  shared_times, shared_pause_until, n_workers),
         )
         p.start()
         processos.append(p)
         print(f"[PARALLEL] Worker {i} iniciado (PID {p.pid})")
 
-    for p in processos:
-        p.join()
+    print("[PARALLEL] Pressione Ctrl+C para pausar (workers terminam a empresa atual e param)")
+
+    try:
+        for p in processos:
+            p.join()
+    except KeyboardInterrupt:
+        print("\n[PAUSA] Ctrl+C recebido — sinalizando workers para parar após empresa atual...")
+        stop_event.set()
+        for p in processos:
+            p.join()
 
     dados   = _ler_json(json_path)
     total   = len(dados)
+    faltam  = len(empresas) - total
     erradas = sum(
         1 for e in dados.values()
         for r in e.get("rubricas", [])
@@ -267,7 +292,12 @@ def main():
         for r in e.get("rubricas", [])
         if r["status"] == "CORRETO"
     )
-    print(f"\n[FIM] {total} empresas | {corretas} CORRETO | {erradas} ERRADO")
+
+    if stop_event.is_set():
+        print(f"\n[PAUSADO] {total} empresas auditadas | {faltam} restantes")
+        print(f"[PAUSADO] Para continuar: python auditor_parallel.py --retomar")
+    else:
+        print(f"\n[FIM] {total} empresas | {corretas} CORRETO | {erradas} ERRADO")
     print(f"[JSON] {json_path}")
 
 

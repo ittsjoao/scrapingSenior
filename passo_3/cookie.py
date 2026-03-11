@@ -10,28 +10,81 @@ HEADERS_BASE = {
 }
 
 
-class Throttle:
-    """Throttle adaptativo: mede tempo das requests e aplica backoff quando o servidor está lento."""
+PAUSA_COLETIVA_LIMIAR = 6.0   # se TODOS os workers > 6s, pausa coletiva
+PAUSA_COLETIVA_DURACAO = 120  # segundos (2 minutos)
 
-    LIMIAR_LENTO = 5.0   # segundos — acima disso considera lento
-    LIMIAR_RAPIDO = 3.0  # abaixo disso considera rápido de novo
+
+class Throttle:
+    """Throttle adaptativo com suporte a pausa coletiva entre workers."""
+
+    LIMIAR_LENTO = 5.0
+    LIMIAR_RAPIDO = 3.0
     DELAY_MAX = 2.0
 
     def __init__(self):
         self._delay = 0.0
+        # Compartilhados entre processos (configurados via configurar_compartilhado)
+        self._shared_times = None      # Array('d', n_workers)
+        self._shared_pause_until = None # Value('d', 0.0)
+        self._worker_index = None
+        self._n_workers = 0
+
+    def configurar_compartilhado(self, shared_times, shared_pause_until, worker_index, n_workers):
+        """Conecta este throttle ao estado compartilhado entre workers."""
+        self._shared_times = shared_times
+        self._shared_pause_until = shared_pause_until
+        self._worker_index = worker_index
+        self._n_workers = n_workers
 
     def antes(self):
-        """Chama antes de cada request. Aplica sleep se necessário."""
+        """Chama antes de cada request. Aplica sleep individual ou pausa coletiva."""
+        # Pausa coletiva: todos os workers lentos → dorme até o timestamp compartilhado
+        if self._shared_pause_until is not None:
+            restante = self._shared_pause_until.value - time.time()
+            if restante > 0:
+                print(
+                    f"  [pausa coletiva] servidor lento — aguardando {restante:.0f}s...",
+                    flush=True,
+                )
+                time.sleep(restante)
+                return  # após a pausa, pula o delay individual
+
         if self._delay > 0:
             time.sleep(self._delay)
 
     def depois(self, duracao):
         """Chama depois de cada request com a duração em segundos."""
+        # Atualiza tempo individual no array compartilhado
+        if self._shared_times is not None and self._worker_index is not None:
+            self._shared_times[self._worker_index] = duracao
+            self._verificar_pausa_coletiva()
+
         if duracao > self.LIMIAR_LENTO:
             self._delay = min(self._delay + 0.5, self.DELAY_MAX)
-            print(f"  [throttle] resposta lenta ({duracao:.1f}s) → delay={self._delay:.1f}s")
+            print(
+                f"  [throttle] resposta lenta ({duracao:.1f}s) → delay={self._delay:.1f}s"
+            )
         elif duracao < self.LIMIAR_RAPIDO and self._delay > 0:
             self._delay = max(self._delay - 0.25, 0.0)
+
+    def _verificar_pausa_coletiva(self):
+        """Se TODOS os workers estão com resposta > LIMIAR, ativa pausa coletiva de 2min."""
+        if self._shared_pause_until is None:
+            return
+        # Já está em pausa? Não re-ativa.
+        if self._shared_pause_until.value > time.time():
+            return
+        # Checa se todos os workers reportaram >6s
+        tempos = [self._shared_times[i] for i in range(self._n_workers)]
+        if all(t > PAUSA_COLETIVA_LIMIAR for t in tempos):
+            pausa_ate = time.time() + PAUSA_COLETIVA_DURACAO
+            self._shared_pause_until.value = pausa_ate
+            print(
+                f"\n  [PAUSA COLETIVA] Todos os {self._n_workers} workers com resposta >"
+                f" {PAUSA_COLETIVA_LIMIAR}s — pausando {PAUSA_COLETIVA_DURACAO}s"
+                f" (tempos: {[f'{t:.1f}s' for t in tempos]})\n",
+                flush=True,
+            )
 
     @property
     def delay(self):
@@ -89,7 +142,7 @@ def selecionar_empresa(session, cnpj_formatado):
     headers = {**HEADERS_BASE, "Referer": "https://www.esocial.gov.br/portal/"}
 
     match = None
-    for tentativa in range(1, 100):
+    for tentativa in range(1, 10):
         resp = session.post(url, data=data, headers=headers, allow_redirects=False)
         set_cookie = resp.headers.get("Set-Cookie", "")
         match = re.search(r"UsuarioLogado=([^;]+)", set_cookie)

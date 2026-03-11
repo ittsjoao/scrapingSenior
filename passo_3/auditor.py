@@ -2,10 +2,20 @@
 import glob
 import json
 import os
+import signal
 import sys
 from datetime import datetime
 
 import requests
+
+# Flag de pausa: Ctrl+C sinaliza parada após a empresa atual
+_pausado = False
+
+
+def _handler_sigint(sig, frame):
+    global _pausado
+    _pausado = True
+    print("\n[PAUSA] Ctrl+C recebido — terminando empresa atual e parando...", flush=True)
 
 from cookie import (
     abrir_edicao_rubrica,
@@ -248,6 +258,9 @@ def auditar_empresa(session, guid, cpfs, eventos_ativos, eventos_demissao):
 
 
 def main():
+    global _pausado
+    signal.signal(signal.SIGINT, _handler_sigint)
+
     retomar = None
     if "--retomar" in sys.argv:
         retomar = _encontrar_mais_recente()
@@ -261,6 +274,7 @@ def main():
     ja_auditados = set(dados.keys())
     print(f"[JSON] {caminho}")
     print(f"[RESUME] CNPJs já auditados: {len(ja_auditados)}")
+    print("[INFO] Pressione Ctrl+C para pausar (termina empresa atual e para)")
 
     session = requests.Session()
     cookies_base = ler_cookies(COOKIES_FILE)
@@ -273,6 +287,9 @@ def main():
     eventos_ativos, eventos_demissao = carregar_eventos()
 
     for cnpj, cpfs in empresas.items():
+        if _pausado:
+            break
+
         print(f"\n{'=' * 60}")
         print(f"[EMPRESA] {cnpj}")
 
@@ -312,7 +329,13 @@ def main():
 
         trocar_perfil(session, usuario_logado_procurador, cpf_procurador)
 
-    print(f"\n[FIM] Auditoria salva em: {caminho}")
+    faltam = len(empresas) - len(dados)
+    if _pausado:
+        print(f"\n[PAUSADO] {len(dados)} empresas auditadas | {faltam} restantes")
+        print(f"[PAUSADO] Para continuar: python auditor.py --retomar")
+    else:
+        print(f"\n[FIM] Auditoria salva em: {caminho}")
+    print(f"[JSON] {caminho}")
 
 
 if __name__ == "__main__":
