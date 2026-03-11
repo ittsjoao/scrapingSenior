@@ -170,6 +170,7 @@ def selecionar_empresa(session, cnpj_formatado):
 
     match = None
     for tentativa in range(1, 10):
+        _throttle.antes()
         resp = session.post(url, data=data, headers=headers, allow_redirects=False)
         set_cookie = resp.headers.get("Set-Cookie", "")
         match = re.search(r"UsuarioLogado=([^;]+)", set_cookie)
@@ -220,6 +221,7 @@ def trocar_perfil(session, usuario_logado_procurador, cpf_procurador):
         **HEADERS_BASE,
         "Referer": "https://www.esocial.gov.br/portal/Home/Inicial?tipoEmpregador=EMPREGADOR_GERAL",
     }
+    _throttle.antes()
     resp = session.get(
         "https://www.esocial.gov.br/portal/Home/Index?trocarPerfil=true",
         headers=headers,
@@ -253,6 +255,7 @@ def acessar_home_empresa(session):
         **HEADERS_BASE,
         "Referer": "https://www.esocial.gov.br/portal/Home/Index",
     }
+    _throttle.antes()
     resp = session.get(url, headers=headers)
     print(f"  [home] Status: {resp.status_code} | {len(resp.text)} bytes")
     if resp.status_code != 200 or "eSocial" not in resp.text:
@@ -325,6 +328,7 @@ def acessar_rubrica(session, guid):
         **HEADERS_BASE,
         "Referer": "https://www.esocial.gov.br/portal/FolhaPagamento/GestaoFolha",
     }
+    _throttle.antes()
     resp = session.get(url, headers=headers)
     print(f"  [rubrica] Status: {resp.status_code} | {len(resp.text)} bytes")
     if resp.status_code != 200 or "eSocial" not in resp.text:
@@ -394,6 +398,7 @@ def salvar_edicao(session, id_rubrica, id_evento, campos_form):
         "Referer": referer,
         "Content-Type": "application/x-www-form-urlencoded",
     }
+    _throttle.antes()
     resp = session.post(url, data=campos_form, headers=headers, allow_redirects=False)
     print(
         f"  [salvar_edicao] Status: {resp.status_code} | Location: {resp.headers.get('Location', '-')}"
@@ -408,6 +413,7 @@ def acessar_assinadoc(session):
         **HEADERS_BASE,
         "Referer": "https://www.esocial.gov.br/portal/Rubrica/CadastroCompleto/Editar",
     }
+    _throttle.antes()
     resp = session.get(url, headers=headers)
     print(f"  [assinadoc] Status: {resp.status_code} | {len(resp.text)} bytes")
     return resp.text if resp.status_code == 200 else None
@@ -417,6 +423,7 @@ def baixar_jnlp(session, url_jnlp, pasta_temp):
     """Baixa o arquivo .jnlp para pasta_temp. Retorna caminho do arquivo salvo ou None."""
     os.makedirs(pasta_temp, exist_ok=True)
     headers = {**HEADERS_BASE, "Referer": "https://www.esocial.gov.br/portal/Assinadoc"}
+    _throttle.antes()
     resp = session.get(url_jnlp, headers=headers)
     if resp.status_code != 200:
         print(f"  [!] Falha ao baixar .jnlp: {resp.status_code}")
