@@ -133,7 +133,7 @@ def _salvar_json(dados, caminho):
         json.dump(dados, f, ensure_ascii=False, indent=2)
 
 
-def worker(worker_id, cookies_path, queue, lock, json_path, eventos_ativos, eventos_demissao, empresas, stop_event, shared_times, shared_pause_until, n_workers):
+def worker(worker_id, cookies_path, queue, lock, json_path, eventos_ativos, eventos_demissao, empresas, stop_event, shared_times, shared_pause_until, n_workers, shared_req_count, shared_req_lock):
     """
     Processo filho.
     Consome CNPJs da fila, audita cada empresa e salva no JSON compartilhado.
@@ -142,8 +142,8 @@ def worker(worker_id, cookies_path, queue, lock, json_path, eventos_ativos, even
     # Workers ignoram SIGINT — o main cuida disso via stop_event
     signal.signal(signal.SIGINT, signal.SIG_IGN)
 
-    # Configura throttle compartilhado para pausa coletiva
-    _throttle.configurar_compartilhado(shared_times, shared_pause_until, worker_id - 1, n_workers)
+    # Configura throttle compartilhado (pausa coletiva + pausa periódica)
+    _throttle.configurar_compartilhado(shared_times, shared_pause_until, worker_id - 1, n_workers, shared_req_count, shared_req_lock)
 
     print(f"[W{worker_id}] Iniciando | cookies: {os.path.basename(cookies_path)}", flush=True)
 
@@ -252,9 +252,11 @@ def main():
     lock = multiprocessing.Lock()
     stop_event = multiprocessing.Event()
 
-    # Estado compartilhado para pausa coletiva (todos workers lentos → pausa 2min)
-    shared_times = multiprocessing.Array("d", [0.0] * n_workers)
-    shared_pause_until = multiprocessing.Value("d", 0.0)
+    # Estado compartilhado entre workers
+    shared_times = multiprocessing.Array("d", [0.0] * n_workers)   # tempo da última request por worker
+    shared_pause_until = multiprocessing.Value("d", 0.0)            # timestamp até quando pausar
+    shared_req_count = multiprocessing.Value("i", 0)                # contador global de requests
+    shared_req_lock = multiprocessing.Lock()                        # lock para incremento atômico
 
     processos = []
     for i, cookies_path in enumerate(cookies_files, start=1):
@@ -262,7 +264,8 @@ def main():
             target=worker,
             args=(i, cookies_path, queue, lock, json_path,
                   eventos_ativos, eventos_demissao, empresas, stop_event,
-                  shared_times, shared_pause_until, n_workers),
+                  shared_times, shared_pause_until, n_workers,
+                  shared_req_count, shared_req_lock),
         )
         p.start()
         processos.append(p)
