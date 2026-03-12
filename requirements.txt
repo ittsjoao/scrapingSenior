@@ -7,3 +7,4 @@ pyperclip
 requests
 bs4
 lxml
+pdfplumber

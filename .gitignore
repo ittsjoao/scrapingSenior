@@ -1,5 +1,6 @@
 __pycache__/
 *.pyc
 *.pyo
-dados/saida
-passo_3/cookies/*.txt
+dados/saida/
+lib/cookies/*.txt
+.claude/settings.local.json
