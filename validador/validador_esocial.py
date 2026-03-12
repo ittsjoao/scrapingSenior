@@ -78,9 +78,12 @@ def _salvar_json(dados: dict, caminho: str) -> None:
 
 def carregar_esocial_map() -> dict:
     """
-    Retorna dict: id_evento → {nome_esocial, nome_esocial_aux, irrf, tabela}
+    Retorna dict: id_evento → list[{nome_esocial, nome_esocial_aux, irrf, tabela}]
+
+    Eventos com múltiplas linhas (ex: id 136 com tabelas Holerite e Férias)
+    ficam como lista — o validador itera todas as entradas de cada evento.
     """
-    mapa = {}
+    mapa: dict = {}
     caminho = DADOS_ENTRADA / "esocial.csv"
     with open(caminho, encoding="utf-8-sig") as f:
         reader = csv.DictReader(f, delimiter=";")
@@ -92,8 +95,7 @@ def carregar_esocial_map() -> dict:
                 "irrf":             row["irrf"].strip(),
                 "tabela":           row["tabela"].strip(),
             }
-            if id_ev not in mapa:
-                mapa[id_ev] = entrada
+            mapa.setdefault(id_ev, []).append(entrada)
     return mapa
 
 
@@ -150,17 +152,22 @@ def validar_empresa(
 
     resultado["guid"] = guid
 
-    # 3. Montar conjunto de eventos pendentes (1 id_rubrica por evento por empresa)
-    todos_eventos = set()
+    # 3. Montar entradas pendentes: uma por linha do esocial.csv para cada evento
+    #    encontrado nos holerites desta empresa.
+    todos_eventos: set = set()
     for colab in empresa["colaboradores"]:
         for ev in colab["eventos"]:
             todos_eventos.add(ev)
 
-    eventos_pendentes = deepcopy(todos_eventos)
+    # Lista de (id_ev, info) — cada linha do esocial.csv é uma entrada independente
+    entradas_pendentes: list = []
+    for id_ev in todos_eventos:
+        for info in esocial_map.get(id_ev, []):
+            entradas_pendentes.append((id_ev, info))
 
-    # 4. Iterar colaboradores até resolver todos os eventos pendentes
+    # 4. Iterar colaboradores até resolver todas as entradas pendentes
     for colab in empresa["colaboradores"]:
-        if not eventos_pendentes:
+        if not entradas_pendentes:
             break
 
         cpf = colab.get("cpf", "")
@@ -187,13 +194,9 @@ def validar_empresa(
         if not html_tabela:
             continue
 
-        # Buscar todos os eventos pendentes nesta tabela
-        eventos_resolvidos = []
-        for id_ev in list(eventos_pendentes):
-            info = esocial_map.get(id_ev)
-            if not info:
-                continue
-
+        # Buscar todas as entradas pendentes nesta tabela
+        indices_resolvidos = []
+        for idx, (id_ev, info) in enumerate(entradas_pendentes):
             nome_esocial  = info["nome_esocial"]
             nome_aux      = info["nome_esocial_aux"]
             tabela        = info["tabela"]
@@ -203,7 +206,7 @@ def validar_empresa(
             if not codigo:
                 continue
 
-            # Encontrou o evento — buscar id_rubrica
+            # Encontrou — buscar id_rubrica
             html_busca = buscar_rubrica(session, guid, codigo)
             if not html_busca:
                 continue
@@ -226,6 +229,7 @@ def validar_empresa(
                 "id_evento":         id_evento_rubrica,
                 "guid":              guid,
                 "nome_evento":       nome_esocial,
+                "tabela":            tabela,
                 "cpf_usado":         cpf,
                 "competencia_usada": competencia,
                 "irrf_atual":        irrf_atual,
@@ -234,20 +238,22 @@ def validar_empresa(
                 "status":            status,
             })
 
-            eventos_resolvidos.append(id_ev)
+            indices_resolvidos.append(idx)
             print(
                 f"  [{'OK' if status == 'CORRETO' else 'ERRADO'}] "
-                f"evento {id_ev} | irrf {irrf_atual} vs {irrf_esperado}"
+                f"evento {id_ev} ({tabela}) | irrf {irrf_atual} vs {irrf_esperado}"
             )
 
-        for ev in eventos_resolvidos:
-            eventos_pendentes.discard(ev)
+        # Remover resolvidas (ordem reversa para preservar índices)
+        for idx in reversed(indices_resolvidos):
+            entradas_pendentes.pop(idx)
 
     # 5. Registrar não encontrados
-    for id_ev in eventos_pendentes:
-        resultado["nao_encontrados"].append(id_ev)
+    for id_ev, info in entradas_pendentes:
+        chave = f"{id_ev} ({info['tabela']})"
+        resultado["nao_encontrados"].append(chave)
         resultado["alertas"].append(
-            f"Evento {id_ev} encontrado no holerite mas não localizado no eSocial"
+            f"Evento {chave} encontrado no holerite mas não localizado no eSocial"
         )
 
     resultado["auditado_em"] = datetime.now().isoformat()
