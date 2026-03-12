@@ -12,9 +12,9 @@ Fontes por ordem de preferência por competência:
 Saída: dados/saida/scanner_TIMESTAMP.json
 """
 
-import os
 import csv
 import json
+import os
 import re
 import unicodedata
 from datetime import datetime
@@ -22,6 +22,7 @@ from pathlib import Path
 
 try:
     import pdfplumber
+
     PDF_DISPONIVEL = True
 except ImportError:
     PDF_DISPONIVEL = False
@@ -29,7 +30,7 @@ except ImportError:
     print("        Instale com: pip install pdfplumber\n")
 
 BASE_DIR = Path(__file__).parent.parent
-DADOS_SAIDA   = Path(os.environ.get("DADOS_SAIDA",   BASE_DIR / "dados" / "saida"))
+DADOS_SAIDA = Path(os.environ.get("DADOS_SAIDA", BASE_DIR / "dados" / "saida"))
 DADOS_ENTRADA = Path(os.environ.get("DADOS_ENTRADA", BASE_DIR / "dados" / "entrada"))
 
 # Período: 11/2024 a 12/2025 (em ordem cronológica)
@@ -45,11 +46,12 @@ for _ano in [2024, 2025]:
 # Utilitários
 # ---------------------------------------------------------------------------
 
+
 def normalizar(texto: str) -> str:
     """Remove acentos e normaliza para comparação (upper, sem duplos espaços)."""
-    texto = unicodedata.normalize('NFKD', str(texto))
-    texto = ''.join(c for c in texto if not unicodedata.combining(c))
-    return re.sub(r'\s+', ' ', texto).strip().upper()
+    texto = unicodedata.normalize("NFKD", str(texto))
+    texto = "".join(c for c in texto if not unicodedata.combining(c))
+    return re.sub(r"\s+", " ", texto).strip().upper()
 
 
 def _extrair_cpf_pagina(texto: str) -> str:
@@ -74,6 +76,7 @@ def _extrair_cpf_pagina(texto: str) -> str:
 # ---------------------------------------------------------------------------
 # Carregamento de dados de entrada
 # ---------------------------------------------------------------------------
+
 
 def carregar_empresas() -> dict:
     """
@@ -121,13 +124,15 @@ def carregar_eventos_alvo() -> list:
                 continue
             vistos.add(id_ev)
             nome_esocial = row.get("nome_esocial", "").strip()
-            eventos.append({
-                "id_evento": id_ev,
-                "nome_evento": nome_esocial,
-                "nome_esocial": nome_esocial,
-                "nome_esocial_aux": row.get("nome_esocial_aux", "").strip(),
-                "col_prefixo": id_ev.zfill(5),  # "00216" para FPLA150
-            })
+            eventos.append(
+                {
+                    "id_evento": id_ev,
+                    "nome_evento": nome_esocial,
+                    "nome_esocial": nome_esocial,
+                    "nome_esocial_aux": row.get("nome_esocial_aux", "").strip(),
+                    "col_prefixo": id_ev.zfill(5),  # "00216" para FPLA150
+                }
+            )
     return eventos
 
 
@@ -135,7 +140,10 @@ def carregar_eventos_alvo() -> list:
 # Identificação de empresa
 # ---------------------------------------------------------------------------
 
-def encontrar_empresa(pasta_nome: str, empresas: dict, folha_path: Path | None = None) -> dict | None:
+
+def encontrar_empresa(
+    pasta_nome: str, empresas: dict, folha_path: Path | None = None
+) -> dict | None:
     """
     Tenta encontrar a empresa:
       1. Pelo nome da pasta (match exato ou parcial normalizado)
@@ -188,6 +196,7 @@ def _empresa_de_csv(csv_path: Path, empresas: dict) -> dict | None:
 # ---------------------------------------------------------------------------
 # Parsing de CSV
 # ---------------------------------------------------------------------------
+
 
 def encontrar_csv_folha(comp_path: Path) -> Path | None:
     """
@@ -261,7 +270,7 @@ def parse_csv_folha(csv_path: Path, eventos: list) -> list:
     IDX_NOME = 4
 
     resultados = []
-    for linha in linhas[header_idx + 1:]:
+    for linha in linhas[header_idx + 1 :]:
         if not linha.startswith("2;"):
             continue
         cols = [c.strip() for c in linha.split(";")]
@@ -282,11 +291,13 @@ def parse_csv_folha(csv_path: Path, eventos: list) -> list:
                     pass
 
         if evs_encontrados:
-            resultados.append({
-                "cadastro": cadastro,
-                "nome": nome,
-                "eventos": evs_encontrados,
-            })
+            resultados.append(
+                {
+                    "cadastro": cadastro,
+                    "nome": nome,
+                    "eventos": evs_encontrados,
+                }
+            )
 
     return resultados
 
@@ -294,6 +305,7 @@ def parse_csv_folha(csv_path: Path, eventos: list) -> list:
 # ---------------------------------------------------------------------------
 # Parsing de PDF
 # ---------------------------------------------------------------------------
+
 
 def parse_pdf_holerite(pdf_path: Path, eventos: list) -> list:
     """
@@ -348,7 +360,10 @@ def parse_pdf_holerite(pdf_path: Path, eventos: list) -> list:
                     linha_nome = linhas[nome_header_idx + 1].strip()
                     # Nome = sequência de palavras MAIÚSCULAS antes do cargo (misto)
                     # Cargo começa onde aparece letra minúscula após palavra maiúscula
-                    m_nome = re.match(r"^([A-ZÁÀÂÃÉÈÊÍÎÓÔÕÚÇÜÑ][A-ZÁÀÂÃÉÈÊÍÎÓÔÕÚÇÜÑ\s.]+?)\s+(?=[A-ZÁÀÂÃÉÈÊÍÎÓÔÕÚÇÜÑ][a-záàâãéèêíîóôõúçüñ(]|\d)", linha_nome)
+                    m_nome = re.match(
+                        r"^([A-ZÁÀÂÃÉÈÊÍÎÓÔÕÚÇÜÑ][A-ZÁÀÂÃÉÈÊÍÎÓÔÕÚÇÜÑ\s.]+?)\s+(?=[A-ZÁÀÂÃÉÈÊÍÎÓÔÕÚÇÜÑ][a-záàâãéèêíîóôõúçüñ(]|\d)",
+                        linha_nome,
+                    )
                     if m_nome:
                         nome_colab = m_nome.group(1).strip()
                     elif linha_nome:
@@ -358,12 +373,20 @@ def parse_pdf_holerite(pdf_path: Path, eventos: list) -> list:
                             # Remove o cargo no final — fica com tudo antes da data
                             candidato = m_data.group(1).strip()
                             # Tenta extrair só a parte em MAIÚSCULAS do início
-                            m_nome2 = re.match(r"^([A-ZÁÀÂÃÉÈÊÍÎÓÔÕÚÇÜÑ][A-ZÁÀÂÃÉÈÊÍÎÓÔÕÚÇÜÑ\s.]+)", candidato)
-                            nome_colab = m_nome2.group(1).strip() if m_nome2 else candidato
+                            m_nome2 = re.match(
+                                r"^([A-ZÁÀÂÃÉÈÊÍÎÓÔÕÚÇÜÑ][A-ZÁÀÂÃÉÈÊÍÎÓÔÕÚÇÜÑ\s.]+)",
+                                candidato,
+                            )
+                            nome_colab = (
+                                m_nome2.group(1).strip() if m_nome2 else candidato
+                            )
 
                 # Extrair cadastro do cabeçalho (ex: "Cadastro: 46" ou da linha da empresa)
                 for linha in linhas[:20]:
-                    m_cad = re.search(r"(?:CADASTRO|MATR[IÍ]CULA|MAT\.?)[:\s]*(\d+)", normalizar(linha))
+                    m_cad = re.search(
+                        r"(?:CADASTRO|MATR[IÍ]CULA|MAT\.?)[:\s]*(\d+)",
+                        normalizar(linha),
+                    )
                     if m_cad:
                         cadastro = m_cad.group(1)
                         break
@@ -379,7 +402,9 @@ def parse_pdf_holerite(pdf_path: Path, eventos: list) -> list:
 
                     # 1. Busca pelo código numérico: "216 DESCRICAO REFERENCIA VALOR"
                     cod_padrao = re.compile(
-                        r"(?:^|\s)0*" + re.escape(id_ev) + r"\s+\S.{0,50}?(\d[\d.]*,\d{2})",
+                        r"(?:^|\s)0*"
+                        + re.escape(id_ev)
+                        + r"\s+\S.{0,50}?(\d[\d.]*,\d{2})",
                         re.MULTILINE,
                     )
                     m_cod = cod_padrao.search(texto_n)
@@ -402,10 +427,12 @@ def parse_pdf_holerite(pdf_path: Path, eventos: list) -> list:
                         idx = texto_n.find(termo)
                         if idx >= 0:
                             # Verifica valor não-zero logo após o nome
-                            trecho = texto_n[idx: idx + len(termo) + 40]
+                            trecho = texto_n[idx : idx + len(termo) + 40]
                             m_val = re.search(r"(\d[\d.]*,\d{2})", trecho)
                             if m_val:
-                                val_str = m_val.group(1).replace(".", "").replace(",", ".")
+                                val_str = (
+                                    m_val.group(1).replace(".", "").replace(",", ".")
+                                )
                                 try:
                                     if float(val_str) != 0.0:
                                         evs_encontrados.append(id_ev)
@@ -418,12 +445,14 @@ def parse_pdf_holerite(pdf_path: Path, eventos: list) -> list:
                                 break
 
                 if evs_encontrados and nome_colab:
-                    resultados.append({
-                        "cadastro": cadastro,
-                        "cpf": cpf_colab,
-                        "nome": nome_colab,
-                        "eventos": evs_encontrados,
-                    })
+                    resultados.append(
+                        {
+                            "cadastro": cadastro,
+                            "cpf": cpf_colab,
+                            "nome": nome_colab,
+                            "eventos": evs_encontrados,
+                        }
+                    )
 
     except Exception as e:
         print(f"    [ERRO PDF] {pdf_path.name}: {e}")
@@ -435,16 +464,16 @@ def parse_pdf_holerite(pdf_path: Path, eventos: list) -> list:
 # Processamento de competência
 # ---------------------------------------------------------------------------
 
+
 def processar_competencia(comp_path: Path, eventos: list) -> tuple[list, str | None]:
     """
     Tenta HOLERITE PDF primeiro (contém TODOS os eventos).
     Fallback para CSV de folha (contém apenas eventos configurados no export).
     Retorna (lista_matches, fonte) onde fonte é 'pdf', 'csv' ou None.
     """
-    # 1. Preferência: HOLERITES.pdf ou HOLERITE.pdf (têm todos os eventos)
-    for nome_pdf in ("HOLERITES.pdf", "HOLERITE.pdf"):
-        pdf_path = comp_path / nome_pdf
-        if pdf_path.exists():
+    # 1. Preferência: qualquer PDF com "HOLERITE" no nome
+    for pdf_path in sorted(comp_path.glob("*.pdf")):
+        if "HOLERITE" in pdf_path.name.upper():
             matches = parse_pdf_holerite(pdf_path, eventos)
             return matches, "pdf"
 
@@ -460,6 +489,7 @@ def processar_competencia(comp_path: Path, eventos: list) -> tuple[list, str | N
 # ---------------------------------------------------------------------------
 # Entry point principal
 # ---------------------------------------------------------------------------
+
 
 def scan():
     print("=" * 55)
@@ -566,4 +596,5 @@ def scan():
 
 
 if __name__ == "__main__":
+    DADOS_SAIDA = Path(r"Z:\Pessoal\EMPRESAS")
     scan()
