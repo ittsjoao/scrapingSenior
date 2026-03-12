@@ -29,8 +29,8 @@ except ImportError:
     print("        Instale com: pip install pdfplumber\n")
 
 BASE_DIR = Path(__file__).parent.parent
-DADOS_SAIDA = BASE_DIR / "dados" / "saida"
-DADOS_ENTRADA = BASE_DIR / "dados" / "entrada"
+DADOS_SAIDA   = Path(os.environ.get("DADOS_SAIDA",   BASE_DIR / "dados" / "saida"))
+DADOS_ENTRADA = Path(os.environ.get("DADOS_ENTRADA", BASE_DIR / "dados" / "entrada"))
 
 # Período: 11/2024 a 12/2025 (em ordem cronológica)
 COMPETENCIAS = []

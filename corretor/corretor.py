@@ -36,8 +36,8 @@ from cookie import (
 from parser import parsear_form_edicao, extrair_link_jnlp
 
 BASE_DIR        = Path(__file__).parent.parent
-COOKIES_FILE    = BASE_DIR / "lib" / "cookies.txt"
-PASTA_SAIDA     = BASE_DIR / "dados" / "saida"
+COOKIES_FILE    = Path(os.environ.get("COOKIES_FILE", BASE_DIR / "lib" / "cookies.txt"))
+PASTA_SAIDA     = Path(os.environ.get("DADOS_SAIDA",  BASE_DIR / "dados" / "saida"))
 PASTA_TEMP_JNLP = os.path.join(tempfile.gettempdir(), "esocial_jnlp")
 
 

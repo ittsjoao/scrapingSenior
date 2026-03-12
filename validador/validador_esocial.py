@@ -46,9 +46,9 @@ from parser import (
 )
 
 BASE_DIR      = Path(__file__).parent.parent
-DADOS_SAIDA   = BASE_DIR / "dados" / "saida"
-DADOS_ENTRADA = BASE_DIR / "dados" / "entrada"
-COOKIES_FILE  = BASE_DIR / "lib" / "cookies.txt"
+DADOS_SAIDA   = Path(os.environ.get("DADOS_SAIDA",   BASE_DIR / "dados" / "saida"))
+DADOS_ENTRADA = Path(os.environ.get("DADOS_ENTRADA", BASE_DIR / "dados" / "entrada"))
+COOKIES_FILE  = Path(os.environ.get("COOKIES_FILE",  BASE_DIR / "lib" / "cookies.txt"))
 
 MAX_RETRIES = 3
 
