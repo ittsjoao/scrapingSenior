@@ -8,7 +8,11 @@ Para cada empresa do scanner JSON:
   - Salva validacao_TIMESTAMP.json (retomável com --retomar)
 
 Uso:
+  # Worker único (cookie padrão: lib/cookies.txt)
   python validador/validador_esocial.py [scanner_*.json] [--retomar validacao_*.json]
+
+  # Múltiplos workers — um --cookies por worker
+  python validador/validador_esocial.py scanner.json --cookies lib/c1.txt --cookies lib/c2.txt
 """
 
 import sys
@@ -18,7 +22,7 @@ import json
 import csv
 import re
 import time
-from copy import deepcopy
+import multiprocessing
 from datetime import datetime
 from pathlib import Path
 
@@ -115,7 +119,6 @@ def validar_empresa(
     Retorna dict no formato validacao JSON (rubricas, nao_encontrados, alertas).
     """
     cnpj_digits = empresa["cnpj"]
-    # Formatar CNPJ: XX.XXX.XXX/XXXX-XX
     cnpj_fmt = (
         f"{cnpj_digits[:2]}.{cnpj_digits[2:5]}.{cnpj_digits[5:8]}"
         f"/{cnpj_digits[8:12]}-{cnpj_digits[12:]}"
@@ -134,6 +137,7 @@ def validar_empresa(
     ok = selecionar_empresa(session, cnpj_fmt)
     if not ok:
         resultado["alertas"].append(f"Falha ao selecionar empresa {cnpj_fmt}")
+        resultado["auditado_em"] = datetime.now().isoformat()
         trocar_perfil(session, usuario_logado_proc, cpf_proc)
         return resultado
 
@@ -141,12 +145,14 @@ def validar_empresa(
     html_home = acessar_home_empresa(session)
     if not html_home:
         resultado["alertas"].append("Home da empresa não acessível")
+        resultado["auditado_em"] = datetime.now().isoformat()
         trocar_perfil(session, usuario_logado_proc, cpf_proc)
         return resultado
 
     guid = extrair_guid_home(html_home)
     if not guid:
         resultado["alertas"].append("GUID não encontrado na home")
+        resultado["auditado_em"] = datetime.now().isoformat()
         trocar_perfil(session, usuario_logado_proc, cpf_proc)
         return resultado
 
@@ -159,7 +165,6 @@ def validar_empresa(
         for ev in colab["eventos"]:
             todos_eventos.add(ev)
 
-    # Lista de (id_ev, info) — cada linha do esocial.csv é uma entrada independente
     entradas_pendentes: list = []
     for id_ev in todos_eventos:
         for info in esocial_map.get(id_ev, []):
@@ -206,7 +211,6 @@ def validar_empresa(
             if not codigo:
                 continue
 
-            # Encontrou — buscar id_rubrica
             html_busca = buscar_rubrica(session, guid, codigo)
             if not html_busca:
                 continue
@@ -215,7 +219,6 @@ def validar_empresa(
             if not id_rubrica:
                 continue
 
-            # Abrir edição para obter campos_form e irrf_atual
             html_edicao = abrir_edicao_rubrica(session, id_rubrica, id_evento_rubrica, guid)
             if not html_edicao:
                 continue
@@ -244,7 +247,6 @@ def validar_empresa(
                 f"evento {id_ev} ({tabela}) | irrf {irrf_atual} vs {irrf_esperado}"
             )
 
-        # Remover resolvidas (ordem reversa para preservar índices)
         for idx in reversed(indices_resolvidos):
             entradas_pendentes.pop(idx)
 
@@ -263,20 +265,94 @@ def validar_empresa(
 
 
 # ---------------------------------------------------------------------------
+# Worker (multiprocessing)
+# ---------------------------------------------------------------------------
+
+def _worker(
+    worker_index: int,
+    n_workers: int,
+    empresas: list,
+    cookie_file: str,
+    esocial_map: dict,
+    output_path: str,
+    shared_times,
+    shared_pause_until,
+    shared_req_count,
+    shared_lock,
+    file_lock,
+):
+    """Executado por cada processo worker. Configura o throttle compartilhado e processa sua fatia."""
+    # Garantir lib no path (necessário no Windows com spawn)
+    if _LIB not in sys.path:
+        sys.path.insert(0, _LIB)
+
+    # Conectar o throttle do módulo cookie ao estado compartilhado entre processos
+    import cookie as _cookie_mod
+    _cookie_mod._throttle.configurar_compartilhado(
+        shared_times, shared_pause_until, worker_index, n_workers,
+        shared_req_count, shared_lock,
+    )
+
+    session = requests.Session()
+    cookies_base = ler_cookies(cookie_file)
+    session.cookies.update(cookies_base)
+    usuario_logado_proc = cookies_base.get("UsuarioLogado", "")
+    cpf_proc = cookies_base.get("usuario_logado_ws", "")
+
+    total = len(empresas)
+    for i, empresa in enumerate(empresas, 1):
+        cnpj = empresa["cnpj"]
+        print(
+            f"[W{worker_index}][{i}/{total}] {empresa['nome_empresa']} | CNPJ: {cnpj}",
+            flush=True,
+        )
+
+        resultado = validar_empresa(
+            session, empresa, esocial_map, usuario_logado_proc, cpf_proc
+        )
+
+        # Escrita thread-safe: lê → atualiza → salva
+        with file_lock:
+            validacao = _carregar_json(output_path)
+            validacao[cnpj] = resultado
+            _salvar_json(validacao, output_path)
+
+    print(f"[W{worker_index}] Concluído ({total} empresas).", flush=True)
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 
 def main():
     args = sys.argv[1:]
 
-    # Detectar --retomar
+    # --retomar
     retomar_path = None
     if "--retomar" in args:
         idx = args.index("--retomar")
         retomar_path = args[idx + 1] if idx + 1 < len(args) else _json_mais_recente("validacao")
         args = [a for i, a in enumerate(args) if i != idx and i != idx + 1]
 
-    # Scanner JSON de entrada
+    # --cookies (pode aparecer múltiplas vezes, uma por worker)
+    cookie_files = []
+    filtered = []
+    i = 0
+    while i < len(args):
+        if args[i] == "--cookies" and i + 1 < len(args):
+            cookie_files.append(args[i + 1])
+            i += 2
+        else:
+            filtered.append(args[i])
+            i += 1
+    args = filtered
+
+    if not cookie_files:
+        cookie_files = [str(COOKIES_FILE)]
+
+    n_workers = len(cookie_files)
+
+    # Scanner JSON
     scanner_path = args[0] if args else _json_mais_recente("scanner")
     if not scanner_path:
         print("[ERRO] Nenhum scanner_*.json encontrado em dados/saida/")
@@ -285,43 +361,82 @@ def main():
 
     scanner = _carregar_json(scanner_path)
 
-    # Carregar ou criar JSON de validação
+    # Carregar ou inicializar JSON de validação
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     if retomar_path:
-        validacao = _carregar_json(retomar_path)
+        validacao_base = _carregar_json(retomar_path)
         output_path = retomar_path
         print(f"[Retomando] {retomar_path}")
     else:
-        validacao = {}
+        validacao_base = {}
         output_path = str(DADOS_SAIDA / f"validacao_{timestamp}.json")
 
     esocial_map = carregar_esocial_map()
 
-    # Sessão HTTP
-    session = requests.Session()
-    cookies_base = ler_cookies(str(COOKIES_FILE))
-    session.cookies.update(cookies_base)
-    usuario_logado_proc = cookies_base.get("UsuarioLogado", "")
-    cpf_proc = cookies_base.get("usuario_logado_ws", "")
+    # Filtrar empresas já processadas
+    empresas = [
+        e for e in scanner.values()
+        if not validacao_base.get(e["cnpj"], {}).get("auditado_em")
+    ]
+    ja_processadas = len(scanner) - len(empresas)
 
-    empresas = list(scanner.values())
-    total = len(empresas)
+    print(f"[Info] {n_workers} worker(s) | {len(empresas)} empresas a processar", end="")
+    if ja_processadas:
+        print(f" ({ja_processadas} já processadas, pulando)", end="")
+    print()
+    print(f"[Output] {output_path}")
 
-    for i, empresa in enumerate(empresas, 1):
-        cnpj = empresa["cnpj"]
+    # Inicializar arquivo de saída com o estado base
+    _salvar_json(validacao_base, output_path)
 
-        # Pular se já processada (retomada)
-        if cnpj in validacao and validacao[cnpj].get("auditado_em"):
-            print(f"[{i}/{total}] {empresa['nome_empresa']} — já processada, pulando")
-            continue
+    if n_workers == 1:
+        # Modo single — sem overhead de multiprocessing
+        session = requests.Session()
+        cookies_base = ler_cookies(cookie_files[0])
+        session.cookies.update(cookies_base)
+        usuario_logado_proc = cookies_base.get("UsuarioLogado", "")
+        cpf_proc = cookies_base.get("usuario_logado_ws", "")
 
-        print(f"\n[{i}/{total}] {empresa['nome_empresa']} | CNPJ: {cnpj}")
+        total = len(empresas)
+        for i, empresa in enumerate(empresas, 1):
+            print(f"\n[{i}/{total}] {empresa['nome_empresa']} | CNPJ: {empresa['cnpj']}")
+            resultado = validar_empresa(
+                session, empresa, esocial_map, usuario_logado_proc, cpf_proc
+            )
+            validacao_base[empresa["cnpj"]] = resultado
+            _salvar_json(validacao_base, output_path)
+    else:
+        # Distribuir empresas em round-robin entre workers
+        fatias: list[list] = [[] for _ in range(n_workers)]
+        for idx, empresa in enumerate(empresas):
+            fatias[idx % n_workers].append(empresa)
 
-        resultado = validar_empresa(
-            session, empresa, esocial_map, usuario_logado_proc, cpf_proc
-        )
-        validacao[cnpj] = resultado
-        _salvar_json(validacao, output_path)
+        for idx, (fatia, cookie) in enumerate(zip(fatias, cookie_files)):
+            print(f"  Worker {idx}: {len(fatia)} empresas | cookie: {Path(cookie).name}")
+
+        # Estado compartilhado para o Throttle (coordena pausas entre workers)
+        shared_times       = multiprocessing.Array("d", [0.0] * n_workers)
+        shared_pause_until = multiprocessing.Value("d", 0.0)
+        shared_req_count   = multiprocessing.Value("i", 0)
+        shared_lock        = multiprocessing.Lock()
+        file_lock          = multiprocessing.Lock()
+
+        processos = [
+            multiprocessing.Process(
+                target=_worker,
+                args=(
+                    idx, n_workers, fatias[idx], cookie_files[idx], esocial_map,
+                    output_path, shared_times, shared_pause_until,
+                    shared_req_count, shared_lock, file_lock,
+                ),
+            )
+            for idx in range(n_workers)
+        ]
+
+        for p in processos:
+            p.start()
+        for p in processos:
+            p.join()
 
     print(f"\n[FIM] Validação salva em: {output_path}")
 

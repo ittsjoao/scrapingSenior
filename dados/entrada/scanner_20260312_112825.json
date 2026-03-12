@@ -1,0 +1,1847 @@
+{
+  "2476": {
+    "id_empresa": "2476",
+    "cnpj": "48419605000148",
+    "nome_empresa": "CICLLOS SEGURADORA S.A",
+    "pasta": "CICLLOS SEGURADORA S.A",
+    "colaboradores": [
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "AIDA LUCIA ALVES DE FARIA AUDITOR INTERNO",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "GILBERTO SILVA JUNIOR DIRETOR",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARCIA MARIA DANTAS DIRETOR",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "REINALDO MATIAS FERREIRA GERENCIADOR DE RISCOS II",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "AIDA LUCIA ALVES DE FARIA AUDITOR INTERNO",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "GILBERTO SILVA JUNIOR DIRETOR",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARCIA MARIA DANTAS DIRETOR",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "REINALDO MATIAS FERREIRA GERENCIADOR DE RISCOS II",
+        "eventos": [
+          "274"
+        ]
+      }
+    ]
+  },
+  "3007": {
+    "id_empresa": "3007",
+    "cnpj": "47291338000103",
+    "nome_empresa": "FLAVIA APARECIDA RODRIGUES MORAES",
+    "pasta": "DROGARIA FL LTDA",
+    "colaboradores": [
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "05/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EUGENIO ANASTACIO DE FREITAS",
+        "eventos": [
+          "172",
+          "100",
+          "184",
+          "140",
+          "278"
+        ]
+      },
+      {
+        "competencia": "05/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "LUCIENE MARIA DOS SANTOS",
+        "eventos": [
+          "136",
+          "301",
+          "12",
+          "140"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "10/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "GIOVANA RASTRELO FREITAS ATENDENTE",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARTA SEABRA DA SILVA",
+        "eventos": [
+          "1065"
+        ]
+      }
+    ]
+  },
+  "2209": {
+    "id_empresa": "2209",
+    "cnpj": "36359553000182",
+    "nome_empresa": "FMM AGROPECUARIA LTDA",
+    "pasta": "FMM AGROPECUARIA LTDA",
+    "colaboradores": [
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE DA PAIXAO PINHEIRO GUIMARAES",
+        "eventos": [
+          "170",
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ACRISIO RODRIGUES COSTA",
+        "eventos": [
+          "301",
+          "12",
+          "140"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "LUCIA MARA NASCIMENTO DOS SANTOS",
+        "eventos": [
+          "301",
+          "12",
+          "140"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WEVERTON RODRIGUES COSTA GERENTE VAQUEIRO",
+        "eventos": [
+          "301",
+          "12",
+          "140"
+        ]
+      }
+    ]
+  },
+  "827": {
+    "id_empresa": "827",
+    "cnpj": "16003276649",
+    "nome_empresa": "JOSE ANTONIO PAGOTTO",
+    "pasta": "JOSE ANTONIO PAGOTTO",
+    "colaboradores": [
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE DE JESUS REIS",
+        "eventos": [
+          "301",
+          "12",
+          "1955",
+          "140"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARIA APARECIDA LAURA PEREIRA",
+        "eventos": [
+          "301",
+          "12",
+          "1954",
+          "140"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE DE JESUS REIS",
+        "eventos": [
+          "301",
+          "12",
+          "1954",
+          "140"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARIA APARECIDA LAURA PEREIRA",
+        "eventos": [
+          "301",
+          "12",
+          "140"
+        ]
+      }
+    ]
+  },
+  "978": {
+    "id_empresa": "978",
+    "cnpj": "28591619000137",
+    "nome_empresa": "MCT ENGENHARIA LTDA ME",
+    "pasta": "MCT ENGENHARIA LTDA ME",
+    "colaboradores": [
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ALESSANDRO BERNARDO DA SILVA",
+        "eventos": [
+          "172",
+          "184",
+          "140",
+          "344"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE EDIVANIO DE SOUZA",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MANOEL BATISTA DOS SANTOS",
+        "eventos": [
+          "172",
+          "184",
+          "140",
+          "344"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOAO ADAO LOPES MERCIO",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE CARLOS DA SILVA",
+        "eventos": [
+          "301",
+          "12",
+          "1955",
+          "140"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JUNIOR CESAR DA SILVA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ALEONE ROCHA DA SILVA",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "DANILO GONCALVES DA SILVA JESUS",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "DOUGLAS FERREIRA DE FREITAS",
+        "eventos": [
+          "172",
+          "184",
+          "140",
+          "344"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EZEQUIEL CLEMENTE",
+        "eventos": [
+          "172",
+          "184",
+          "140",
+          "274"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOAO ADAO LOPES MERCIO",
+        "eventos": [
+          "172",
+          "184",
+          "140",
+          "344"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JUNIOR CESAR DA SILVA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE CARLOS DA SILVA",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JUNIOR CESAR DA SILVA",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "05/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "LEONARDO HONORIO DA SILVA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ADIMILSON FERREIRA DE ALMEIDA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "FAGNER MATOS BARROS",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "FLAVIO JOSE DOS SANTOS",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JULIO OLHER DOS SANTOS",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "LEONARDO HONORIO DA SILVA",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ADIMILSON FERREIRA DE ALMEIDA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JAMERSON ELOI DE MELO",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JULIO OLHER DOS SANTOS",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "SIMEAO BERTO VIANA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "AELCIO OLIVEIRA FERNANDES",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARIA EDUARDA OLIVEIRA GOMES",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RONALDO DE SOUSA MONTEIRO",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ROSINEI ALVES DE ASSUNÇÃO",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "SIMEAO BERTO VIANA",
+        "eventos": [
+          "172",
+          "184",
+          "140",
+          "344"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ADIMILSON FERREIRA DE ALMEIDA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "AELCIO OLIVEIRA FERNANDES",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WESLEY DOS REIS PEREIRA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "10/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ADIMILSON FERREIRA DE ALMEIDA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "10/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WESLEY DOS REIS PEREIRA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ADIMILSON FERREIRA DE ALMEIDA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "FRANCISCO ALVES PAIXAO",
+        "eventos": [
+          "172",
+          "184",
+          "140",
+          "344"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "SEBASTIAO RODRIGUES DE SOUZA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WESLEY DOS REIS PEREIRA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "12/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ADIMILSON FERREIRA DE ALMEIDA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "12/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE ROBERTO RIBEIRO DE PAULA",
+        "eventos": [
+          "344"
+        ]
+      }
+    ]
+  },
+  "970": {
+    "id_empresa": "970",
+    "cnpj": "28195587000150",
+    "nome_empresa": "MORIA CONSTRUCOES LTDA - EPP",
+    "pasta": "MORIA CONSTRUCOES LTDA",
+    "colaboradores": [
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "CLEYBIO SARAIVA ROMAO",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "CLEYTON SARAIVA ROMAO",
+        "eventos": [
+          "170",
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOESLAN PEREIRA SERPA DA SILVA",
+        "eventos": [
+          "170",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "PEDRO HENRIQUE TEIXEIRA DA SILVA",
+        "eventos": [
+          "170",
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "REGINALDO VIEIRA GOMES",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EVANDO JOSE PEREIRA",
+        "eventos": [
+          "344"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RONALDO PEREIRA DOS ANJOS",
+        "eventos": [
+          "301",
+          "12",
+          "1955",
+          "140"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "VALDINEI GUIMARAES DE CARVALHO",
+        "eventos": [
+          "170",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WANDERLEI DE LIMA",
+        "eventos": [
+          "301",
+          "12",
+          "1955",
+          "140"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EVANDO JOSE PEREIRA",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WELLINGTON CORDEIRO DIAS",
+        "eventos": [
+          "170",
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RONALDO PEREIRA DOS ANJOS",
+        "eventos": [
+          "301",
+          "12",
+          "148",
+          "160",
+          "140"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WANDERLEI DE LIMA",
+        "eventos": [
+          "301",
+          "12",
+          "148",
+          "160",
+          "140"
+        ]
+      },
+      {
+        "competencia": "05/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RONALDO PEREIRA DOS ANJOS",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WANDERLEI DE LIMA",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOEL JOSE PORTES MESTRE DE OBRAS I",
+        "eventos": [
+          "170",
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "10/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "ALESSANDRO DE ALMEIDA COSTA",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE RICARDO SOARES",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "LUCIANO PEDROSA DOS REIS",
+        "eventos": [
+          "344"
+        ]
+      }
+    ]
+  },
+  "301": {
+    "id_empresa": "301",
+    "cnpj": "05274677000131",
+    "nome_empresa": "ORGANIZAÇÕES MARIA MODAS EIRELI",
+    "pasta": "ORGANIZAÇÕES MARIA MODAS EIRELI",
+    "colaboradores": [
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARIA LOURDES R MILITAO",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARIA LOURDES R MILITAO",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARIA LOURDES R MILITAO",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARIA LOURDES R MILITAO",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "CRISLAINE NAZARIO DE ANDRADE",
+        "eventos": [
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARIA LOURDES R MILITAO",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MARIA LOURDES R MILITAO",
+        "eventos": [
+          "1065"
+        ]
+      }
+    ]
+  },
+  "953": {
+    "id_empresa": "953",
+    "cnpj": "23564038000192",
+    "nome_empresa": "REI DO LED COMERCIO EIRELI",
+    "pasta": "REI DO LED COMERCIO EIRELI",
+    "colaboradores": [
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "LOHANA APARECIDA SILVA RODRIGUES",
+        "eventos": [
+          "136",
+          "152",
+          "301",
+          "12",
+          "148",
+          "160",
+          "140"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WILLIAN VALADARES",
+        "eventos": [
+          "136",
+          "301",
+          "12",
+          "1955",
+          "140"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JACKSON GUILHERME BARROS ASSIOLE",
+        "eventos": [
+          "170",
+          "172",
+          "184",
+          "140"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "LOHANA APARECIDA SILVA RODRIGUES",
+        "eventos": [
+          "136",
+          "152",
+          "301",
+          "12",
+          "148",
+          "160",
+          "140"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WILLIAN VALADARES",
+        "eventos": [
+          "136",
+          "301",
+          "12",
+          "140"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WILLIAN VALADARES",
+        "eventos": [
+          "136",
+          "301",
+          "12",
+          "140"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "136",
+          "301",
+          "12",
+          "140",
+          "274"
+        ]
+      },
+      {
+        "competencia": "04/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "05/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "05/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "05/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "05/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "06/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "07/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "136",
+          "301",
+          "12",
+          "140",
+          "274"
+        ]
+      },
+      {
+        "competencia": "08/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "09/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "10/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "10/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "10/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "10/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "274"
+        ]
+      },
+      {
+        "competencia": "11/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "EDUARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "MADELON ANDRADE ALMEIDA",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RAYNNER SILVA KOMATSU",
+        "eventos": [
+          "136",
+          "301",
+          "12",
+          "140",
+          "274"
+        ]
+      },
+      {
+        "competencia": "12/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "RICARDO ALMEIDA CAMPOS",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "WILLIAN VALADARES LIDER DE ESTOQUE",
+        "eventos": [
+          "136",
+          "301",
+          "12",
+          "1955",
+          "140"
+        ]
+      }
+    ]
+  },
+  "2252": {
+    "id_empresa": "2252",
+    "cnpj": "38428614000141",
+    "nome_empresa": "TECH SEGUROS LTDA",
+    "pasta": "TECH SEGUROS LTDA",
+    "colaboradores": [
+      {
+        "competencia": "11/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE BATISTA DA CUNHA JUNIOR",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "12/2024",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE BATISTA DA CUNHA JUNIOR",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "01/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE BATISTA DA CUNHA JUNIOR",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "02/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE BATISTA DA CUNHA JUNIOR",
+        "eventos": [
+          "1065"
+        ]
+      },
+      {
+        "competencia": "03/2025",
+        "cadastro": "",
+        "cpf": "",
+        "nome": "JOSE BATISTA DA CUNHA JUNIOR",
+        "eventos": [
+          "1065"
+        ]
+      }
+    ]
+  }
+}
