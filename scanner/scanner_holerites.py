@@ -104,40 +104,30 @@ def carregar_empresas() -> dict:
 
 def carregar_eventos_alvo() -> list:
     """
-    Carrega eventos.csv e cruza com esocial.csv para obter
-    nome_esocial e nome_esocial_aux.
+    Carrega eventos alvo diretamente do esocial.csv.
+    Eventos com múltiplas linhas (mesmo id_evento, tabelas diferentes)
+    são deduplicados — apenas a primeira ocorrência é usada para busca no PDF.
 
     Retorna lista de dicts:
       id_evento, nome_evento, nome_esocial, nome_esocial_aux, col_prefixo
     """
-    esocial_map: dict = {}
-    esocial_path = DADOS_ENTRADA / "esocial.csv"
-    if esocial_path.exists():
-        with open(esocial_path, encoding="utf-8-sig") as f:
-            reader = csv.DictReader(f, delimiter=";")
-            for row in reader:
-                id_ev = row["id_evento"].strip()
-                if id_ev not in esocial_map:
-                    esocial_map[id_ev] = row
-
     eventos = []
-    with open(DADOS_ENTRADA / "eventos.csv", encoding="utf-8") as f:
+    vistos: set = set()
+    with open(DADOS_ENTRADA / "esocial.csv", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f, delimiter=";")
         for row in reader:
-            id_ev = row.get("id_evento", "").strip()
-            if not id_ev:
+            id_ev = row["id_evento"].strip()
+            if not id_ev or id_ev in vistos:
                 continue
-            ev = {
+            vistos.add(id_ev)
+            nome_esocial = row.get("nome_esocial", "").strip()
+            eventos.append({
                 "id_evento": id_ev,
-                "nome_evento": row.get("nome_evento", "").strip(),
-                "nome_esocial": "",
-                "nome_esocial_aux": "",
+                "nome_evento": nome_esocial,
+                "nome_esocial": nome_esocial,
+                "nome_esocial_aux": row.get("nome_esocial_aux", "").strip(),
                 "col_prefixo": id_ev.zfill(5),  # "00216" para FPLA150
-            }
-            if id_ev in esocial_map:
-                ev["nome_esocial"] = esocial_map[id_ev].get("nome_esocial", "").strip()
-                ev["nome_esocial_aux"] = esocial_map[id_ev].get("nome_esocial_aux", "").strip()
-            eventos.append(ev)
+            })
     return eventos
 
 
