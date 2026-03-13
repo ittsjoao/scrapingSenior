@@ -4,3 +4,4 @@ __pycache__/
 dados/saida/
 lib/cookies/*.txt
 .claude/settings.local.json
+.lib/cookies/*.txt

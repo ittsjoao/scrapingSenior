@@ -10,11 +10,13 @@ HEADERS_BASE = {
 }
 
 
-PAUSA_COLETIVA_LIMIAR = 6.0   # se TODOS os workers > 6s, pausa coletiva
+PAUSA_COLETIVA_LIMIAR = 6.0  # se TODOS os workers > 6s, pausa coletiva
 PAUSA_COLETIVA_DURACAO = 120  # segundos (2 minutos)
-PAUSA_COLETIVA_COOLDOWN = 300  # após pausa coletiva, aguarda 5min antes de poder disparar outra
+PAUSA_COLETIVA_COOLDOWN = (
+    300  # após pausa coletiva, aguarda 5min antes de poder disparar outra
+)
 
-PAUSA_PERIODICA_A_CADA = 500   # requests totais entre todos os workers
+PAUSA_PERIODICA_A_CADA = 1000  # requests totais entre todos os workers
 PAUSA_PERIODICA_DURACAO = 300  # segundos (5 minutos)
 
 
@@ -28,14 +30,22 @@ class Throttle:
     def __init__(self):
         self._delay = 0.0
         # Compartilhados entre processos (configurados via configurar_compartilhado)
-        self._shared_times = None       # Array('d', n_workers)
+        self._shared_times = None  # Array('d', n_workers)
         self._shared_pause_until = None  # Value('d', 0.0)
-        self._shared_req_count = None    # Value('i', 0) — contador global de requests
-        self._shared_lock = None         # Lock para incremento atômico
+        self._shared_req_count = None  # Value('i', 0) — contador global de requests
+        self._shared_lock = None  # Lock para incremento atômico
         self._worker_index = None
         self._n_workers = 0
 
-    def configurar_compartilhado(self, shared_times, shared_pause_until, worker_index, n_workers, shared_req_count=None, shared_lock=None):
+    def configurar_compartilhado(
+        self,
+        shared_times,
+        shared_pause_until,
+        worker_index,
+        n_workers,
+        shared_req_count=None,
+        shared_lock=None,
+    ):
         """Conecta este throttle ao estado compartilhado entre workers."""
         self._shared_times = shared_times
         self._shared_pause_until = shared_pause_until

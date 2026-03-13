@@ -1,0 +1,831 @@
+PS C:\Users\joao.silva\Documents\projetos\scrapingSenior> python .\scanner\scanner_holerites.py
+=======================================================
+  Scanner de Holerites
+  Periodo: 11/2024 -> 12/2025 (14 competencias)
+=======================================================
+
+Eventos alvo:
+  [136] Média Variáveis Férias
+        eSocial: Média Variáveis Férias / MÉDIA VARIÁVEIS FÉRIAS
+  [152] Média Variáveis Abono Pec
+        eSocial: Média Variáveis Abono Pec / MÉDIA VARIÁVEIS ABONO
+  [216] Média Variaveis 13º Integ
+        eSocial: Média Variaveis 13º Integ / MÉDIAS VARIAVEIS 13º INTEGRADO
+  [1065] INSS s/ Pro-Labore
+        eSocial: INSS s/ Pro-Labore / INSS MENSAL (PRÓ-LABORE)
+  [301] INSS s/ Férias
+        eSocial: INSS s/ Férias / INSS FÉRIAS
+  [12] Horas Férias Diurnas
+        eSocial: Horas Férias Diurnas / HORAS FÉRIAS DIURNAS
+  [170] Férias Vencidas Rescisäo
+        eSocial: Férias Vencidas Rescisäo / FÉRIAS VENCIDAS RESCISÃO
+  [172] Férias Proporc.Rescisäo
+        eSocial: Férias Proporc.Rescisäo / FÉRIAS PROP .RESCISÃO
+  [1955] Diferença de INSS Férias
+        eSocial: Diferença de INSS Férias / INSS DIF. INSS FÉRIAS
+  [1954] Devolucao de INSS Férias
+        eSocial: Devolucao de INSS Férias / DEVOLUÇÃO INSS FÉRIAS
+  [100] Aviso Prévio Indenizado
+        eSocial: Aviso Prévio Indenizado / AVISO PRÉVIO INDENIZADO
+  [148] Abono Pecuniário Férias
+        eSocial: Abono Pecuniário Férias / ABONO PECUNIÁRIO
+  [160] 1/3 s. Abono Pecuniário
+        eSocial: 1/3 s. Abono Pecuniário / 1/3 ABONO
+  [184] 1/3 Férias Rescisäo
+        eSocial: 1/3 Férias Rescisäo / 1/3 FÉRIAS PROP .RESCISÃO
+  [140] 1/3 Férias
+        eSocial: 1/3 Férias / 1/3 FÉRIAS
+  [1743] Premiacao
+        eSocial: Premiacao / PREMIAÇÃO
+  [344] DSR sobre Faltas
+        eSocial: DSR sobre Faltas / DSR sobre Faltas
+  [278] Salário Família
+        eSocial: Salário Família / SALÁRIO FAMÍLIA
+  [958] Sal. Família mes anterior
+        eSocial: Sal. Família mes anterior / SALÁRIO FAMÍLIA MÊS ANTERIOR
+  [274] Gratificacao
+        eSocial: Gratificacao / GRATIFICAÇÃO
+  [1124] Convenio Tangara
+        eSocial: Convenio Tangara / CONVÊNIO TANGARA
+
+[SKIP] 00 - AVULSOS
+[SKIP] 00 - EMPRESAS SEM MOVIMENTO
+[SKIP] 00 - MODELO
+[SKIP] 00 SAIU-TROCOU CONTADOR
+[SKIP] 14 BIS EMPORIO DA CERVEJA LTDA
+[SKIP] 153 TECNOLOGIA
+[SKIP] 2W ENGENHARIA ELETRICA LTDA
+[SKIP] 3AMOYA EMPREENDIMENTOS LTDA
+[SKIP] ADRIANA BERNARDES BARBOSA
+[SKIP] AFRO CAFETERIA LTDA
+[SKIP] AGIN PESQUISA E DESENVOLVIMENTO LTDA
+[SKIP] AGRISK TECHNOLOGIES SISTEMAS LTDA
+[SKIP] AGRO-S
+[SKIP] AGROPECUARIA CAPIVARI LTDA
+[SKIP] AGROPECUARIA DEBS DINIZ LTDA
+[SKIP] ALAMEDA CONSULT LTDA
+[SKIP] ALAN PETER RECHSTEINER
+[SKIP] ALDA MARIA NAVES CALCAGDO
+[SKIP] ALIMENTAÇÕES GERAIS LTDA
+[SKIP] ALIMENTOS DOM GASQUEL LTDA
+[SKIP] ALINE DOS SANTOS LEIRA
+[SKIP] AMAR SOLUCOES EM MARKETING LTDA
+[SKIP] AMT PARTICIPAÇÕES LTDA
+[SKIP] ANA CLAUDIA SPINOSA
+[SKIP] ANA LUISA MEDEIROS NOGUEIRA
+[SKIP] ANA MIRIAN CARNEIRO DE SOUZA
+[SKIP] ANDRE CUNHA - DOMESTICA
+[SKIP] ANDREIA GUIMARAES GONCALVES
+[SKIP] ANTONIO FREIRE DE FIGUEREDO JUNIOR
+[SKIP] ANTONIO ROMEU DE MOURA
+[SKIP] ARDA CONSULTORIA LTDA
+[SKIP] ARIEL OLIVEIRA ADVOGADOS ASSOCIADOS
+[SKIP] ARMACOES VITORIA LTDA
+[SKIP] ARMANDO MENDES REZENDE
+[SKIP] ARMANDO MENDES REZENDE DOMESTICA
+[SKIP] ARTKORTEN LASER DESIGN LTDA
+[SKIP] ASHER ENGENHARIA LTDA
+[SKIP] ASTRA BARRA CONTROLE DE PRAGAS LTDA
+[SKIP] ASTRAL TRIANGULO CONTROLE DE PRAGAS LTDA
+[SKIP] ATP EMPREENDIMENTOS
+[SKIP] AUGUSTO COURY CARDOSO
+[SKIP] AUTOMACAO
+[SKIP] BEACH PLAY BOUTIQUE ESPORTIVA LTDA
+[SKIP] BELO ARTE CONSTRUTORA LTDA
+[SKIP] BEM ACOLHE SAUDE ANIMAL LTDA
+[SKIP] BENS COFFE
+[SKIP] BITBOUNDAIRE BRASIL LTDA
+[SKIP] BLUE SHAKES COMERCIO LTDA
+[SKIP] BONGUIM ARMAZENS E TRANSPORTES LTDA
+[SKIP] BORGES SOCIEDADE INDIVIDUAL DE ADVOCACIA
+[SKIP] BRUNO LEITE FEROLA - CONSULTORIO
+[SKIP] BRUNO LEITE FEROLA - DOMÉSTICA
+[SKIP] CAFE DE LA MUSIQUE ESCARPAS DO LAGO LTDA
+[SKIP] CAMILA BITTENCOURT DANTAS
+[SKIP] CAMPO MINEIRO SOLUCOES AGRICOLAS LTDA
+[SKIP] CANDIDO MATERIAIS DE CONSTRUÇÃO LTDA
+[SKIP] CAPIM BRANCO
+
+[1] CARLOS TADEU MOREIRA
+     -> ID:898 | CNPJ:37716956787 | CARLOS TADEU MOREIRA
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] CAROLINA NAVES AMARAL
+[SKIP] CARVALHO LIMA RADIOLOGIA LTDA
+[SKIP] CASA A2 STUDIO PERSONAL LTDA
+[SKIP] CASA DE CARNES JERONIMA EIRELI
+[SKIP] CASA DE REPOUSO RECANTO DOS LIRIOS LTDA
+[SKIP] CASA NOVA COMERCIO E FERRAGISTA
+[SKIP] CASA VALENCE COMERCIO E SERVICOS LTDA
+[SKIP] CASSIA FRANCO NOVAIS - CEI
+[SKIP] CASSIA FRANCO NOVAIS - DOMESTICA
+[SKIP] CCMV POWER PROJETOS SERVICOS E MATERIAIS ELETRICOS LTDA
+[SKIP] CDCI CLINICA ODONTOLOGICA
+[SKIP] CENTRO CULTURAL DE IDIOMAS E ARTES LTDA
+
+[2] CHAMA NEGOCIOS LTDA
+     -> ID:2313 | CNPJ:40875343000114 | CHAMA NEGOCIOS LTDA
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] CHEF DA EMPADA
+[SKIP] CHRISTIANE PEDREIRO TANNUS
+[SKIP] CHURRASCARIA PIM GRILL
+[SKIP] CICLLOS GESTORA DE CLINICAS E SAUDE LTDA
+[SKIP] CICLLOS PARTICIPACOES SOCIETARIA LTDA
+[SKIP] CICLLOS PAY SERVICOS FINANCEIROS LTDA
+[SKIP] CICLLOS PLANOS DE VIDA LTDA
+
+[3] CICLLOS SEGURADORA S.A
+     -> ID:2476 | CNPJ:48419605000148 | CICLLOS SEGURADORA S.A
+     ✓ 11-2024: 4 colaborador(es) [pdf]
+     ✓ 12-2024: 4 colaborador(es) [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] CICLOS TRANSFORMACAO DE PROCESSOS LTDA
+[SKIP] CICLYS CONSULTORIA E
+[SKIP] CIRURGICA LN SP LTDA
+
+[4] CLAUDIO CUSTODIO DA SILVA
+     -> ID:3013 | CNPJ:49650490000160 | CLAUDIO CUSTODIO DA SILVA
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] CLAUDIO ROBERTO - DOMESTICA
+[SKIP] CLAUDIO ROBERTO - FAZENDA
+[SKIP] CLEAN INSTALAÇÕES DE AR CONDICIONADO
+[SKIP] CLINICA SOMANEUROMODULACAO LTDA
+[SKIP] CLODOALDO PRUDENTE AGROPECUARIA LTDA
+[SKIP] CLOSE COMUNICACAO LTDA
+[SKIP] COMERCIAL ELGIRO LTDA
+[SKIP] COMERCIAL GASQUEL ALIMENTOS
+[SKIP] CONCEITO BAR E RESTAURANTE LTDA
+[SKIP] COND. DO RESIDENCIAL PARQUE UNITED KINGDON
+
+[5] CONDOMINIO DO EDIFICIO RESIDENCIAL STILO
+     -> ID:716 | CNPJ:97530832000151 | CONDOMINIO DO EDIFICIO RESIDENCIAL STILO
+     - 11-2024: nenhum evento encontrado [sem arquivo]
+     - 12-2024: nenhum evento encontrado [sem arquivo]
+     - 01-2025: nenhum evento encontrado [sem arquivo]
+     - 02-2025: nenhum evento encontrado [sem arquivo]
+     - 03-2025: nenhum evento encontrado [sem arquivo]
+     - 04-2025: nenhum evento encontrado [sem arquivo]
+     - 05-2025: nenhum evento encontrado [sem arquivo]
+     - 06-2025: nenhum evento encontrado [sem arquivo]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] CR CONSTRUCOES LTDA
+[SKIP] CRESCE VENDAS TECNOLOGIA
+[SKIP] DANIEL RICARDO DAVI SOUSA - DOMESTICA
+[SKIP] DANIEL RICARDO DAVI SOUSA - FAZENDA
+[SKIP] DANIELA FERREIRA DA SILVA SILVERIO
+[SKIP] DAS NEGOCIOS
+[SKIP] DD SIQUEIRA MONTEIRO PARTICIPACOES SOCIE
+[SKIP] DIEGO FRANKLIN SILVEIRA SILVA 08562080608
+[SKIP] DOMINGOS GARCIA E CIA LTDA
+[SKIP] DONIZETI FERNANDES DA CUNHA
+[SKIP] DOT COMERCIO DE ALIMENTOS E EMPREENDIMENTOS LTDA
+
+[6] DROGARIA FL LTDA
+     -> ID:3007 | CNPJ:47291338000103 | FLAVIA APARECIDA RODRIGUES MORAES
+     ✓ 11-2024: 1 colaborador(es) [pdf]
+     ✓ 12-2024: 1 colaborador(es) [pdf]
+     ✓ 01-2025: 1 colaborador(es) [pdf]
+     ✓ 02-2025: 1 colaborador(es) [pdf]
+     ✓ 03-2025: 1 colaborador(es) [pdf]
+     ✓ 04-2025: 1 colaborador(es) [pdf]
+     ✓ 05-2025: 2 colaborador(es) [pdf]
+     ✓ 06-2025: 1 colaborador(es) [pdf]
+     ✓ 07-2025: 1 colaborador(es) [pdf]
+     ✓ 08-2025: 1 colaborador(es) [pdf]
+     ✓ 09-2025: 2 colaborador(es) [pdf]
+     ✓ 10-2025: 1 colaborador(es) [pdf]
+     ✓ 11-2025: 2 colaborador(es) [pdf]
+     ✓ 12-2025: 1 colaborador(es) [pdf]
+[SKIP] DW ESPORTES
+[SKIP] EAI EDUCA LTDA
+[SKIP] EDUARDO PIRES DE OLIVEIRA
+[SKIP] EFFICACE EMPREENDIMENTOS IMOBILIARIOS LT
+[SKIP] EKO RECICLAVEIS LTDA
+[SKIP] ELEONORA CAMILO PIERUCCETTI
+[SKIP] ELIAS E LIMA CLINICA MEDICA LTDA
+[SKIP] EMPADA GAUCHA LTDA
+[SKIP] EMPRESA MUNICIPAL DE APOIO E MANUTENCAO
+[SKIP] ENZO EMPREENDIMENTOS LTDA
+[SKIP] ESPERANCA INVESTIMENTOS LTDA
+[SKIP] ETEL MANUT IMPLANTAÇÃO DE REDES
+[SKIP] F&T PARTICIPACOES LTDA
+[SKIP] F. MOYA EMPREENDIMENTOS E PARTICIPACOES LTDA
+[SKIP] FE REPRESENTACOES LTDA
+[SKIP] FERRAGISTA E FERRAMENTAS GUIMARAES LTDA
+[SKIP] FIBREC COMERCIO DE PECAS
+[SKIP] FIT PARK JARDIM PATRICIA
+
+[7] FLAVIA APARECIDA RODRIGUES MORAES
+     -> ID:3007 | CNPJ:47291338000103 | FLAVIA APARECIDA RODRIGUES MORAES
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] FLEX BAR E CONVENIENCIA
+[SKIP] FLQ SERVICOS EMPRESARIAIS LTDA
+
+[8] FMM AGROPECUARIA LTDA
+     -> ID:2209 | CNPJ:36359553000182 | FMM AGROPECUARIA LTDA
+     - 11-2024: nenhum evento encontrado [sem arquivo]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     ✓ 03-2025: 1 colaborador(es) [pdf]
+     ✓ 04-2025: 3 colaborador(es) [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [sem arquivo]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] FOCO CONSULTORIA IMOBILIÁRIA LTDA
+[SKIP] FOCO INVEST CONSULTORIA IMOBILIARIA LTDA
+[SKIP] FOCO ON INTELIGÊNCIA DIGITAL LTDA
+[SKIP] FOCO SHARKS LTDA
+[SKIP] FONOTEK LTDA
+[SKIP] FORMA PROFISSIONAL DISTRIBUIDORA DE COSMETICOS LTDA
+[SKIP] FORMULA FREIOS E FRICCAO LTDA ME
+[SKIP] FORTE ESTRUTURAS METALICAS LTDA
+[SKIP] FRANCO NOVAIS MAT PARA CONSTRUCAO
+[SKIP] FRP SOLUÇÕES ADMINISTRATIVAS LTDA
+[SKIP] FUNERARIA ANGELO CUNHA LTDA
+[SKIP] GABRIEL MARTINS CALIXTO
+[SKIP] GAMA ADMINISTRAÇÃO E PARTICIPAÇÕES LTDA
+[SKIP] GAMEFIC TECNOLOGIA LTDA
+[SKIP] GARGA GYN ACADEMIA LTDA ME
+[SKIP] GASTROCENTRO UMC
+[SKIP] GENE4U - PLATAFORMA GENETICA E INOVACAO LTDA
+
+[9] GERSON DINIZ JUNIOR - consultorio
+     -> ID:3145 | CNPJ:39316378600340 | GERSON DINIZ JUNIOR - consultorio
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [sem arquivo]
+
+[10] GERSON DINIZ JUNIOR - fazenda
+     -> ID:3143 | CNPJ:39316378600340 | GERSON DINIZ JUNIOR - fazenda
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] GOSUEN APOIO E GESTÃO CONDOMINAL LTDA
+[SKIP] GRAMADO PAES E DOCES
+[SKIP] GUARA SERVIÇOS EIRELI EPP
+[SKIP] GUIA REPRESENTACOES E SOLUCOES CONSTRUTIVAS LTDA
+[SKIP] GUSTAVO GUIMARAES SILVA
+[SKIP] GUSTAVO HENRIQUE SILVA NOGUEIRA-DOMESTICA
+[SKIP] HAIALA ALBERTO OLIVEIRA
+[SKIP] HARPOON LTDA
+
+[11] HB TRANSPORTES
+     -> ID:675 | CNPJ:04293905000158 | HB TRANSPORTES
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [sem arquivo]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [sem arquivo]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [sem arquivo]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] HEAT ENGENHARIA LTDA
+[SKIP] HEBER FARIA CABELEIREIROS LTDA
+[SKIP] HG FERRAMENTAS
+[SKIP] HG MAQUINAS E EQUIP DE SEGURANCA
+[SKIP] HG NEGOCIOS IMOBILIARIOS LTDA
+[SKIP] HGM EMPREENDIMENTOS
+[SKIP] HIDROSAL EMPREENDIMENTOS GERAIS LTDA
+[SKIP] HMR COMERCIO DE PAES
+[SKIP] HN HAMBURGUERIA LTDA ME
+[SKIP] HN SABIA HAMBURGUERIA
+[SKIP] HNG CONSULTORIA EM NEGOCIOS LTDA
+[SKIP] HOSPITALITY TELECOM LTDA
+[SKIP] HOTELARIA E LANCHONETE JCA LTDA
+[SKIP] HUGO CARNEIRO DE RESENDE
+[SKIP] I SAT TELECOMUNICAÇÕES LTDA
+[SKIP] IDOC RADIOLOGIA ODONTOLOGICA LTDA
+[SKIP] IM3 PARTICIPAÇÕES LTDA
+[SKIP] IMEXX - IMAGEM MEDICA DE EXCELENCIA LTDA
+[SKIP] INDAIA MANIPULACOES LTDA
+[SKIP] INDUSTRIA DE BOTINAS PLUMA
+[SKIP] INFOPONTO DIGITAL RELOGIO DE PONTO
+[SKIP] INNGAGE TECNOLOGIA PARA APPS E E-COMMERC
+[SKIP] INOVAR ELETRO ELETRONICOS LTDA
+[SKIP] INSTITUTO VIAE ORIENTACAO PROFISSIONAL L
+[SKIP] IPE EMPREENDIMENTOS E PARTICIPAÇÕES LTDA
+[SKIP] ITAMAR JOSE RESENDE - FAZENDA SHALOM
+[SKIP] ITAMAR JOSE REZENDE - DOMESTICA
+[SKIP] IZZY HOTEL
+[SKIP] J.E.D SERVICOS LTDA
+[SKIP] JABV EMPREENDIMENTOS LTDA
+[SKIP] JARBAS DE OLIVEIRA ALVES
+[SKIP] JNA COMERCIO DE COMBUSTIVEIS LTDA
+[SKIP] JOAO JOAQUIM GUIMARAES COSTA
+[SKIP] JOB VENTURES LTDA
+[SKIP] JONY BULKOOL ARANTES - DOMÉSTICA
+[SKIP] JORGE ELIAS AMUY DOMESTICA
+[SKIP] JOSE ABADIO - FAZENDA ARAGUARI
+[SKIP] JOSE ABADIO DE RESENDE MELO - FAZENDA
+
+[12] JOSE ANTONIO PAGOTTO
+     -> ID:827 | CNPJ:16003276649 | JOSE ANTONIO PAGOTTO
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     ✓ 06-2025: 2 colaborador(es) [pdf]
+     ✓ 07-2025: 2 colaborador(es) [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] JR E BIANCHINNI NEGOCIOS LTDA
+[SKIP] JULIANO MARQUES DE LIMA
+[SKIP] JVS SERVIÇOS INDUSTRIAIS LTDA
+[SKIP] KANTINE GASTRONOMIA LTDA
+[SKIP] KANTTUM TECNOLOGIA EM EDUCACAO S.A
+[SKIP] KATO SOLUÇOES
+[SKIP] KGG CONSULTORIA LTDA
+[SKIP] KGG EMPREENDIMENTOS E NEGOCIOS LTDA
+[SKIP] KTN COMERCIO E SERVICOS GASTRONOMICOS LTDA
+[SKIP] L.CHEF RESTAURANTE LTDA
+[SKIP] L2 ARTES GRAFICAS LTDA ME
+[SKIP] LAJU COMERCIO DE PAES LTDA
+[SKIP] LC RESTAURANTE LTDA
+[SKIP] LEILOES TRIANGULO
+[SKIP] LEMI SERVICOS LTDA
+
+[13] LEONARDO CHAVES ZAPALLA PIMENTEL
+     -> ID:2333 | CNPJ:0800079520783 | LEONARDO CHAVES ZAPALLA PIMENTEL
+     Sem pasta 'FOLHA DE PAGAMENTO'
+[SKIP] LIRO POINT BAR E RESTAURANTE
+[SKIP] LORENA E LAICE
+[SKIP] LOUNGE DA BELEZA
+[SKIP] LPSENDOPED LTDA
+[SKIP] LSL CONSTRUTORA LTDA
+[SKIP] LUCAS CARNEIRO DE RESENDE
+[SKIP] LUCIANA PASSOS
+[SKIP] LUCIANO REZENDE RANGEL
+[SKIP] LUIS GUSTAVO DE AGUIAR PAIVA - DOMÉSTICA
+[SKIP] LUIZ CARLOS DO EGYPTO
+[SKIP] LUIZ MARIO DE ABREU E FREITAS - CNO
+[SKIP] LUIZ MARIO DE ABREU E FREITAS - DOMESTICA
+[SKIP] M REZENDE PARTICIPACOES LTDA
+[SKIP] M. PARTICIPAÇÕES LTDA
+[SKIP] M. SALES ADMINISTRAÇÃO DE OBRAS LTDA
+[SKIP] M. SALES CONSTRUTORA EIRELI
+[SKIP] M. SALES PARTICIPACOES LTDA
+[SKIP] M. SALES PROJETOS SS LTDA
+[SKIP] M2P SERVIÇOS E APOIO A RESTAURANTES LTDA
+[SKIP] MAGAZINE TRAVEL PUBLICACOES LTDA
+[SKIP] MAISA PIRES ATELIE LTDA ME
+[SKIP] MARCELO BARBEARIA
+[SKIP] MARCELO CANDIDO SILVA
+[SKIP] MARCELO ROCHA FERREIRA
+
+[14] MARCO DULGHEROFF NOVAIS
+     -> ID:1032 | CNPJ:615146678 | MARCO DULGHEROFF NOVAIS
+     Sem pasta 'FOLHA DE PAGAMENTO'
+[SKIP] MARCO TULIO DE SOUZA LIMA NOVAIS
+[SKIP] MARCUS VINICIOS THIAGO DE JESUS
+[SKIP] MARIA DE FATIMA FERREIAR SOUSA
+[SKIP] MARIA DE FATIMA MOREIRA
+[SKIP] MARIANA DE CASTRO NAVES - DOMÉSTICA
+[SKIP] MARIANA MARTINS COSTA MAIA
+[SKIP] MARIO ATTIE JUNIOR
+[SKIP] MARISA JULIA DONZELLI LAZZARINI
+[SKIP] MARISE GUIMARAES PEREIRA LIMA
+[SKIP] MASSIS EMPREENDIMENTOS
+[SKIP] MCS CABELEIREIROS
+
+[15] MCT ENGENHARIA LTDA ME
+     -> ID:978 | CNPJ:28591619000137 | MCT ENGENHARIA LTDA ME
+     ✓ 11-2024: 3 colaborador(es) [pdf]
+     - 12-2024: nenhum evento encontrado [csv]
+     ✓ 01-2025: 3 colaborador(es) [pdf]
+     ✓ 02-2025: 6 colaborador(es) [pdf]
+     ✓ 03-2025: 1 colaborador(es) [pdf]
+     ✓ 04-2025: 1 colaborador(es) [pdf]
+     ✓ 05-2025: 1 colaborador(es) [pdf]
+     ✓ 06-2025: 5 colaborador(es) [pdf]
+     ✓ 07-2025: 4 colaborador(es) [pdf]
+     ✓ 08-2025: 5 colaborador(es) [pdf]
+     ✓ 09-2025: 3 colaborador(es) [pdf]
+     ✓ 10-2025: 2 colaborador(es) [pdf]
+     ✓ 11-2025: 4 colaborador(es) [pdf]
+     ✓ 12-2025: 2 colaborador(es) [pdf]
+[SKIP] MCT TERRAPLANAGEM LTDA
+[SKIP] MCT TRANSPORTES LTDA
+[SKIP] MDC SOLUÇÕES ESTRATÉGICAS LTDA
+[SKIP] MELO E SANTOS SERVICOS, COMERCIO, IMPORTACAO E EXPORTACAO LTDA
+[SKIP] MERCANTIL BARROS ARAB
+[SKIP] MERCEARIA E ALIMENTOS BELA VISTA LTDA
+[SKIP] MILE RESTAURANTE LTDA
+[SKIP] MINERACAO SAL NASCENTE LTDA
+[SKIP] MLG RESTAURANTE EIRELI
+[SKIP] MODULO ARQUITETURA LTDA
+[SKIP] MODULO ESTRUTURAS METALICAS LTDA
+[SKIP] MONTEC MONTAGEM E MANUT. INDUSTRIAL LTDA
+[SKIP] MONTEC SERVICOS INDUSTRIAIS LTDA
+
+[16] MORIA CONSTRUCOES LTDA
+     -> ID:970 | CNPJ:28195587000150 | MORIA CONSTRUCOES LTDA - EPP
+     ✓ 11-2024: 6 colaborador(es) [pdf]
+     ✓ 12-2024: 2 colaborador(es) [pdf]
+     ✓ 01-2025: 4 colaborador(es) [pdf]
+     ✓ 02-2025: 1 colaborador(es) [pdf]
+     ✓ 03-2025: 2 colaborador(es) [pdf]
+     ✓ 04-2025: 3 colaborador(es) [pdf]
+     ✓ 05-2025: 1 colaborador(es) [pdf]
+     ✓ 06-2025: 1 colaborador(es) [pdf]
+     ✓ 07-2025: 1 colaborador(es) [pdf]
+     ✓ 08-2025: 3 colaborador(es) [pdf]
+     ✓ 09-2025: 2 colaborador(es) [pdf]
+     ✓ 10-2025: 1 colaborador(es) [pdf]
+     ✓ 11-2025: 2 colaborador(es) [pdf]
+     ✓ 12-2025: 2 colaborador(es) [pdf]
+[SKIP] MUKI TECNOLOGIA LTDA
+[SKIP] NAGRO SECURITIZADORA D. C. DO AGRONEGOCIO
+[SKIP] NANTES & RABELO EMPREENDIMENTOS IMOBILIARIOS LTDA
+[SKIP] NASCIMENTO POERSCH MONTAGEM INDUSTRIAL LTDA
+[SKIP] NB SERVIÇOS
+[SKIP] NEUROSOMA CLINICA LTDA
+
+[17] NOSSO CAFE LOCACAO E COMERCIO DE MAQUINAS DE CAFE
+     -> ID:3117 | CNPJ:55053780000120 | NOSSO CAFE LOCACAO E COMERCIO DE MAQUINAS DE CAFE
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [sem arquivo]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] NOVA EMPRESA GESTAO DE NEGOCIOS LTDA
+[SKIP] NOVAIS TRANSPORTES E NEGOCIOS LTDA
+[SKIP] NUNES E NUNES DISTR DE PECAS AUTOMOTIVAS L
+[SKIP] NUTRE SHAKES LTDA
+[SKIP] ODILON SOARES DA SILVA
+[SKIP] OPCAO CREATIVE LTDA
+[SKIP] OPCAO ESTRATEGIA DE NEGOCIOS LTDA
+
+[18] ORGANIZAÇÕES MARIA MODAS EIRELI
+     -> ID:301 | CNPJ:05274677000131 | ORGANIZAÇÕES MARIA MODAS EIRELI
+     ✓ 11-2024: 1 colaborador(es) [pdf]
+     ✓ 12-2024: 1 colaborador(es) [pdf]
+     ✓ 01-2025: 1 colaborador(es) [pdf]
+     ✓ 02-2025: 1 colaborador(es) [pdf]
+     ✓ 03-2025: 2 colaborador(es) [pdf]
+     ✓ 04-2025: 1 colaborador(es) [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [sem arquivo]
+     - 10-2025: nenhum evento encontrado [sem arquivo]
+     - 11-2025: nenhum evento encontrado [sem arquivo]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] OSVALDO BORGES DE CARVALHO
+[SKIP] P&F PARTICIPACOES LTDA
+[SKIP] PABLO AUGUSTO GARCIA SALES FELICIANO
+[SKIP] PAMONHA SUPER QUENTE
+[SKIP] PANIFICADORA E CONFEITARIA RR PINHEIROS LTDA
+[SKIP] PATRICIA BEATRIZ FERREIRA DA SILVA
+[SKIP] PATRICIA SOARES MENDONÇA (DOMÉSTICA)
+[SKIP] PDQ EVENTS SERVICOS DE SOFTWARE PARA EVENTOS LTDA
+[SKIP] PEPLY TECNOLOGIA EM RECURSOS HUMANOS LTDA
+
+[19] PIRAMIDE ADMINISTRAÇÃO E ASSESSORIA LTDA
+     -> ID:78 | CNPJ:23092711000139 | PIRAMIDE ADMINISTRAÇÃO E ASSESSORIA LTDA
+     - 11-2024: nenhum evento encontrado [sem arquivo]
+     - 12-2024: nenhum evento encontrado [sem arquivo]
+     - 01-2025: nenhum evento encontrado [sem arquivo]
+     - 02-2025: nenhum evento encontrado [sem arquivo]
+     - 03-2025: nenhum evento encontrado [sem arquivo]
+     - 04-2025: nenhum evento encontrado [sem arquivo]
+     - 05-2025: nenhum evento encontrado [sem arquivo]
+     - 06-2025: nenhum evento encontrado [sem arquivo]
+     - 07-2025: nenhum evento encontrado [sem arquivo]
+     - 08-2025: nenhum evento encontrado [sem arquivo]
+     - 09-2025: nenhum evento encontrado [sem arquivo]
+     - 10-2025: nenhum evento encontrado [sem arquivo]
+     - 11-2025: nenhum evento encontrado [sem arquivo]
+     - 12-2025: nenhum evento encontrado [sem arquivo]
+[SKIP] PIRAMIDE ASSISTENCIA FAMILIAR LTDA
+[SKIP] PIRAMIDE PLANO DE ASSISTENCIA FAMILIAR
+[SKIP] PIRAMIDE SERVICOS POSTUMOS LTDA ME
+[SKIP] PLANEJAR PROSPECÕES IMOBILIARIAS
+[SKIP] PLUMA PESPONTO
+[SKIP] PLURI PARTICIPACOES LTDA
+[SKIP] POLIPEDRAS MARM E GRANITOS
+[SKIP] PONTO TOPOGRAFIA LTDA
+[SKIP] PORTO ADMINISTRADORA LTDA
+[SKIP] POSTO PARQUE BELA VISTA LTDA
+[SKIP] PRIMER LOCACOES E SERVICOS
+[SKIP] PRISCILA DE SANTANA BRAGA - DOMÉSTICA
+[SKIP] PRISCILA MARIANO SERVICOS MEDICOS LTDA
+[SKIP] PRO CONSULTING LTDA
+[SKIP] PROSPPERS IMPORTS LTDA
+[SKIP] PUNCH BURGUER RIBEIRAO PRETO
+[SKIP] PUNCH HOLDING LTDA
+[SKIP] PUNCH UBERABA
+[SKIP] PURE POINT BISTRO LTDA
+[SKIP] PURE POINT RESTAURANTE EIRELI ME
+[SKIP] QUEIROZ E SOUSA AGROPECUARIA
+[SKIP] QUEIROZ EGYPTO ADVOGADOS
+[SKIP] QUILLE 5 SERVICOS
+[SKIP] QUITES COMERCIO E SERVICOS EIRELI
+[SKIP] R. VILLA INVESTIMENTOS IMOBILIARIOS LTDA
+[SKIP] RCR AGROPECUARIA LTDA
+[SKIP] RDLED COMERCIO E IMPORTACAO
+[SKIP] RECANTO DOS LIRIOS HOME CARE LTDA
+[SKIP] REGINALDO SOUZA
+
+[20] REI DO LED COMERCIO EIRELI
+     -> ID:953 | CNPJ:23564038000192 | REI DO LED COMERCIO EIRELI
+     ✓ 11-2024: 4 colaborador(es) [pdf]
+     ✓ 12-2024: 4 colaborador(es) [pdf]
+     ✓ 01-2025: 6 colaborador(es) [pdf]
+     ✓ 02-2025: 7 colaborador(es) [pdf]
+     ✓ 03-2025: 5 colaborador(es) [pdf]
+     ✓ 04-2025: 4 colaborador(es) [pdf]
+     ✓ 05-2025: 4 colaborador(es) [pdf]
+     ✓ 06-2025: 4 colaborador(es) [pdf]
+     ✓ 07-2025: 4 colaborador(es) [pdf]
+     ✓ 08-2025: 4 colaborador(es) [pdf]
+     ✓ 09-2025: 4 colaborador(es) [pdf]
+     ✓ 10-2025: 4 colaborador(es) [pdf]
+     ✓ 11-2025: 4 colaborador(es) [pdf]
+     ✓ 12-2025: 5 colaborador(es) [pdf]
+[SKIP] REIS ADVOGADOS
+[SKIP] REIS ADVOGADOS - EXTRA OFICIAL
+[SKIP] REIS ASSESSORIA EM NEGOCIOS EIRELI
+[SKIP] RENAN JOSE GASQUEL FERNANDES - DOMESTICA
+[SKIP] RENDA EMPREENDIMENTOS IMOBILIARIOS LTDA
+[SKIP] RENOVARTE SOLUÇÕES CONSTRUTIVAS LTDA
+[SKIP] RENY GUILHEN NASTRI BORALLI
+[SKIP] RESGATE ASSOCIACAO DE ASSISTENCIA SOCIAL DA IGREJA DE DEUS NO BRASIL
+[SKIP] RESIDENCIAL PARK HOLANDA II SPE LTDA
+[SKIP] RESOLUTE ROCHA INCORPORADORA E EMPREENDIMENTOS IMOBILIARIOS LTDA
+[SKIP] RESTAURANTE BELA VISTA LTDA
+[SKIP] RMHF PARTICIPACOES LTDA
+[SKIP] ROC ROCHAS NATURAIS
+[SKIP] RODRIGO PEDROSO ZARRO
+[SKIP] RODRIGUES OLIVER SERVICOS LTDA
+[SKIP] ROMERO DE MELO REZENDE
+[SKIP] RONDON COMERCIO DE ALIMENTOS LTDA
+[SKIP] RRMARQUES PARTICIPACOES LTDA
+[SKIP] RRP EMPREENDIMENTOS LTDA
+[SKIP] S SOUTO REPRESENTAÇOES
+[SKIP] SANTA ROSA LOCAÇÕES E MONTAGENS LTDA
+[SKIP] SANTANA ODONTOLOGIA
+[SKIP] SAO JOSE PARTICIPACOES LTDA
+[SKIP] SEBASTIÃO EUSTAQUIO
+[SKIP] SEGURANCA INVESTIMENTOS LTDA
+[SKIP] SERGIO HENRIQUE SOUTO
+[SKIP] SETE TRES ASSESSORIA SERVICOS E TRANSPORTES
+
+[21] SHI HOLDING IMOBILIARIA LTDA
+     -> ID:3108 | CNPJ:54799970000128 | SHI HOLDING IMOBILIARIA LTDA
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [sem arquivo]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [sem arquivo]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] SILEIA PEREIRA RODRIGUES MEI
+[SKIP] SIMONE APARECIDA SIMOES TAVARES
+[SKIP] SINARA NASCIMENTO GONCALVES
+[SKIP] SMARTECH HOLDING LTDA
+[SKIP] SOCCER CONSULTORIA ESPORTIVA LTDA
+[SKIP] SOLEIL ENERGIA SUSTENTAVEL LTDA
+[SKIP] SOLIVY TECNOLOGIA LTDA
+[SKIP] SOLUCAO SERVICOS ALIMENTOS LTDA
+[SKIP] SONTECH SOLUÇÕES TECNOLOGICAS LTDA
+[SKIP] SOUSA ADMINISTRACAO E PARTICIPACAO EIRELI
+[SKIP] SOUSA OLIVEIRA ADVOGADOS
+[SKIP] STAFF SERVIÇOS
+[SKIP] STELIA CONSULTORIA LTDA
+[SKIP] STUDIO PILATES GARGA GYN LTDA
+[SKIP] STUDIO PRO SERVICOS E TREINAMENTOS LTDA
+[SKIP] SULTS TECNOLOGIA LTDA
+[SKIP] SULTS TREINAMENTOS
+[SKIP] SUPERFLIX PARTICIPACOES LTDA
+[SKIP] SUPPORTE SERVICOS DE VENDA
+[SKIP] TALENTOS GASTRONOMIA LTDA
+[SKIP] TANDRA COSMETICOS LTDA
+[SKIP] TANNUS ZARRO SOCIEDADE INDIVIDUAL DE ADVOCACIA
+[SKIP] TAVARES E BARROSO SERVIÇOS MEDICOS LTDA
+[SKIP] TAVARES ELIAS & FARIA MEIRA SERVICOS MEDICOS LTDA
+[SKIP] TAYCO MOTORS VEICULOS E NEGOCIOS LTDA
+[SKIP] TC NEGOCIOS INTELIGENTES LTDA
+[SKIP] TECER NEGOCIOS LTDA
+
+[22] TECH SEGUROS LTDA
+     -> ID:2252 | CNPJ:38428614000141 | TECH SEGUROS LTDA
+     ✓ 11-2024: 1 colaborador(es) [pdf]
+     ✓ 12-2024: 1 colaborador(es) [pdf]
+     ✓ 01-2025: 1 colaborador(es) [pdf]
+     ✓ 02-2025: 1 colaborador(es) [pdf]
+     ✓ 03-2025: 1 colaborador(es) [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] TECH SERVICOS DE APOIO LTDA
+[SKIP] TOLEDO NEGOCIOS E SERVICOS LTDA
+[SKIP] TOPCAR VEICULOS UBERLÂNDIA LTDA
+[SKIP] TRANSMAIS LOGISTICA E TRANSPORTES LTDA
+[SKIP] TRASSI E CARVALHO TRANSPORTES LTDA
+[SKIP] TRIADE EMPREENDIMENTOS E PARTICIPACOES LTDA
+[SKIP] TRIANGULO BAUS
+[SKIP] TRIANGULO GESTORA E ADMINISTRAÇÃO LTDA
+[SKIP] TRIUNFO ADMINISTRACAO E NEGOCIOS LTDA
+[SKIP] TUI ASSESSORIA E CONSULTORIA LTDA
+[SKIP] ULIAN DECOR PLANEJADOS LTDA
+[SKIP] UM ENTREPOSTO LTDA
+[SKIP] UMC TECNOLOGIA SA
+[SKIP] V C S NEGOCIOS AGRICOLAS LTDA
+
+[23] V.C. SAAD COMERCIO E MONTAGEM DE MOVEIS LTDA
+     -> ID:3003 | CNPJ:37131959000176 | V.C. SAAD COMERCIO E MONTAGEM DE MOVEIS LTDA
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [sem arquivo]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+[SKIP] V.CS CHOPERIA E RESTAURANTE LTDA
+[SKIP] V.R.G CONSTRUTORA LTDA
+[SKIP] VALERIA APARECIDA MORAES DA CUNHA (OBRA)
+[SKIP] VALERIANA CUNHA (DOMÉSTICA)
+[SKIP] VALOR AUDITORIA E GESTAO LTDA-ME
+[SKIP] VANDERLEI PRADA DE SANTANA
+[SKIP] VANESSA BEAUTY
+[SKIP] VANIELA ZONTA MATTAR
+[SKIP] VARANDAS TAPUIRAMA
+[SKIP] VELAS DA PAZ LTDA
+[SKIP] VELASCO E PRADO ADVOGADOS
+
+[24] VERA LUCIA DAVI DE SOUSA
+     -> ID:541 | CNPJ:19177356691 | VERA LUCIA DAVI DE SOUSA
+     - 11-2024: nenhum evento encontrado [pdf]
+     - 12-2024: nenhum evento encontrado [pdf]
+     - 01-2025: nenhum evento encontrado [pdf]
+     - 02-2025: nenhum evento encontrado [pdf]
+     - 03-2025: nenhum evento encontrado [pdf]
+     - 04-2025: nenhum evento encontrado [pdf]
+     - 05-2025: nenhum evento encontrado [pdf]
+     - 06-2025: nenhum evento encontrado [pdf]
+     - 07-2025: nenhum evento encontrado [pdf]
+     - 08-2025: nenhum evento encontrado [pdf]
+     - 09-2025: nenhum evento encontrado [pdf]
+     - 10-2025: nenhum evento encontrado [pdf]
+     - 11-2025: nenhum evento encontrado [pdf]
+     - 12-2025: nenhum evento encontrado [pdf]
+
+[25] VERA LUCIA DAVI DE SOUSA - DOMESTICA
+     -> ID:541 | CNPJ:19177356691 | VERA LUCIA DAVI DE SOUSA
+[SKIP] VERT ART E DECORAÇÃO LTDA
+[SKIP] VIA DIGITAL CERTIFICADOS DIGITAIS LTDA
+[SKIP] VICTOR HUGO SOUZA MEDEIROS
+[SKIP] VIGA EMPREENDIMENTOS IMOBILIARIOS LTDA
+[SKIP] VIGA INCORPORACOES
+[SKIP] VILLA CORTES NEGOCIOS LTDA
+[SKIP] VISTOTRAN VISTORIA DE VEICULOS LTDA
+[SKIP] WBT CURSOS JURIDICOS LTDA
+[SKIP] WEDER CLAUDIO DA ROCHA
+[SKIP] WFC PARTICIPACOES SOCIETARIAS LTDA
+[SKIP] WILDER FERREIRA
+[SKIP] WILLIAN SILVA VAZ
+[SKIP] WISLLER FERNANDES DA SILVA RIBEIRO
+[SKIP] WR ESTACIONAMENTOS
+[SKIP] ZARK EMPREENDIMENTOS LTDA
+[SKIP] ZOG DRONES LTDA
+
+=======================================================
+Empresas processadas : 25
+Empresas puladas     : 392
+Total de matches     : 179
+Arquivo salvo        : scanner_20260312_112825.json
+=======================================================
