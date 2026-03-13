@@ -3,3 +3,6 @@ __pycache__/
 *.pyo
 lib/cookies/*.txt
 .claude/settings.local.json
+.lib/cookies/*.txt
+dados/saida
+dados/entrada
